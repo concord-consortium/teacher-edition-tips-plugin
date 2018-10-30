@@ -5,11 +5,11 @@ s3_key_prefix: teacher-edition-tips-plugin
 s3_endpoint: us-east-1
 gzip: true
 
-cloudfront_distribution_id: E1YPVV3YLYS4J7
+cloudfront_distribution_id: E2R405LNHBE5SM
 cloudfront_invalidate_root: true
 cloudfront_wildcard_invalidation: true
 
-<% if ENV['TRAVIS_BRANCH'] == 'production' %>
+<% if ENV['TRAVIS_BRANCH'] == 'master' %>
 # in this case we are going to deploy this branch to the top level of the domain
 # so we need to ignore the version and branch folders
 ignore_on_server: ^teacher-edition-tips-plugin/(version/|branch/)
