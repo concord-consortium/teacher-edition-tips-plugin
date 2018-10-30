@@ -36,13 +36,16 @@ export class TeacherEditionTipsPlugin {
   }
 
   public renderPluginApp = () => {
+    PluginAPI = (window as any).LARA;
     const authoredState = getAuthoredState(this.context);
-    this.pluginAppComponent = ReactDOM.render(
-      <PluginApp
-        type={authoredState.type || "windowShade"}
-        PluginAPI={PluginAPI}
-      />,
-      this.context.div);
+    if (PluginAPI.isTeacherEdition()) {
+      this.pluginAppComponent = ReactDOM.render(
+        <PluginApp
+          type={authoredState.type || "windowShade"}
+          PluginAPI={PluginAPI}
+        />,
+        this.context.div);
+    }
   }
 }
 
