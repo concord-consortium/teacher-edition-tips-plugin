@@ -5,6 +5,9 @@ import WindowShade from "./window-shade";
 interface IProps {
   PluginAPI: any;
   type: string;
+  content?: string;
+  label?: string;
+  icon?: string;
 }
 interface IState {}
 
@@ -36,7 +39,7 @@ export default class PluginApp extends React.Component<IProps, IState> {
   public renderWindowShade() {
     return (
       <div>
-        <WindowShade />
+        <WindowShade content={this.props.content} />
       </div>
     );
   }
