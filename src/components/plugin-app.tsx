@@ -31,7 +31,10 @@ export default class PluginApp extends React.Component<IProps, IState> {
   public render() {
     const { type } = this.props;
     switch (type) {
-      case "windowShade": return this.renderWindowShade();
+      case "windowShade":
+      case "teacherTip":
+      case "theoryAndBackground":
+        return this.renderWindowShade();
       case "sideTip": return this.renderSidebarTip();
     }
   }
