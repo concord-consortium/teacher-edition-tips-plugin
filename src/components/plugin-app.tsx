@@ -39,7 +39,7 @@ export default class PluginApp extends React.Component<IProps, IState> {
   public renderWindowShade() {
     return (
       <div>
-        <WindowShade content={this.props.content} />
+        <WindowShade type={this.props.type} content={this.props.content} />
       </div>
     );
   }

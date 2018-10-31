@@ -1,15 +1,11 @@
 import * as React from "react";
 
 import * as css from "./window-shade.sass";
-
-interface IWindowShadeType {
-  label: string;
-  icon: string;
-}
+import ContentConfigurations from "../config/content-configurations";
+import WindowShadeButton from "./window-shade-button";
 
 interface IProps {
-  label?: string;
-  icon?: string;
+  type: string;
   content?: string;
 }
 interface IState {
@@ -23,15 +19,18 @@ export default class WindowShade extends React.Component<IProps, IState> {
 
   public render() {
     const { open } = this.state;
+    const { type } = this.props;
+    const { icon, label, styleClassName } = ContentConfigurations[type];
     const toggle = () => {
       this.setState({open: !open});
     };
+    const mainClassName = open ? css.windowShadeContentShow : css.windowShadeContentHide;
+    const cssClassNames = [mainClassName, css[styleClassName], css.content];
+
     return (
       <div className={css.windowShade}>
-        <div className={css.windowShadeToggle} onClick={toggle}>
-          Theory &amp; Background
-        </div>
-        <div className={open ? css.windowShadeContentShow : css.windowShadeContentHide }>
+        <WindowShadeButton onClick={toggle} type={type} />
+        <div className={cssClassNames.join(" ")}>
           {this.props.content}
         </div>
       </div>
