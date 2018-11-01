@@ -107,7 +107,8 @@
     "wait-on": "^3.1.0",
     "webpack": "^4.23.1",
     "webpack-cli": "^3.1.2",
-    "webpack-dev-server": "^3.1.10"
+    "webpack-dev-server": "^3.1.10",
+    "@svgr/webpack": "^3.1.0"
   },
   "dependencies": {
     "query-string": "^6.2.0",
