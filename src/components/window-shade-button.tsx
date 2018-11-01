@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import * as css from "./window-shade.sass";
-
+import Icon from "../icons/TeacherEditionA";
 import ContentConfigurations from "../config/content-configurations";
 
 interface IProps {
@@ -19,6 +19,7 @@ export default class WindowShade extends React.Component<IProps, IState> {
     const cssClassNames = [ css.windowShadeToggle, css[styleClassName] ];
     return (
       <div className={cssClassNames.join(" ")} onClick={onClick}>
+        <Icon/>
         {label}
       </div>
     );
