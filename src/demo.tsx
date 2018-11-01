@@ -2,36 +2,35 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import WindowShade from "./components/window-shade";
 
-const contentTextInMarkdown =
-  "Welcome to the **Teacher Edition** of the _**GEODE: What will Earth look like " +
-  "in 500 million years?**_ activity sequence. This interactive guide will " +
-  "help you get acquainted with these activities from a student’s perspective " +
-  "and also provide you with learning theory and learning objectives, " +
-  "additional information on subject matter, classroom discussion points, " +
-  "and tips on achieving learning goals." +
-  "\n\n" +
-  "# Getting Started" +
-  "\n\n" +
-  "To begin, work through the lesson’s content page by page. The Teacher " +
-  "Edition components — which you can **click** or **tap** to open and close — " +
-  "will highlight additional information in several key areas:" +
-  "\n\n" +
-  "* **Theory & Background** will provide you with the learning objectives " +
-  "of the instructional model developed for this sequence of activities. " +
-  "\n\n" +
-  "* **Teacher Tips** are instructional resources and methods that you may " +
-  "find useful to help your students achieve their learning goals." +
-  "\n\n" +
-  "* **Discussion Points** highlight questions that may help prompt " +
-  "classroom discourse with the goal of expanding students’ understanding." +
-  "\n\n" +
-  "* **Digging Deeper** components provide additional subject matter and " +
-  "related topics that you may find helpful in furthering your students’ " +
-  "deeper understanding of the content." +
-  "\n\n" +
-`
-### Some Markdown Experiments:
-const contentText = `This page is the first of a series of model and data-based case studies
+const contentText =
+"Welcome to the **Teacher Edition** of the _**GEODE: What will Earth look like " +
+"in 500 million years?**_ activity sequence. This interactive guide will " +
+"help you get acquainted with these activities from a student’s perspective " +
+"and also provide you with learning theory and learning objectives, " +
+"additional information on subject matter, classroom discussion points, " +
+"and tips on achieving learning goals." +
+"\n\n" +
+"# Getting Started" +
+"\n\n" +
+"To begin, work through the lesson’s content page by page. The Teacher " +
+"Edition components — which you can **click** or **tap** to open and close — " +
+"will highlight additional information in several key areas:" +
+"\n\n" +
+"* **Theory & Background** will provide you with the learning objectives " +
+"of the instructional model developed for this sequence of activities. " +
+"\n\n" +
+"* **Teacher Tips** are instructional resources and methods that you may " +
+"find useful to help your students achieve their learning goals." +
+"\n\n" +
+"* **Discussion Points** highlight questions that may help prompt " +
+"classroom discourse with the goal of expanding students’ understanding." +
+"\n\n" +
+"* **Digging Deeper** components provide additional subject matter and " +
+"related topics that you may find helpful in furthering your students’ " +
+"deeper understanding of the content." +
+"\n\n" +
+
+`This page is the first of a series of model and data-based case studies
 
 #### Can we do Tables?
 
@@ -78,24 +77,6 @@ the items.
 1. And the last one.
 `;
 
-  content:
-`This page is the first of a series of model and data-based case studies
-  content: contentTextInMarkdown
-};
-
-After students have explored the data about the region, they are asked to set
-up a model to explain how the region’s features were formed. Finally,
-students are asked to make an argument about how well their model explains
-the formation of the particular Earth features.
-`
-
-};
-After students have explored the data about the region, they are asked to set
-up a model to explain how the region’s features were formed. Finally,
-students are asked to make an argument about how well their model explains
-the formation of the particular Earth features.
-`;
-
 const authoredStateA = {
   type: "theoryAndBackground",
   windowShadeType: {label: "label", icon: "icon"},
@@ -107,7 +88,6 @@ const authoredStateB = {
   windowShadeType: {label: "label", icon: "icon"},
   content: contentText
 };
-
 
 ReactDOM.render(
   <div>
