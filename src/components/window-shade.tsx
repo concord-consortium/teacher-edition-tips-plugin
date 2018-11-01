@@ -1,4 +1,5 @@
 import * as React from "react";
+import Markdown from "markdown-to-jsx";
 
 import * as css from "./window-shade.sass";
 import ContentConfigurations from "../config/content-configurations";
@@ -31,7 +32,9 @@ export default class WindowShade extends React.Component<IProps, IState> {
       <div className={css.windowShade}>
         <WindowShadeButton onClick={toggle} type={type} />
         <div className={cssClassNames.join(" ")}>
-          {this.props.content}
+          <Markdown>
+            {this.props.content}
+          </Markdown>
         </div>
       </div>
     );
