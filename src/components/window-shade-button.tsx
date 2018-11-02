@@ -19,7 +19,10 @@ export default class WindowShade extends React.Component<IProps, IState> {
     const cssClassNames = [ css.windowShadeToggle, css[styleClassName] ];
     return (
       <div className={cssClassNames.join(" ")} onClick={onClick}>
-        {label}
+        <span>
+          {icon({})}
+          {label}
+        </span>
       </div>
     );
   }
