@@ -5,7 +5,7 @@ context("Test the demo app", () => {
 
   describe("Demo page", () => {
     it("renders WindowShade component", () => {
-      cy.get("#window-shade").should("have.text", "Hello World");
+      cy.get("#window-shade").should("contain", "Theory & Background");
     });
   });
 });
