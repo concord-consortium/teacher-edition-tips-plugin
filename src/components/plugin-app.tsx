@@ -1,6 +1,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import WindowShade from "./window-shade";
+import QuestionWrapper from "./question-wrapper";
 
 interface IProps {
   PluginAPI: any;
@@ -8,6 +9,8 @@ interface IProps {
   content?: string;
   label?: string;
   icon?: string;
+  wrappedEmbeddableDiv?: HTMLDivElement;
+  wrappedEmbeddableContext?: object;
 }
 interface IState {}
 
@@ -31,6 +34,7 @@ export default class PluginApp extends React.Component<IProps, IState> {
   public render() {
     const { type } = this.props;
     switch (type) {
+      case "questionWrapper": return this.renderQuestionWrapper();
       case "windowShade":
       case "teacherTip":
       case "theoryAndBackground":
@@ -43,6 +47,23 @@ export default class PluginApp extends React.Component<IProps, IState> {
     return (
       <div>
         <WindowShade type={this.props.type} content={this.props.content} />
+      </div>
+    );
+  }
+
+  public renderQuestionWrapper() {
+    const { wrappedEmbeddableDiv, wrappedEmbeddableContext } = this.props;
+    if (!wrappedEmbeddableDiv || !wrappedEmbeddableContext) {
+      // tslint:disable-next-line:no-console
+      console.warn("Cannot render question wrapper - missing wrapped question reference");
+      return null;
+    }
+    return (
+      <div>
+        <QuestionWrapper
+          wrappedEmbeddableDiv={wrappedEmbeddableDiv}
+          wrappedEmbeddableContext={wrappedEmbeddableContext}
+        />
       </div>
     );
   }

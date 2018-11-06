@@ -7,6 +7,8 @@ interface IExternalScriptContext {
   authoredState: string;
   learnerState: string;
   pluginId: string;
+  wrappedEmbeddableDiv?: any;
+  wrappedEmbeddableContext?: any;
 }
 
 let PluginAPI: any;
@@ -43,6 +45,8 @@ export class TeacherEditionTipsPlugin {
         <PluginApp
           content={authoredState.content || "Hello World"}
           type={authoredState.type || "windowShade"}
+          wrappedEmbeddableDiv={this.context.wrappedEmbeddableDiv}
+          wrappedEmbeddableContext={this.context.wrappedEmbeddableContext}
           PluginAPI={PluginAPI}
         />,
         this.context.div);
