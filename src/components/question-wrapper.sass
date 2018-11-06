@@ -1,0 +1,66 @@
+.questionWrapper
+  .headers
+    height: 50px
+    overflow: hidden
+
+    div
+      font-size: 18px
+      color: white
+      border-left: 3px solid
+      border-top: 3px solid
+      border-right: 3px solid
+      border-top-left-radius: 24px
+      border-top-right-radius: 24px
+      display: inline-block
+      height: 50px
+      margin-right: 4px
+      text-align: center
+      padding: 10px 12px
+      cursor: pointer
+      vertical-align: top
+      margin-top: 15px
+      transition: margin-top 250ms
+      &:hover
+        margin-top: 0 !important
+
+    .correct
+      background: #2FE450
+      border-color: #128325
+    .distractors
+      background: #FC1B1B
+      border-color: #A20005
+    .teacherTip
+      background: #1A97FF
+      border-color: #094F98
+
+
+  .wrappedContent
+    border: 3px solid #7A7A7A
+    border-bottom-left-radius: 17px
+    border-bottom-right-radius: 17px
+    padding: 1px
+    position: relative
+
+    .overlay
+      position: absolute
+      width: 100%
+      height: 100%
+      top: 0
+      left: 0
+      z-index: 1000
+      border-radius: inherit
+
+      &.correctOverlay
+        background: #2FE450
+        opacity: 0.12
+
+      &.distractorsOverlay
+        background: #FC1B1B
+        opacity: 0.12
+
+      &.teacherTipOverlay
+        background: #A6D5FF
+        opacity: 0.12
+
+  .footer
+    padding: 10px
