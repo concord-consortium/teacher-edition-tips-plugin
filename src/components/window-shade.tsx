@@ -1,15 +1,12 @@
 import * as React from "react";
+import Markdown from "markdown-to-jsx";
 
 import * as css from "./window-shade.sass";
-
-interface IWindowShadeType {
-  label: string;
-  icon: string;
-}
+import ContentConfigurations from "../config/content-configurations";
+import WindowShadeButton from "./window-shade-button";
 
 interface IProps {
-  label?: string;
-  icon?: string;
+  type: string;
   content?: string;
 }
 interface IState {
@@ -23,16 +20,21 @@ export default class WindowShade extends React.Component<IProps, IState> {
 
   public render() {
     const { open } = this.state;
+    const { type } = this.props;
+    const { styleClassName } = ContentConfigurations[type];
     const toggle = () => {
       this.setState({open: !open});
     };
+    const mainClassName = open ? css.windowShadeContentShow : css.windowShadeContentHide;
+    const cssClassNames = [mainClassName, css[styleClassName], css.content];
+
     return (
       <div className={css.windowShade}>
-        <div className={css.windowShadeToggle} onClick={toggle}>
-          Theory &amp; Background
-        </div>
-        <div className={open ? css.windowShadeContentShow : css.windowShadeContentHide }>
-          {this.props.content}
+        <WindowShadeButton onClick={toggle} type={type} />
+        <div className={cssClassNames.join(" ")}>
+          <Markdown className={css.authorMarkdown}>
+            {this.props.content}
+          </Markdown>
         </div>
       </div>
     );
