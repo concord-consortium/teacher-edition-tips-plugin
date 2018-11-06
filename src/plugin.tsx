@@ -43,8 +43,7 @@ export class TeacherEditionTipsPlugin {
     if (PluginAPI.isTeacherEdition()) {
       this.pluginAppComponent = ReactDOM.render(
         <PluginApp
-          content={authoredState.content || "Hello World"}
-          type={authoredState.type || "windowShade"}
+          authoredState={authoredState}
           wrappedEmbeddableDiv={this.context.wrappedEmbeddableDiv}
           wrappedEmbeddableContext={this.context.wrappedEmbeddableContext}
           PluginAPI={PluginAPI}

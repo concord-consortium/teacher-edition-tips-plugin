@@ -1,16 +1,10 @@
 import * as React from "react";
 
 import * as css from "./window-shade.sass";
-
-interface IWindowShadeType {
-  label: string;
-  icon: string;
-}
+import { IAuthoredWindowShade } from "../types";
 
 interface IProps {
-  label?: string;
-  icon?: string;
-  content?: string;
+  authoredState: IAuthoredWindowShade;
 }
 interface IState {
   open: boolean;
@@ -23,6 +17,8 @@ export default class WindowShade extends React.Component<IProps, IState> {
 
   public render() {
     const { open } = this.state;
+    const { content } = this.props.authoredState;
+
     const toggle = () => {
       this.setState({open: !open});
     };
@@ -32,7 +28,7 @@ export default class WindowShade extends React.Component<IProps, IState> {
           Theory &amp; Background
         </div>
         <div className={open ? css.windowShadeContentShow : css.windowShadeContentHide }>
-          {this.props.content}
+          {content}
         </div>
       </div>
     );

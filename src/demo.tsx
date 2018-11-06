@@ -3,10 +3,7 @@ import * as ReactDOM from "react-dom";
 import WindowShade from "./components/window-shade";
 
 const authoredState = {
-  type: "windowShade",
-  windowShadeType: {label: "label", icon: "icon"},
-  content:
-`This page is the first of a series of model and data-based case studies
+  content: `This page is the first of a series of model and data-based case studies
 embedded in the GEODE module. Students will be asked to make explanations
 for how particular features on Earth were formed. (In this case, they are
 asked to explain how the Himalayan Mountains formed.) Students are provided
@@ -18,9 +15,9 @@ up a model to explain how the region’s features were formed. Finally,
 students are asked to make an argument about how well their model explains
 the formation of the particular Earth features.
 `
-
 };
+
 ReactDOM.render(
-  <WindowShade {...authoredState} />,
+  <WindowShade authoredState={authoredState} />,
   document.getElementById("window-shade")
 );

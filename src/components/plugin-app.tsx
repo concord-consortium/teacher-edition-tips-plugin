@@ -2,16 +2,15 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import WindowShade from "./window-shade";
 import QuestionWrapper from "./question-wrapper";
+import { IAuthoredState } from "../types";
 
 interface IProps {
   PluginAPI: any;
-  type: string;
-  content?: string;
-  label?: string;
-  icon?: string;
+  authoredState: IAuthoredState;
   wrappedEmbeddableDiv?: HTMLDivElement;
   wrappedEmbeddableContext?: object;
 }
+
 interface IState {}
 
 interface ISidebarController {
@@ -25,31 +24,37 @@ export default class PluginApp extends React.Component<IProps, IState> {
 
   constructor(props: IProps) {
     super(props);
-    const { type } = this.props;
+    const { type } = this.props.authoredState;
     if (type === "sideTip") {
       this.addSidebar();
     }
   }
 
   public render() {
-    const { type } = this.props;
+    const { type } = this.props.authoredState;
     switch (type) {
       case "windowShade": return this.renderWindowShade();
       case "questionWrapper": return this.renderQuestionWrapper();
       case "sideTip": return this.renderSidebarTip();
     }
+    return null;
   }
 
   public renderWindowShade() {
+    const { windowShade } = this.props.authoredState;
+    if (!windowShade) {
+      return null;
+    }
     return (
       <div>
-        <WindowShade content={this.props.content} />
+        <WindowShade authoredState={windowShade} />
       </div>
     );
   }
 
   public renderQuestionWrapper() {
-    const { wrappedEmbeddableDiv, wrappedEmbeddableContext } = this.props;
+    const { wrappedEmbeddableDiv, wrappedEmbeddableContext, authoredState } = this.props;
+    const { questionWrapper } = authoredState;
     if (!wrappedEmbeddableDiv || !wrappedEmbeddableContext) {
       // tslint:disable-next-line:no-console
       console.warn("Cannot render question wrapper - missing wrapped question reference");
@@ -58,6 +63,7 @@ export default class PluginApp extends React.Component<IProps, IState> {
     return (
       <div>
         <QuestionWrapper
+          authoredState={questionWrapper || {}}
           wrappedEmbeddableDiv={wrappedEmbeddableDiv}
           wrappedEmbeddableContext={wrappedEmbeddableContext}
         />
