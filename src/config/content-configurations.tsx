@@ -2,21 +2,21 @@ import TeacherEditionA from "../icons/teacher_edition_A.svg";
 import ExclamationA from "../icons/exclamation_A.svg";
 
 export interface IConfiguration {
-  icon: SvgrComponent;
+  Icon: SvgrComponent;
   label: string;
   styleClassName: string;
 }
 
 export const ContentConfigurations: {[index: string]: IConfiguration} = {
   teacherTip: {
-    icon: ExclamationA,
+    Icon: ExclamationA,
     label: "Teacher Tip",
-    styleClassName: "teacher-tip"
+    styleClassName: "teacherTip"
   },
   theoryAndBackground: {
-    icon: TeacherEditionA,
+    Icon: TeacherEditionA,
     label: "Theory & Background",
-    styleClassName: "theory-and-background"
+    styleClassName: "theoryAndBackground"
   }
 };
 

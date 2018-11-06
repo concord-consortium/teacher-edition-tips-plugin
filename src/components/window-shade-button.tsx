@@ -15,7 +15,7 @@ export default class WindowShade extends React.Component<IProps, IState> {
 
   public render() {
     const { onClick, type } = this.props;
-    const { icon, label, styleClassName } = ContentConfigurations[type];
+    const { Icon, label, styleClassName } = ContentConfigurations[type];
     const cssClassNames = [ css.windowShadeToggle, css[styleClassName] ];
     const iconProps = {
       width: "50px",
@@ -24,7 +24,7 @@ export default class WindowShade extends React.Component<IProps, IState> {
     return (
       <div className={cssClassNames.join(" ")} onClick={onClick}>
         <span>
-          {icon(iconProps)}
+          <Icon {...iconProps} />
           {label}
         </span>
       </div>

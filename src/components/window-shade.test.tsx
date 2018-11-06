@@ -4,7 +4,6 @@ import { shallow } from "enzyme";
 
 const windowShadeProps = {
   type: "teacherTip",
-//  windowShadeType: {label: "label", icon: "icon"},
   content: "Hello there, you beautiful, wonderful world!"
 };
 

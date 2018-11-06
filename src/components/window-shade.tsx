@@ -21,7 +21,7 @@ export default class WindowShade extends React.Component<IProps, IState> {
   public render() {
     const { open } = this.state;
     const { type } = this.props;
-    const { icon, label, styleClassName } = ContentConfigurations[type];
+    const { styleClassName } = ContentConfigurations[type];
     const toggle = () => {
       this.setState({open: !open});
     };
