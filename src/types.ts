@@ -6,6 +6,7 @@ export interface IAuthoredState {
 
 export interface IAuthoredWindowShade {
   content: string;
+  type: string;
 }
 
 export interface IAuthoredQuestionWrapper {

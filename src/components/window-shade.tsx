@@ -33,7 +33,7 @@ export default class WindowShade extends React.Component<IProps, IState> {
         <WindowShadeButton onClick={toggle} type={type} />
         <div className={cssClassNames.join(" ")}>
           <Markdown className={css.authorMarkdown}>
-            {this.props.content}
+            {content}
           </Markdown>
         </div>
       </div>
