@@ -30,6 +30,21 @@ import LightbulbA_WITHArtboard from "./icons/lightbulbA_WITHartboard.svg";
 import LightbulbB_NoArtboard from "./icons/lightbulbA_NOartboard.svg";
 import LightbulbB_WITHArtboard from "./icons/lightbulbA_WITHartboard.svg";
 
+/*
+ * This plugin provides 5, stylistically and behaviorally related components
+ * supporting, at least in this first incarnation, teacher-edition activities.
+ * These components implement:
+ *
+ *  * a Banner,
+ *  * the SlideOutLegend,
+ *  * a WindowShade,
+ *  * an Overlay, and
+ *  * a QuestionOverlay.
+ *
+ * The demo presented in this file provides an easy way to observe the
+ * rendering and behavior of these components.
+ */
+
 const contentText =
 `
 Welcome to the **Teacher Edition** of the _**GEODE: What will Earth look like
