@@ -2,7 +2,9 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import WindowShade from "./window-shade";
 import QuestionWrapper from "./question-wrapper";
-import { IAuthoredState } from "../types";
+import SideBar from "./side-bar";
+import { IAuthoredState, IAuthoredSideTip } from "../types";
+import Markdown from "markdown-to-jsx";
 
 interface IProps {
   PluginAPI: any;
@@ -13,30 +15,13 @@ interface IProps {
 
 interface IState {}
 
-interface ISidebarController {
-  open: () => void;
-  close: () => void;
-}
-
 export default class PluginApp extends React.Component<IProps, IState> {
-  private sidebarContainer: HTMLElement;
-  private sidebarController: ISidebarController;
-
-  constructor(props: IProps) {
-    super(props);
-    const { type } = this.props.authoredState;
-    if (type === "sideTip") {
-      this.addSidebar();
-    }
-  }
 
   public render() {
     const { type } = this.props.authoredState;
     switch (type) {
       case "questionWrapper": return this.renderQuestionWrapper();
       case "windowShade":
-      case "teacherTip":
-      case "theoryAndBackground":
         return this.renderWindowShade();
       case "sideTip": return this.renderSidebarTip();
     }
@@ -75,27 +60,18 @@ export default class PluginApp extends React.Component<IProps, IState> {
   }
 
   public renderSidebarTip() {
-    return ReactDOM.createPortal(
-      <div>TE Sidebar Content</div>,
-      this.sidebarContainer
+    const { sideTip } = this.props.authoredState;
+    const { PluginAPI } = this.props;
+    // return ReactDOM.createPortal(
+    //   <SideBar {...this.props.authoredState.sideTip} />,
+    //   this.sidebarContainer
+    // );
+    return(
+      <SideBar
+        authoredState={sideTip as IAuthoredSideTip}
+        addSideBarMethod={PluginAPI.addSidebar}
+      />
     );
   }
 
-  private addSidebar() {
-    const {PluginAPI} = this.props;
-    this.sidebarContainer = document.createElement("div");
-    // This is important for sidebar UI. Max height enables scrolling of the definitions container.
-    // Exact value is inherited from the container provided by LARA.
-    this.sidebarContainer.style.maxHeight = "inherit";
-    this.sidebarController = PluginAPI.addSidebar({
-      handle: "Teacher Help",
-      titleBar: "Teacher Edition Help",
-      titleBarColor: "#bbb",
-      handleColor: "#777",
-      width: 450,
-      height: 500,
-      padding: 20,
-      content: this.sidebarContainer
-    });
-  }
 }

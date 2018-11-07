@@ -21,7 +21,7 @@ export default class WindowShade extends React.Component<IProps, IState> {
   public render() {
     const { open } = this.state;
     const { type, content } = this.props.authoredState;
-    const { styleClassName } = ContentConfigurations[type];
+    const { styleClassName } = ContentConfigurations(type);
     const toggle = () => {
       this.setState({open: !open});
     };
@@ -30,11 +30,12 @@ export default class WindowShade extends React.Component<IProps, IState> {
 
     return (
       <div className={css.windowShade}>
-        <WindowShadeButton onClick={toggle} type={type} />
+        <WindowShadeButton {...this.props.authoredState} onClick={toggle}/>
         <div className={cssClassNames.join(" ")}>
           <Markdown className={css.authorMarkdown}>
             {content}
           </Markdown>
+          { this.props.children }
         </div>
       </div>
     );
