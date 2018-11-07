@@ -64,19 +64,7 @@ This page is the first of a series of model and data-based case studies
 
 ### Tests of Markdown Syntax
 
-#### 1 Can we do Tables?
-
-Yes, but, they are very primitive. The following is a simple example of a
-table in markdown.
-
-| PofL (Phase of Luna) | Wolfie Sightings |
-|:--------------------:|-----------------:|
-| Nu (-ish)            |                0 |
-| 1 Quad               |                2 |
-| Full                 |             3456 |
-| Dark Side            |               31 |
-
-#### 2 Text Styles
+#### 1 Text Styles
 
 The basic, semantic, text markdown stiles area supported:
 
@@ -87,7 +75,7 @@ The basic, semantic, text markdown stiles area supported:
 | \`_**bold & italic**_\` |  _**bold & italic**_ |
 | \` \`typewriter\` \`    | \`typewriter\`       |
 
-#### 3 Bullet Lists
+#### 2 Bullet Lists
 
 * This is a bullet item.
 * And a second bullet item.
@@ -98,7 +86,7 @@ The basic, semantic, text markdown stiles area supported:
 * Finally, we finish up with - a third bullet item; and,
 * a fourth bullet item.
 
-#### 4 Numbered Lists
+#### 3 Numbered Lists
 
 These work in a manner very similar to bullet lists, but use a
 \`1.\`, instead of a \`*\`, to preface each list item. The \`1\` is
@@ -111,7 +99,7 @@ the items.
   1. And more, of course.
 1. And the last one.
 
-#### 5 Other Stuff
+#### 4 Other Stuff
 
 Other markdown facilities might also be available, but have not been tested.
 Things like:
