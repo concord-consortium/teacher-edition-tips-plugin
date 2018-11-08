@@ -30,7 +30,7 @@ export default class SideBar extends React.Component<IProps, IState> {
     const { content } = this.props.authoredState;
     console.log(content);
     return (
-      <div className={css.sideBar}>
+      <div>
          <Markdown className={css.authorMarkdown}>
             {content}
           </Markdown>
