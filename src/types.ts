@@ -5,8 +5,9 @@ export interface IAuthoredState {
 }
 
 export interface IAuthoredWindowShade {
-  content: string;
   type: string;
+  content: string;
+  mediaType?: string;  // Must be either "none", "image", or "video". Could this be a use for enum?
 }
 
 export interface IAuthoredQuestionWrapper {

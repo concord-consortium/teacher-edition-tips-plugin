@@ -35,8 +35,6 @@ export default class PluginApp extends React.Component<IProps, IState> {
     switch (type) {
       case "questionWrapper": return this.renderQuestionWrapper();
       case "windowShade":
-      case "teacherTip":
-      case "theoryAndBackground":
         return this.renderWindowShade();
       case "sideTip": return this.renderSidebarTip();
     }

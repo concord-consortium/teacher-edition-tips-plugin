@@ -142,14 +142,24 @@ const smallIconStyle = {
 
 const authoredStateA = {
   type: "theoryAndBackground",
-  windowShadeType: {label: "label", icon: "icon"},
   content: contentText
 };
 
 const authoredStateB = {
   type: "teacherTip",
-  windowShadeType: {label: "label", icon: "icon"},
   content: contentText
+};
+
+const authoredStateC = {
+  type: "discussionPoints",
+  content: "Well now, folks, here we go!",
+  mediaType: "video"
+};
+
+const authoredStateD = {
+  type: "discussionPoints",
+  content: "Well now, folks, here we go!",
+  mediaType: "image"
 };
 
 // props = {authoredState: {type: 'dd', content:'xx'} }
@@ -157,6 +167,8 @@ ReactDOM.render(
   <div>
     <WindowShade authoredState={authoredStateA} />
     <WindowShade authoredState={authoredStateB} />
+    <WindowShade authoredState={authoredStateC} />
+    <WindowShade authoredState={authoredStateD} />
     <div>
       <br />
       <span>Display of all icons:</span>
