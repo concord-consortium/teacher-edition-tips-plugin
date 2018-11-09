@@ -5,6 +5,7 @@ import { IWindowShade } from "../types";
 import ContentConfigurations from "../config/content-configurations";
 import WindowShade from "./window-shade";
 import WindowShadeForm from "./window-shade-form";
+import WindowShadeJson from "./window-shade-json";
 
 interface IProps {
   initialProps: IWindowShade;
@@ -39,6 +40,9 @@ export default class WindowShadeEditor extends React.Component<IProps, IState> {
         </div>
         <div className={css.form}>
           <WindowShadeForm authoredState={authoredState} onSave={this.update} />
+        </div>
+        <div className={css.json}>
+          <WindowShadeJson authoredState={authoredState} onSave={this.update} />
         </div>
       </div>
     );
