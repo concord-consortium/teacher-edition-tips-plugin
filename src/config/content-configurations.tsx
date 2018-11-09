@@ -1,5 +1,7 @@
 import TeacherEditionA from "../icons/teacher_edition_A.svg";
 import ExclamationA from "../icons/exclamation_A.svg";
+import LightBulbA from "../icons/lightbulb_A.svg";
+
 import { WindowShadeType } from "../types";
 
 export interface IConfiguration {
@@ -14,6 +16,12 @@ export const getContentConfiguration = (shadeType: WindowShadeType) => {
       return {
         Icon: TeacherEditionA,
         label: "Theory & Background",
+        styleClassName: "theoryAndBackground"
+      };
+    case WindowShadeType.DiscussionPoints:
+      return {
+        Icon: LightBulbA,
+        label: "Discussion Points",
         styleClassName: "theoryAndBackground"
       };
     case WindowShadeType.TeacherTip:

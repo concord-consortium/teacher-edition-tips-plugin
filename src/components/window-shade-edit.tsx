@@ -32,13 +32,12 @@ export default class WindowShadeEditor extends React.Component<IProps, IState> {
 
   public render() {
     const {authoredState} = this.state;
-    console.log(authoredState);
     return (
-      <div className="editor">
-        <div className="preview">
+      <div className={css.editor}>
+        <div className={css.preview}>
           <WindowShade authoredState={authoredState} />
         </div>
-        <div className="form">
+        <div className={css.form}>
           <WindowShadeForm authoredState={authoredState} onSave={this.update} />
         </div>
       </div>

@@ -36,7 +36,14 @@ export default class WindowShadeEditor extends React.Component<IProps, IState> {
     const { windowShadeType, content } = this.state;
     const options = allConfigurationTypes.map( (key: WindowShadeType) => {
       const config = getContentConfiguration(key);
-      return <option value={key} key={key}> {config.label} </option>;
+      return(
+        <option
+          value={key}
+          selected={key === windowShadeType ? true : false}
+          key={key}>
+          {config.label}
+        </option>
+      );
     });
     return (
       <div className={css.container}>
