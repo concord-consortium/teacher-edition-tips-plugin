@@ -1,6 +1,6 @@
 import TeacherEditionA from "../icons/teacher_edition_A.svg";
 import ExclamationA from "../icons/exclamation_A.svg";
-import { TypeWindowShadeType } from "../types";
+import { WindowShadeType } from "../types";
 
 export interface IConfiguration {
   Icon: SvgrComponent;
@@ -8,19 +8,20 @@ export interface IConfiguration {
   styleClassName: string;
 }
 
-export const getContentConfiguration = (shadeType: TypeWindowShadeType) => {
+export const getContentConfiguration = (shadeType: WindowShadeType) => {
   switch (shadeType) {
-    case "teacherTip":
-      return {
-        Icon: ExclamationA,
-        label: "Teacher Tip",
-        styleClassName: "teacherTip"
-      };
-    case "theoryAndBackground":
+    case WindowShadeType.TheoryAndBackground:
       return {
         Icon: TeacherEditionA,
         label: "Theory & Background",
         styleClassName: "theoryAndBackground"
+      };
+    case WindowShadeType.TeacherTip:
+    default:
+      return {
+        Icon: ExclamationA,
+        label: "Teacher Tip",
+        styleClassName: "teacherTip"
       };
   }
 };

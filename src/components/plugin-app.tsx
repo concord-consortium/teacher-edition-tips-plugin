@@ -3,7 +3,7 @@ import * as ReactDOM from "react-dom";
 import WindowShade from "./window-shade";
 import QuestionWrapper from "./question-wrapper";
 import SideBar from "./side-bar";
-import { IAuthoredState, IAuthoredSideTip } from "../types";
+import { IAuthoredState, ISideTip } from "../types";
 import Markdown from "markdown-to-jsx";
 
 interface IProps {
@@ -18,8 +18,8 @@ interface IState {}
 export default class PluginApp extends React.Component<IProps, IState> {
 
   public render() {
-    const { type } = this.props.authoredState;
-    switch (type) {
+    const { tipType } = this.props.authoredState;
+    switch (tipType) {
       case "questionWrapper": return this.renderQuestionWrapper();
       case "windowShade":
         return this.renderWindowShade();
@@ -64,7 +64,7 @@ export default class PluginApp extends React.Component<IProps, IState> {
     const { PluginAPI } = this.props;
     return(
       <SideBar
-        authoredState={sideTip as IAuthoredSideTip}
+        authoredState={sideTip as ISideTip}
         addSideBarMethod={PluginAPI.addSidebar}
       />
     );

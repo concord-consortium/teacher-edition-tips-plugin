@@ -2,11 +2,11 @@ import * as React from "react";
 import Markdown from "markdown-to-jsx";
 
 import * as css from "./side-bar.sass";
-import { IAuthoredSideTip } from "../types";
+import { ISideTip } from "../types";
 import WindowShadeButton from "./window-shade-button";
 
 interface IProps {
-  authoredState: IAuthoredSideTip;
+  authoredState: ISideTip;
   addSideBarMethod: any;
 }
 interface IState {}

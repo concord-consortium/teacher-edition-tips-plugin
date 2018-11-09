@@ -30,7 +30,7 @@ import LightbulbA_NoArtboard from "./icons/lightbulbA_NOartboard.svg";
 import LightbulbA_WITHArtboard from "./icons/lightbulbA_WITHartboard.svg";
 import LightbulbB_NoArtboard from "./icons/lightbulbA_NOartboard.svg";
 import LightbulbB_WITHArtboard from "./icons/lightbulbA_WITHartboard.svg";
-import { IAuthoredWindowShade } from "./types";
+import { IWindowShade, WindowShadeType } from "./types";
 
 import DemoMarkdown from "./demo-content-markdown";
 
@@ -50,18 +50,18 @@ const smallIconStyle = {
   fill: "purple"
 };
 
-const authoredStateA: IAuthoredWindowShade = {
-    type: "theoryAndBackground",
+const authoredStateA: IWindowShade = {
+    windowShadeType: WindowShadeType.TheoryAndBackground,
     content: DemoMarkdown
 };
 
-const authoredStateB: IAuthoredWindowShade = {
-    type: "teacherTip",
+const authoredStateB: IWindowShade = {
+    windowShadeType: WindowShadeType.TeacherTip,
     content: DemoMarkdown
 };
 
-const authoredStateDVgSection: IAuthoredWindowShade = {
-  type: "teacherTip",
+const authoredStateDVgSection: IWindowShade = {
+  windowShadeType: WindowShadeType.TeacherTip,
   content: "",
   tabNameOverride: "SVG Icons"
 };

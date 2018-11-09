@@ -1,10 +1,10 @@
 import * as React from "react";
 import WindowShade from "./window-shade";
 import { shallow } from "enzyme";
-import { IAuthoredWindowShade } from "../types";
+import { IWindowShade, WindowShadeType } from "../types";
 
-const windowShadeProps: IAuthoredWindowShade = {
-  type: "teacherTip",
+const windowShadeProps: IWindowShade = {
+  windowShadeType: WindowShadeType.TeacherTip,
   content: "Hello there, you beautiful, wonderful world!"
 };
 
