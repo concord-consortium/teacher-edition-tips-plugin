@@ -5,10 +5,10 @@
     display: flex
 
     div
-      max-width: 350px
+      max-width: 200px;
       flex: 1
       white-space: nowrap
-      font-size: 18px
+      font-size: 16px
       font-weight: bold
       color: white
       border-left: 3px solid
@@ -19,7 +19,6 @@
       display: inline-block
       height: 50px
       text-align: left
-      padding: 10px 12px
       cursor: pointer
       vertical-align: top
       margin-top: 15px
@@ -29,6 +28,14 @@
         margin-right: 0
       &:hover
         margin-top: 0 !important
+
+      svg
+        width: 45px
+        margin-right: -5px
+        margin-left: -2px
+        vertical-align: middle
+        fill: white
+
 
     .correct, .exemplar
       background: #2FE450
@@ -68,6 +75,22 @@
       &.teacherTipOverlay
         background: #A6D5FF
         opacity: 0.12
+
+  .correctTickMark
+    position: absolute
+    svg
+      fill: #19B533
+      width: 30px
+      margin-left: -7.5px
+      margin-top: -7.5px
+
+  .distractorXMark
+    position: absolute
+    svg
+      fill: #DA0006
+      width: 30px
+      margin-left: -7.5px
+      margin-top: -7.5px
 
   .footer
     padding: 10px

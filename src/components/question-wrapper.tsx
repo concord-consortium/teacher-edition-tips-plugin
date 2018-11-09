@@ -1,6 +1,12 @@
 import * as React from "react";
-import * as css from "./question-wrapper.sass";
+import Markdown from "markdown-to-jsx";
 import { IAuthoredQuestionWrapper } from "../types";
+import CheckA from "../icons/check_A.svg";
+import XA from "../icons/x_A.svg";
+import ExclamationSmall from "../icons/exclamation_small_A.svg";
+import CheckMark from "../icons/check_mark.svg";
+import XMark from "../icons/x_mark.svg";
+import * as css from "./question-wrapper.sass";
 
 type TabName = "Correct" | "Distractors" | "TeacherTip" | "Exemplar";
 
@@ -44,12 +50,15 @@ export default class QuestionWrapper extends React.Component<IProps, IState> {
     const { teacherTip, exemplar, correctExplanation, distractorsExplanation } = authoredState;
 
     let overlayClass = css.overlay;
+    let footerClass = css.footer;
     let footer = null;
     if (activeTab === "Correct") {
       overlayClass += " " + css.correctOverlay;
+      footerClass += " " + css.correctFooter;
       footer = correctExplanation;
     } else if (activeTab === "Distractors") {
       overlayClass += " " + css.distractorsOverlay;
+      footerClass += " " + css.distractorsFooter;
       footer = distractorsExplanation;
     } else if (activeTab === "TeacherTip") {
       overlayClass += " " + css.teacherTipOverlay;
@@ -64,21 +73,34 @@ export default class QuestionWrapper extends React.Component<IProps, IState> {
         <div className={css.headers}>
           {
             this.showCorrectTab &&
-            <div className={css.correct} onClick={this.toggleCorrect}>Correct</div>
+            <div className={css.correct} onClick={this.toggleCorrect}><CheckA/>Correct</div>
           }
           {
             this.showDistractorsTab &&
-            <div className={css.distractors} onClick={this.toggleDistractors}>Distractors</div>
+            <div className={css.distractors} onClick={this.toggleDistractors}><XA/>Distractors</div>
           }
-          { teacherTip && <div className={css.teacherTip} onClick={this.toggleTeacherTip}>Teacher Tips</div> }
-          { exemplar && <div className={css.exemplar} onClick={this.toggleExemplar}>Exemplar</div> }
+          {
+            teacherTip &&
+            <div className={css.teacherTip} onClick={this.toggleTeacherTip}><ExclamationSmall/>Teacher Tips</div>
+          }
+          {
+            exemplar &&
+            <div className={css.exemplar} onClick={this.toggleExemplar}><CheckA/>Exemplar</div>
+          }
         </div>
         <div className={css.wrappedContent}>
           <div ref={this.wrappedEmbeddableDivContainer} />
           <div className={overlayClass} />
           { activeTab === "Correct" && this.renderCorrectOverlay() }
           { activeTab === "Distractors" && this.renderDistractorsOverlay() }
-          { footer && <div className={css.footer}>{ footer }</div> }
+          {
+            footer &&
+            <div className={footerClass}>
+              <Markdown className={css.authorMarkdown}>
+                { footer }
+              </Markdown>
+            </div>
+          }
         </div>
       </div>
     );
@@ -89,13 +111,13 @@ export default class QuestionWrapper extends React.Component<IProps, IState> {
     return choices.map((choice: any, idx: number) =>
       choice.is_correct ?
         <div
+          className={css.correctTickMark}
           key={idx}
           style={{
-            position: "absolute",
             top: this.answerInputs[idx].offsetTop,
             left: this.answerInputs[idx].offsetLeft}}
         >
-          ✔
+          <CheckMark/>
         </div>
         :
         null
@@ -107,13 +129,13 @@ export default class QuestionWrapper extends React.Component<IProps, IState> {
     return choices.map((choice: any, idx: number) =>
       !choice.is_correct ?
         <div
+          className={css.distractorXMark}
           key={idx}
           style={{
-            position: "absolute",
             top: this.answerInputs[idx].offsetTop,
             left: this.answerInputs[idx].offsetLeft}}
         >
-          X
+          <XMark/>
         </div>
         :
         null
