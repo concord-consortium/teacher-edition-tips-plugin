@@ -14,15 +14,14 @@ interface IState {
 export default class WindowShadeContent extends React.Component<IProps, IState> {
 
   public render() {
-    const { content } = this.props;
-//    const cssClassNames = [
-//      open ? css.windowShadeContentShow : css.windowShadeContentHide,
-//      css[config.styleClassName],
-//      css.content
-//    ].join(" ");
+    const { content, config } = this.props;
+    const cssClassNames = [
+      css[config.styleClassName],
+      css.windowShadeContent
+    ].join(" ");
 
     return (
-      <div>
+      <div className={cssClassNames}>
         <Markdown>
           {content}
         </Markdown>
