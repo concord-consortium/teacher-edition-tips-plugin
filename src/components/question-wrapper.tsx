@@ -85,16 +85,18 @@ export default class QuestionWrapper extends React.Component<IProps, IState> {
         <div className={css.headers}>
           {
             this.showCorrectTab &&
-            <div className={css.correct} onClick={this.toggleCorrect}><CheckA/>Correct</div>
+            <div className={css.correct} onClick={this.toggleCorrect} data-cy="correct"><CheckA/>Correct</div>
           }
           {
             this.showDistractorsTab &&
-            <div className={css.distractors} onClick={this.toggleDistractors}><XA/>Distractors</div>
+            <div className={css.distractors} onClick={this.toggleDistractors} data-cy="distractors">
+              <XA/>Distractors
+            </div>
           }
           { teacherTip && this.renderTeacherTipToggle() }
           {
             exemplar &&
-            <div className={css.exemplar} onClick={this.toggleExemplar}><CheckA/>Exemplar</div>
+            <div className={css.exemplar} onClick={this.toggleExemplar} data-cy="exemplar"><CheckA/>Exemplar</div>
           }
         </div>
         <div className={wrappedContentClass}>
@@ -131,7 +133,7 @@ export default class QuestionWrapper extends React.Component<IProps, IState> {
   private renderTeacherTipToggle() {
     const Icon = this.isInteractive ? Exclamation : ExclamationSmall;
     return (
-      <div className={css.teacherTip} onClick={this.toggleTeacherTip}>
+      <div className={css.teacherTip} onClick={this.toggleTeacherTip} data-cy="teacherTip">
         <span className={css.teacherTipIcon}><Icon/></span>
         <span className={css.teacherTipLabel}>Teacher Tips</span>
       </div>
@@ -140,6 +142,9 @@ export default class QuestionWrapper extends React.Component<IProps, IState> {
 
   private renderCorrectOverlay() {
     const { choices } = this.props.wrappedEmbeddableContext;
+    if (this.answerInputs.length === 0) {
+      return null;
+    }
     return choices.map((choice: any, idx: number) =>
       choice.is_correct ?
         <div
@@ -147,7 +152,8 @@ export default class QuestionWrapper extends React.Component<IProps, IState> {
           key={idx}
           style={{
             top: this.answerInputs[idx].offsetTop,
-            left: this.answerInputs[idx].offsetLeft}}
+            left: this.answerInputs[idx].offsetLeft
+          }}
         >
           <CheckMark/>
         </div>
@@ -158,6 +164,9 @@ export default class QuestionWrapper extends React.Component<IProps, IState> {
 
   private renderDistractorsOverlay() {
     const { choices } = this.props.wrappedEmbeddableContext;
+    if (this.answerInputs.length === 0) {
+      return null;
+    }
     return choices.map((choice: any, idx: number) =>
       !choice.is_correct ?
         <div
@@ -165,7 +174,8 @@ export default class QuestionWrapper extends React.Component<IProps, IState> {
           key={idx}
           style={{
             top: this.answerInputs[idx].offsetTop,
-            left: this.answerInputs[idx].offsetLeft}}
+            left: this.answerInputs[idx].offsetLeft
+          }}
         >
           <XMark/>
         </div>
