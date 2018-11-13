@@ -11,7 +11,7 @@ module.exports = (env, argv) => {
     devtool: 'source-map',
     entry: {
       demo: './src/demo.tsx',
-      edit: './src/edit.tsx',
+      authoring: './src/components/authoring/authoring-app',
       plugin: './src/plugin.tsx',
     },
     output: {

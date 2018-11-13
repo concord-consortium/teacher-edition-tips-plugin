@@ -1,8 +1,8 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import WindowShadeEdit from "./components/window-shade-edit";
+import WindowShadeEdit from "./window-shade-edit";
 
-import { IWindowShade, WindowShadeType } from "./types";
+import { IWindowShade, WindowShadeType } from "../../types";
 
 const windowShadeProps: IWindowShade = {
   windowShadeType: WindowShadeType.TheoryAndBackground,
