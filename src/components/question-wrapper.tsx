@@ -194,13 +194,8 @@ export default class QuestionWrapper extends React.Component<IProps, IState> {
   }
 
   private get showDistractorsTab() {
-    const question = this.props.wrappedEmbeddableContext;
     const { distractorsExplanation } = this.props.authoredState;
-    if (!this.isMCQuestion) {
-      return false;
-    }
-    // There's an explanation or at at least one choice marked as correct.
-    return distractorsExplanation || question.choices.filter((c: any) => c.is_correct === true).length > 0;
+    return distractorsExplanation && this.isMCQuestion;
   }
 
   private findInputsInWrappedQuestion() {
