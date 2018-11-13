@@ -39,7 +39,7 @@ export default class WindowShadeJSON extends React.Component<IProps, IState> {
           this.props.onSave(newProps);
         }
         catch (error) {
-          console.log(error);
+          // console.log(error);
           this.setState({workingState: this.getAuthoredJson()});
         }
       }
