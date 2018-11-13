@@ -29,21 +29,27 @@ export default class WindowShade extends React.Component<IProps, IState> {
     const { open } = this.state;
     const { windowShadeType, content, mediaType } = this.props.authoredState;
     const config = WindowShadeConfigurations[windowShadeType];
-    const cssOpenState = open ? css.windowShadeContentShow : css.windowShadeContentHide;
+    const cssOpenState = open ? css.windowShadeShown : css.windowShadeHidden;
     const cssShadeType = css[config.styleClassName];
 
     const toggle = () => {
       this.setState({open: !open});
     };
 
+console.log("config: " + JSON.stringify(config))
+
+console.log("CSS class shadeTYpe: " + cssShadeType)
+
+console.log("CSS openstate: " + cssOpenState)
+
     return (
-      <div className={`${css.windowShade} ${css[config.styleClassName]}`} >
+      <div className={`${css.windowShade} ${cssShadeType} ${cssOpenState}`} >
         <WindowShadeButton
           onClick={toggle}
           mediaType={mediaType ? mediaType : MediaType.None}
           config={config}
         />
-        <div className={`${cssOpenState} ${cssShadeType}`}>
+        <div className={`${css.content} ${cssShadeType}`}>
           <WindowShadeContent content={content} config={config} />
         </div>
       </div>

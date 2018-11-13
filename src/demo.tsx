@@ -185,8 +185,6 @@ const authoredStateH = {
   mediaType: MediaType.Video
 };
 
-
-
 // props = {authoredState: {type: 'dd', content:'xx'} }
 ReactDOM.render(
   <div>

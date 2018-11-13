@@ -1,21 +1,14 @@
 @import "themes.sass"
 
-// TODO: Move the following vars to themes.sass
-
-$radius: 25px
-$labelFont: 24px arial, sans-serif
-$border: solid 3px
-$padding: 45px 30px 28px 30px
-$borderRadius: 0px 0px $radius $radius
-
 .windowShade
   font: $labelFont
   border: $border
   border-radius: $borderRadius
-  padding: $padding
+  margin-top: 50px
+// padding: $padding
   &.theoryAndBackground
     border: $yellowBorderColor solid 3px
-    background-color: $fadedYellow
+    background-color: $paleYellow
   &.teacherTip
     border: $blueBorderColor solid 3px
     background-color: $paleBlue
@@ -26,12 +19,39 @@ $borderRadius: 0px 0px $radius $radius
     border: $purpleBorderColor solid 3px
     background-color: $palePurple
 
-.windowShadeContentShow
+.windowShadeShown
   height: auto
+  // &.theoryAndBackground
+  //   border: $yellowBorderColor solid 3px
+  //   background-color: $paleYellow
+  // &.teacherTip
+  //   border: $blueBorderColor solid 3px
+  //   background-color: $paleBlue
+  // &.discussionPoints
+  //   border: $orangeBorderColor solid 3px
+  //   background-color: $paleOrange
+  // &.diggingDeeper
+  //   border: $purpleBorderColor solid 3px
+  //   background-color: $palePurple
 
-.windowShadeContentHide
+.windowShadeHidden
   height: 0
-  overflow: hidden
+  // border-top: 3px solid
+  border-left: 0
+  border-right: 0
+  border-bottom: 0
+  border-radius: 0
+  .content
+    height: 0
+    overflow: hidden
+  // &.theoryAndBackground
+  //   border: $yellowBorderColor solid 3px
+  // &.teacherTip
+  //   border: $blueBorderColor solid 3px
+  // &.discussionPoints
+  //   border: $orangeBorderColor solid 3px
+  // &.diggingDeeper
+  //   border: $purpleBorderColor solid 3px
 
 // .content
 //   font-family: Arial, sans-serif
