@@ -153,15 +153,39 @@ const authoredStateB = {
 
 const authoredStateC = {
   windowShadeType: WindowShadeType.DiscussionPoints,
-  content: "Well now, folks, here we go! With an image!",
-  mediaType: MediaType.Image
+  content: "Well now, folks, here we go! With an image!"
 };
 
 const authoredStateD = {
   windowShadeType: WindowShadeType.DiggingDeeper,
+  content: "Well now, folks, here we go! With a video!"
+};
+
+const authoredStateE = {
+  windowShadeType: WindowShadeType.TheoryAndBackground,
+  content: contentText,
+  mediaType: MediaType.Image
+};
+
+const authoredStateF = {
+  windowShadeType: WindowShadeType.TeacherTip,
+  content: contentText,
+  mediaType: MediaType.Video
+};
+
+const authoredStateG = {
+  windowShadeType: WindowShadeType.DiscussionPoints,
+  content: "Well now, folks, here we go! With an image!",
+  mediaType: MediaType.Image
+};
+
+const authoredStateH = {
+  windowShadeType: WindowShadeType.DiggingDeeper,
   content: "Well now, folks, here we go! With a video!",
   mediaType: MediaType.Video
 };
+
+
 
 // props = {authoredState: {type: 'dd', content:'xx'} }
 ReactDOM.render(
@@ -170,6 +194,10 @@ ReactDOM.render(
     <WindowShade authoredState={authoredStateB} />
     <WindowShade authoredState={authoredStateC} />
     <WindowShade authoredState={authoredStateD} />
+    <WindowShade authoredState={authoredStateE} />
+    <WindowShade authoredState={authoredStateF} />
+    <WindowShade authoredState={authoredStateG} />
+    <WindowShade authoredState={authoredStateH} />
     <div>
       <br />
       <span>Display of all icons:</span>

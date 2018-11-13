@@ -18,21 +18,18 @@ export default class RightEndCap extends React.Component<IProps, {}> {
     const { mediaType, config: {styleClassName} } = this.props;
     return (
       <div className={`${css.rightEndCap} ${css[styleClassName]}`}>
-        {this.getMediaIcon(mediaType)}
+        {this.getMediaIcon(mediaType, styleClassName)}
       </div>
     );
   }
 
-  private getMediaIcon(mediaType: string) {
-    const mediaIconStyle = {
-      width: "35px",
-      fill: "green"
-    };
+  private getMediaIcon(mediaType: string, styleClassName: string) {
+    const cssClassName = css.mediaIcon;
     switch (mediaType) {
       case "image":
-        return <Image {...mediaIconStyle} />;
+        return <Image className={`${cssClassName} ${styleClassName}`} />;
       case "video":
-        return <Video {...mediaIconStyle} />;
+        return <Video className={`${cssClassName} ${styleClassName}`} />;
       default:
         return "";
     }
