@@ -4,6 +4,7 @@ import { IAuthoredQuestionWrapper } from "../types";
 import CheckA from "../icons/check_A.svg";
 import XA from "../icons/x_A.svg";
 import ExclamationSmall from "../icons/exclamation_small_A.svg";
+import Exclamation from "../icons/exclamation_A.svg";
 import CheckMark from "../icons/check_mark.svg";
 import XMark from "../icons/x_mark.svg";
 import * as css from "./question-wrapper.sass";
@@ -11,6 +12,7 @@ import * as css from "./question-wrapper.sass";
 type TabName = "Correct" | "Distractors" | "TeacherTip" | "Exemplar";
 
 const LARA_MULTIPLE_CHOICE = "Embeddable::MultipleChoice";
+const LARA_INTERACTIVE = "MwInteractive";
 
 interface IProps {
   authoredState: IAuthoredQuestionWrapper;
@@ -31,14 +33,14 @@ export default class QuestionWrapper extends React.Component<IProps, IState> {
   private answerInputs: NodeListOf<HTMLInputElement>;
 
   public componentDidMount() {
-    const { wrappedEmbeddableDiv, wrappedEmbeddableContext } = this.props;
+    const { wrappedEmbeddableDiv } = this.props;
     if (!wrappedEmbeddableDiv) {
       return;
     }
     const containerNode = this.wrappedEmbeddableDivContainer.current!;
     containerNode.appendChild(wrappedEmbeddableDiv);
 
-    if (wrappedEmbeddableContext.type === LARA_MULTIPLE_CHOICE) {
+    if (this.isMCQuestion) {
       // Find multiple choice answer inputs. Used later to position icons.
       this.answerInputs = this.findInputsInWrappedQuestion();
     }
@@ -68,8 +70,18 @@ export default class QuestionWrapper extends React.Component<IProps, IState> {
       footer = exemplar;
     }
 
+    let wrapperClass = css.questionWrapper;
+    if (this.isInteractive) {
+      wrapperClass += " " + css.interactiveWrapper;
+    }
+
+    let wrappedContentClass = css.wrappedContent;
+    if (activeTab !== null) {
+      wrappedContentClass += " " + css.open;
+    }
+
     return (
-      <div className={css.questionWrapper}>
+      <div className={wrapperClass}>
         <div className={css.headers}>
           {
             this.showCorrectTab &&
@@ -79,16 +91,15 @@ export default class QuestionWrapper extends React.Component<IProps, IState> {
             this.showDistractorsTab &&
             <div className={css.distractors} onClick={this.toggleDistractors}><XA/>Distractors</div>
           }
-          {
-            teacherTip &&
-            <div className={css.teacherTip} onClick={this.toggleTeacherTip}><ExclamationSmall/>Teacher Tips</div>
-          }
+          { teacherTip && this.renderTeacherTipToggle() }
           {
             exemplar &&
             <div className={css.exemplar} onClick={this.toggleExemplar}><CheckA/>Exemplar</div>
           }
         </div>
-        <div className={css.wrappedContent}>
+        <div className={wrappedContentClass}>
+          <div className={css.dotLeft}/>
+          <div className={css.dotRight}/>
           <div ref={this.wrappedEmbeddableDivContainer} />
           <div className={overlayClass} />
           { activeTab === "Correct" && this.renderCorrectOverlay() }
@@ -103,6 +114,26 @@ export default class QuestionWrapper extends React.Component<IProps, IState> {
             </div>
           }
         </div>
+      </div>
+    );
+  }
+
+  private get isMCQuestion() {
+    const { wrappedEmbeddableContext } = this.props;
+    return wrappedEmbeddableContext.type === LARA_MULTIPLE_CHOICE;
+  }
+
+  private get isInteractive() {
+    const { wrappedEmbeddableContext } = this.props;
+    return wrappedEmbeddableContext.type === LARA_INTERACTIVE;
+  }
+
+  private renderTeacherTipToggle() {
+    const Icon = this.isInteractive ? Exclamation : ExclamationSmall;
+    return (
+      <div className={css.teacherTip} onClick={this.toggleTeacherTip}>
+        <span className={css.teacherTipIcon}><Icon/></span>
+        <span className={css.teacherTipLabel}>Teacher Tips</span>
       </div>
     );
   }
@@ -155,7 +186,7 @@ export default class QuestionWrapper extends React.Component<IProps, IState> {
   private get showCorrectTab() {
     const question = this.props.wrappedEmbeddableContext;
     const { correctExplanation } = this.props.authoredState;
-    if (question.type !== LARA_MULTIPLE_CHOICE) {
+    if (!this.isMCQuestion) {
       return false;
     }
     // There's an explanation or at least one choice marked as correct.
@@ -165,7 +196,7 @@ export default class QuestionWrapper extends React.Component<IProps, IState> {
   private get showDistractorsTab() {
     const question = this.props.wrappedEmbeddableContext;
     const { distractorsExplanation } = this.props.authoredState;
-    if (question.type !== LARA_MULTIPLE_CHOICE) {
+    if (!this.isMCQuestion) {
       return false;
     }
     // There's an explanation or at at least one choice marked as correct.
