@@ -32,5 +32,8 @@ export const WindowShadeConfigurations: {[index: string]: IWindowShadeConfigurat
     styleClassName: "diggingDeeper",
   }
 };
+export const getContentConfiguration = (key: string) => {
+  return WindowShadeConfigurations[key];
+};
 
 export default WindowShadeConfigurations;

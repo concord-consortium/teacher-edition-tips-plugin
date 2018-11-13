@@ -8,6 +8,7 @@ export interface IAuthoredState {
   tipType: TeacherTipType;
   windowShade?: IWindowShade;
   questionWrapper?: IAuthoredQuestionWrapper;
+  sideTip?: ISideTip;
 }
 
 export enum WindowShadeType {
@@ -30,6 +31,14 @@ export enum MediaType {
 
 export interface IWindowShade {
   windowShadeType: WindowShadeType;
+  content: string;
+  layout?: WindowShadeLayout;
+  tabNameOverride?: string;
+  mediaType?: MediaType;
+  mediaURL?: string;
+  mediaCaption?: string;
+}
+export interface ISideTip {
   content: string;
   layout?: WindowShadeLayout;
   mediaType?: MediaType;
