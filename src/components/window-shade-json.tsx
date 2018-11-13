@@ -5,23 +5,48 @@ import { IWindowShade, WindowShadeType, MediaType } from "../types";
 
 interface IProps {
   onSave?: (newState: IWindowShade) => any;
+  validate?: (jsObject: object) => { valid: boolean; error: string; };
   authoredState: IWindowShade;
 }
-interface IState {}
-
+interface IState {
+  workingState: string;
+}
 export default class WindowShadeJSON extends React.Component<IProps, IState> {
+  public state: IState = {
+    workingState: this.getAuthoredJson()
+  };
 
+  public componentDidUpdate(prevProps: IProps) {
+    if (prevProps.authoredState !== this.props.authoredState) {
+      this.setState({workingState: this.getAuthoredJson() });
+    }
+  }
   public render() {
-    const {authoredState} = this.props;
-    const asString = JSON.stringify(authoredState, null, 2);
+    const {workingState} = this.state;
     return (
           <textarea
-            value={asString}
-            onChange={this.updateContent}/>
+            value={workingState}
+            onChange={this.updateContent}
+            onBlur={this.updateContent}/>
     );
   }
   private updateContent = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    console.log(event.target.value);
+    const newValue = event.target.value;
+    this.setState({workingState: newValue}, () => {
+      if (this.props.onSave) {
+        try{
+          const newProps = JSON.parse(newValue);
+          this.props.onSave(newProps);
+        }
+        catch (error) {
+          console.log(error);
+          this.setState({workingState: this.getAuthoredJson()});
+        }
+      }
+    });
   }
-
+  private getAuthoredJson() {
+    const {authoredState} = this.props;
+    return JSON.stringify(authoredState, null, 2);
+  }
 }

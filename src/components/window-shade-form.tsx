@@ -26,12 +26,20 @@ interface IState {
   content: string;
 }
 
-export default class WindowShadeEditor extends React.Component<IProps, IState> {
+export default class WindowShadeForm extends React.Component<IProps, IState> {
   public state: IState = {
     windowShadeType: this.props.authoredState.windowShadeType,
     content: this.props.authoredState.content
   };
 
+  public componentDidUpdate(prevProps: IProps) {
+    if (prevProps.authoredState !== this.props.authoredState) {
+      this.setState({
+        windowShadeType: this.props.authoredState.windowShadeType,
+        content: this.props.authoredState.content
+      });
+    }
+  }
   public render() {
     const { windowShadeType, content } = this.state;
     const options = allConfigurationTypes.map( (key: WindowShadeType) => {
@@ -39,7 +47,6 @@ export default class WindowShadeEditor extends React.Component<IProps, IState> {
       return(
         <option
           value={key}
-          selected={key === windowShadeType ? true : false}
           key={key}>
           {config.label}
         </option>
@@ -50,7 +57,7 @@ export default class WindowShadeEditor extends React.Component<IProps, IState> {
         <div>
           <label> Type </label>
           <br/>
-          <select onChange={this.updateType}>
+          <select onChange={this.updateType} value={windowShadeType}>
             {options}
           </select>
         </div>
