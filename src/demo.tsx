@@ -30,7 +30,7 @@ import LightbulbA_NoArtboard from "./icons/lightbulbA_NOartboard.svg";
 import LightbulbA_WITHArtboard from "./icons/lightbulbA_WITHartboard.svg";
 import LightbulbB_NoArtboard from "./icons/lightbulbA_NOartboard.svg";
 import LightbulbB_WITHArtboard from "./icons/lightbulbA_WITHartboard.svg";
-import { WindowShadeType, MediaType } from "./types";
+import { IWindowShade, WindowShadeType, MediaType } from "./types";
 
 /*
  * This plugin provides 5, stylistically and behaviorally related components
@@ -144,10 +144,12 @@ const smallIconStyle = {
 
 const authoredStateA = {
   windowShadeType: WindowShadeType.TheoryAndBackground,
+  content: contentText
 };
 
 const authoredStateB = {
   windowShadeType: WindowShadeType.TeacherTip,
+  content: contentText
 };
 
 const authoredStateC = {

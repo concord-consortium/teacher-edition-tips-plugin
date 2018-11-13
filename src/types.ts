@@ -33,6 +33,14 @@ export interface IWindowShade {
   windowShadeType: WindowShadeType;
   content: string;
   layout?: WindowShadeLayout;
+  tabNameOverride?: string;
+  mediaType?: MediaType;
+  mediaURL?: string;
+  mediaCaption?: string;
+}
+export interface ISideTip {
+  content: string;
+  layout?: WindowShadeLayout;
   mediaType?: MediaType;
   mediaURL?: string;
   mediaCaption?: string;

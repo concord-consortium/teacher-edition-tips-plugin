@@ -2,7 +2,7 @@ import * as React from "react";
 
 import * as css from "./window-shade-edit.sass";
 import { IWindowShade } from "../types";
-import ContentConfigurations from "../config/content-configurations";
+import ContentConfigurations from "../config/ui-configurations";
 import WindowShade from "./window-shade";
 import WindowShadeForm from "./window-shade-form";
 import WindowShadeJson from "./window-shade-json";
