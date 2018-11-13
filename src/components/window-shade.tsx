@@ -45,7 +45,7 @@ export default class WindowShade extends React.Component<IProps, IState> {
       </div>
     );
   }
-  
+
   private toggle = () => {
     const { open } = this.state;
     this.setState({open: !open});
