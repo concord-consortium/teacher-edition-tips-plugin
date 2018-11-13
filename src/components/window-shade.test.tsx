@@ -1,9 +1,9 @@
 import * as React from "react";
 import WindowShade from "./window-shade";
 import { shallow } from "enzyme";
-import { IWindowShade, WindowShadeType } from "../types";
+import { WindowShadeType } from "../types";
 
-const windowShadeProps: IWindowShade = {
+const windowShadeProps = {
   windowShadeType: WindowShadeType.TeacherTip,
   content: "Hello there, you beautiful, wonderful world!"
 };
@@ -11,6 +11,6 @@ const windowShadeProps: IWindowShade = {
 describe("WindowShade component", () => {
   it("renders Hello World", () => {
     const wrapper = shallow(<WindowShade authoredState={windowShadeProps}/>);
-    expect(wrapper.text()).toEqual("<WindowShade /><Markdown />");
+    expect(wrapper.text()).toEqual("<WindowShadeButton /><WindowShadeContent />");
   });
 });

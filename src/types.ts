@@ -14,7 +14,8 @@ export interface IAuthoredState {
 export enum WindowShadeType {
   TheoryAndBackground = "theoryAndBackground",
   TeacherTip = "teacherTip",
-  DiscussionPoints = "discussionPoints"
+  DiscussionPoints = "discussionPoints",
+  DiggingDeeper = "diggingDeeper"
 }
 
 export enum WindowShadeLayout {
@@ -28,21 +29,10 @@ export enum MediaType {
   Video = "video"
 }
 
-interface IBaseTip {
-  content: string;
-  mediaType?: MediaType;
-  mediaURL?: string;
-  mediaCaption?: string;
-  tabNameOverride?: string;
-}
-
-export interface IWindowShade extends IBaseTip {
+export interface IWindowShade {
   windowShadeType: WindowShadeType;
-  layout?: WindowShadeLayout;
-}
-
-export interface ISideTip extends IBaseTip {
   content: string;
+  layout?: WindowShadeLayout;
   mediaType?: MediaType;
   mediaURL?: string;
   mediaCaption?: string;
