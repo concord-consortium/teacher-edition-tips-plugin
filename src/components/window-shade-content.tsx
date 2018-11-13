@@ -16,6 +16,7 @@ export default class WindowShadeContent extends React.Component<IProps, IState> 
   public render() {
     const { content, config } = this.props;
     const cssClassNames = [
+      css.authorMarkdown,
       css[config.styleClassName],
       css.windowShadeContent
     ].join(" ");

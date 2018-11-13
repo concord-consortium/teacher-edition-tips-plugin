@@ -175,13 +175,13 @@ const authoredStateF = {
 
 const authoredStateG = {
   windowShadeType: WindowShadeType.DiscussionPoints,
-  content: "Well now, folks, here we go! With an image!",
+  content: "Well now, folks, here we go!\n\n# With an image!",
   mediaType: MediaType.Image
 };
 
 const authoredStateH = {
   windowShadeType: WindowShadeType.DiggingDeeper,
-  content: "Well now, folks, here we go! With a video!",
+  content: "Well now, **folks**, here we go! With a video!",
   mediaType: MediaType.Video
 };
 
