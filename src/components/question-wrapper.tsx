@@ -93,6 +93,7 @@ export default class QuestionWrapper extends React.Component<IProps, IState> {
           <div className={overlayClass} />
           { activeTab === "Correct" && this.renderCorrectOverlay() }
           { activeTab === "Distractors" && this.renderDistractorsOverlay() }
+          { activeTab === "TeacherTip" && this.renderImageOverlay() }
           {
             footer &&
             <div className={footerClass}>
@@ -140,6 +141,15 @@ export default class QuestionWrapper extends React.Component<IProps, IState> {
         :
         null
     );
+  }
+
+  private renderImageOverlay() {
+    const { authoredState } = this.props;
+    const { teacherTipImageOverlay } = authoredState;
+    if (!teacherTipImageOverlay) {
+      return null;
+    }
+    return <img src={teacherTipImageOverlay} className={css.teacherTipImageOverlay} />;
   }
 
   private get showCorrectTab() {
