@@ -1,9 +1,10 @@
 import * as React from "react";
 import WindowShade from "./window-shade";
 import { shallow } from "enzyme";
+import { WindowShadeType } from "../types";
 
 const windowShadeProps = {
-  type: "teacherTip",
+  windowShadeType: WindowShadeType.TeacherTip,
   content: "Hello there, you beautiful, wonderful world!"
 };
 

@@ -1,0 +1,67 @@
+@import "colors.sass"
+
+// Our window shades have 4 different color themes based on the type: 
+//
+// | Type of Button      | Theme  |
+// |---------------------|--------|
+// | theoryAndBackground | yellow |
+// | teacherTip          | blue   |
+// | discussionPoints    | orange |
+// | diggingDeeper       | purple |
+//
+// Orthognal to each of these color sets based on the window shade type, each
+// one has a set stylistic properties used in it's rendering:
+//
+//  * textColor, textColorOnHover: for the title text in the button, itself.
+//
+//  * backgroundColor, backgroundColorOnHover: background behind the title
+//    text of the button, and the media icon, if one is present.
+//
+//  * borderColor: border color draw around the button, and the content when it
+//    is displayed.
+//
+//  * iconColor, iconBackgroundColor: how this will actually work is yet to be
+//    determeind.
+//
+//  * mediaIconColor: the color used to render the media icon.
+
+// The "yellow" theme, used for theoryAndBackground.
+
+$yellowTextColor: $darkYellow
+$yellowTextColorOnHover: $darkYellow
+$yellowBackgroundColor: $fullYellow
+$yellowBackgroundColorOnHover: $paleYellow
+$yellowIconColor: $fadedYellow
+$yellowIconBackgroundColor: $mediumYellow
+$yellowBorderColor: $deepYellow
+$yellowContentBackground: $fadedYellow
+
+// The "blue" theme, used for teacherTips & teacherTipOverlay
+
+$blueTextColor: $paleBlue
+$blueTextColorOnHover: $darkBlue
+$blueBackgroundColor: $fullBlue
+$blueBackgroundColorOnHover: $mediumBlue
+$blueIconColor: $paleBlue
+$blueIconBackgroundColor: $mediumBlue
+$blueBorderColor: $deepBlue
+
+// The "orange" theme, used for discussion points.
+
+$orangeTextColor: $paleOrange
+$orangeTextColorOnHover: $darkOrange
+$orangeBackgroundColor: $fullOrange
+$orangeBackgroundColorOnHover: $brightOrange
+$orangeIconColor: $paleOrange
+$orangeIconBackgroundColor: $mediumOrange
+$orangeBorderColor: $deepOrange
+
+// The "purple" theme, used for diggingDeeper.
+
+$purpleTextColor: $palePurple
+$purpleTextColorOnHover: $darkPurple
+$purpleBackgroundColor: $fullPurple
+$purpleBackgroundColorOnHover: $brightPurple
+$purpleIconColor: $palePurple
+$purpleIconBackgroundColor: $mediumPurple
+$purpleBorderColor: $darkPurple

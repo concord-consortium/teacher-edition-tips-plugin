@@ -29,6 +29,7 @@ import LightbulbA_NoArtboard from "./icons/lightbulbA_NOartboard.svg";
 import LightbulbA_WITHArtboard from "./icons/lightbulbA_WITHartboard.svg";
 import LightbulbB_NoArtboard from "./icons/lightbulbA_NOartboard.svg";
 import LightbulbB_WITHArtboard from "./icons/lightbulbA_WITHartboard.svg";
+import { WindowShadeType, MediaType } from "./types";
 
 /*
  * This plugin provides 5, stylistically and behaviorally related components
@@ -141,25 +142,25 @@ const smallIconStyle = {
 };
 
 const authoredStateA = {
-  type: "theoryAndBackground",
+  windowShadeType: WindowShadeType.TheoryAndBackground,
   content: contentText
 };
 
 const authoredStateB = {
-  type: "teacherTip",
+  windowShadeType: WindowShadeType.TeacherTip,
   content: contentText
 };
 
 const authoredStateC = {
-  type: "discussionPoints",
-  content: "Well now, folks, here we go!",
-  mediaType: "video"
+  windowShadeType: WindowShadeType.DiscussionPoints,
+  content: "Well now, folks, here we go! With an image!",
+  mediaType: MediaType.Image
 };
 
 const authoredStateD = {
-  type: "discussionPoints",
-  content: "Well now, folks, here we go!",
-  mediaType: "image"
+  windowShadeType: WindowShadeType.DiggingDeeper,
+  content: "Well now, folks, here we go! With a video!",
+  mediaType: MediaType.Video
 };
 
 // props = {authoredState: {type: 'dd', content:'xx'} }

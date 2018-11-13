@@ -1,17 +1,23 @@
 import * as React from "react";
-import Markdown from "markdown-to-jsx";
 
 import * as css from "./window-shade.sass";
-import { IAuthoredWindowShade } from "../types";
-import ContentConfigurations from "../config/ui-configurations";
+import { IWindowShade, MediaType } from "../types";
+import { WindowShadeConfigurations } from "../config/ui-configurations";
 import WindowShadeButton from "./window-shade-button";
+import WindowShadeContent from "./window-shade-content";
 
 interface IProps {
-  authoredState: IAuthoredWindowShade;
+  authoredState: IWindowShade;
 }
 interface IState {
   open: boolean;
 }
+
+// WindowShades are rendered across the whole width of the page and are composed
+// of a WindowShadeButton and a WindowShadeContent. When a WindowShadeButton
+// is clicked, the Boolean state variable "open" is toggled. The value of this
+// state variable controls the display state, visible or hidden, of the
+// WindowShadeContents.
 
 export default class WindowShade extends React.Component<IProps, IState> {
 
@@ -21,29 +27,24 @@ export default class WindowShade extends React.Component<IProps, IState> {
 
   public render() {
     const { open } = this.state;
-    const { type, content, mediaType } = this.props.authoredState;
-    const config = ContentConfigurations[type];
-    const cssClassNames = [
-      open ? css.windowShadeContentShow : css.windowShadeContentHide,
-      css[config.styleClassName],
-      css.content
-    ].join(" ");
+    const { windowShadeType, content, mediaType } = this.props.authoredState;
+    const config = WindowShadeConfigurations[windowShadeType];
+    const cssOpenState = open ? css.windowShadeContentShow : css.windowShadeContentHide;
+    const cssShadeType = css[config.styleClassName];
 
     const toggle = () => {
       this.setState({open: !open});
     };
 
     return (
-      <div className={css.windowShade}>
+      <div className={`${css.windowShade} ${css[config.styleClassName]}`} >
         <WindowShadeButton
           onClick={toggle}
-          mediaType={mediaType ? mediaType : "none"}
+          mediaType={mediaType ? mediaType : MediaType.None}
           config={config}
         />
-        <div className={cssClassNames}>
-          <Markdown className={css.authorMarkdown}>
-            {content}
-          </Markdown>
+        <div className={`${cssOpenState} ${cssShadeType}`}>
+          <WindowShadeContent content={content} config={config} />
         </div>
       </div>
     );

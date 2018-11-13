@@ -1,6 +1,7 @@
-import TeacherEditionA from "../icons/teacher_edition_A.svg";
 import ExclamationA from "../icons/exclamation_A.svg";
 import DiscussionA from "../icons/discussion_A.svg";
+import LightbulbA from "../icons/lightbulb_A.svg";
+import ShovelA from "../icons/shovel_A.svg";
 
 export interface IWindowShadeConfiguration {
   Icon: SvgrComponent;
@@ -16,7 +17,7 @@ export const WindowShadeConfigurations: {[index: string]: IWindowShadeConfigurat
     styleClassName: "teacherTip"
   },
   theoryAndBackground: {
-    Icon: TeacherEditionA,
+    Icon: LightbulbA,
     label: "Theory & Background",
     styleClassName: "theoryAndBackground"
   },
@@ -24,6 +25,11 @@ export const WindowShadeConfigurations: {[index: string]: IWindowShadeConfigurat
     Icon: DiscussionA,
     label: "Discussion Points",
     styleClassName: "discussionPoints",
+  },
+  diggingDeeper: {
+    Icon: ShovelA,
+    label: "Digging Deeper",
+    styleClassName: "diggingDeeper",
   }
 };
 

@@ -1,12 +1,11 @@
 import * as React from "react";
 
-import * as css from "./window-shade.sass";
+import * as css from "./window-shade-button.sass";
 
 import { IWindowShadeConfiguration } from "../config/ui-configurations";
-import ActiveIcon from "./active-icon";
-
-import Image from "../icons/image.svg";
-import Video from "../icons/video.svg";
+import LeftEndCap from "./left-end-cap";
+import ButtonTitle from "./button-title";
+import RightEndCap from "./right-end-cap";
 
 interface IProps {
   onClick: () => void;
@@ -16,36 +15,23 @@ interface IProps {
 
 interface IState { }
 
-export default class WindowShade extends React.Component<IProps, IState> {
+// WindowShadeButton's are presentation-only components composed of 3 sub-
+// components: a LeftEndCap, a ButtonLabel, and a RightEndCap. This component
+// is responsible for aligning the 3 sub-components horizontally, the overall
+// size and shape of the button (a rounded rectangle), and the border of the
+// button.
 
+export default class WindowShadeButton extends React.Component<IProps, IState> {
   public render() {
     const { onClick, mediaType, config } = this.props;
     const { label, styleClassName } = config;
-    const cssClassNames = [ css.windowShadeToggle, css[styleClassName] ];
+    const cssClassNames = [ css.windowShadeButton, css[styleClassName] ];
     return (
       <div className={cssClassNames.join(" ")} onClick={onClick}>
-        <span>
-          <ActiveIcon config={config} />
-          {label}
-          {this.getMediaIcon(mediaType)}
-        </span>
+        <LeftEndCap config={config} />
+        <ButtonTitle title={label} config={config} />
+        <RightEndCap mediaType={mediaType} config={config} />
       </div>
     );
   }
-
-  private getMediaIcon(mediaType: string) {
-    const mediaIconStyle = {
-      width: "35px",
-      fill: "green"
-    };
-    switch (mediaType) {
-      case "image":
-        return <Image {...mediaIconStyle} />;
-      case "video":
-        return <Video {...mediaIconStyle} />;
-      default:
-        return "";
-    }
-  }
-
 }

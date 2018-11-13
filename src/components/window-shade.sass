@@ -1,74 +1,50 @@
-.windowShade
-  th
-    border-bottom: 3px solid black
+@import "themes.sass"
 
-.windowShadeToggle
-  position: relative
-  height: 50px
-  max-width: 400px
-  top: 28px
-  left: 22px
-  margin-right: 44px
-  border-radius: 25px
-  border: #878706 solid 3px
-  display: flex
-  flex-direction: column
-  justify-content: center
-  text-align: center
-  font-family: "Roboto", sans-serif
-  font-size: 18pt
-  font-weight: bold
-  &:hover
-    background-color: #FDFDA4
+// TODO: Move the following vars to themes.sass
+
+$radius: 25px
+$labelFont: 24px arial, sans-serif
+$border: solid 3px
+$padding: 45px 30px 28px 30px
+$borderRadius: 0px 0px $radius $radius
+
+.windowShade  
+  font: $labelFont
+  border: $border
+  border-radius: $borderRadius
+  padding: $padding
+  &.theoryAndBackground
+    border: $yellowBorderColor solid 3px
+    background-color: $fadedYellow
+  &.teacherTip
+    border: $blueBorderColor solid 3px
+    background-color: $paleBlue
+  &.discussionPoints
+    border: $orangeBorderColor solid 3px
+    background-color: $paleOrange
+  &.diggingDeeper
+    border: $purpleBorderColor solid 3px
+    background-color: $palePurple
 
 .windowShadeContentShow
   height: auto
-  background-color: #FEFEE3
-  border: #878706 solid 3px
-  border-radius: 0px 0px 25px 25px
-  padding: 30px
-  padding-top: 45px
-  padding-bottom: 28px
 
 .windowShadeContentHide
   height: 0
   overflow: hidden
-  border-top: #878706 solid 3px
 
-.content
-  font-family: Arial, sans-serif
-  font-size: 16pt
-  font-weight: regular
-  line-height: 24pt
-  margin-bottom: 12pt
+// .content
+//   font-family: Arial, sans-serif
+//   font-size: 16pt
+//   font-weight: regular
+//   line-height: 24pt
+//   margin-bottom: 12pt
 
-.theoryAndBackground
-  background-color: #FCFC51
-  border-color: #878706
-  color: #5E5E04
-  &:hover
-    background-color: #FDFDA4
-  &.content
-    background-color: #FEFEE3
-    color: #1A1A1A
-  .authorMarkdown
-    h1,h2,h3,h4,h5,th,em,strong
-      color: #5E5E04
-    th
-      border-color: #5E5E04
+//   .authorMarkdown
+//     h1,h2,h3,h4,h5,th,em,strong
+//       color: #5E5E04
+//     th
+//       border-color: #5E5E04
 
-.teacherTip
-  background-color: #1A97FF
-  border-color: #094F98
-  color: #E4F1FF
-  &:hover
-    background-color: #E4F1FF
-    color: #073A70
-  &.content
-    background-color: #E4F1FF
-    color: #1A1A1A
-  .authorMarkdown
-    h1,h2,h3,h4,h5,th,em,strong
-      color: #094F98
-    th
-      border-color: #094F98
+//   th
+//     border-bottom: 3px solid black
