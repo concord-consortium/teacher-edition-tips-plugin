@@ -1,10 +1,18 @@
 import * as React from "react";
-import * as css from "./question-wrapper.sass";
+import Markdown from "markdown-to-jsx";
 import { IAuthoredQuestionWrapper } from "../types";
+import CheckA from "../icons/check_A.svg";
+import XA from "../icons/x_A.svg";
+import ExclamationSmall from "../icons/exclamation_small_A.svg";
+import Exclamation from "../icons/exclamation_A.svg";
+import CheckMark from "../icons/check_mark.svg";
+import XMark from "../icons/x_mark.svg";
+import * as css from "./question-wrapper.sass";
 
 type TabName = "Correct" | "Distractors" | "TeacherTip" | "Exemplar";
 
 const LARA_MULTIPLE_CHOICE = "Embeddable::MultipleChoice";
+const LARA_INTERACTIVE = "MwInteractive";
 
 interface IProps {
   authoredState: IAuthoredQuestionWrapper;
@@ -25,14 +33,14 @@ export default class QuestionWrapper extends React.Component<IProps, IState> {
   private answerInputs: NodeListOf<HTMLInputElement>;
 
   public componentDidMount() {
-    const { wrappedEmbeddableDiv, wrappedEmbeddableContext } = this.props;
+    const { wrappedEmbeddableDiv } = this.props;
     if (!wrappedEmbeddableDiv) {
       return;
     }
     const containerNode = this.wrappedEmbeddableDivContainer.current!;
     containerNode.appendChild(wrappedEmbeddableDiv);
 
-    if (wrappedEmbeddableContext.type === LARA_MULTIPLE_CHOICE) {
+    if (this.isMCQuestion) {
       // Find multiple choice answer inputs. Used later to position icons.
       this.answerInputs = this.findInputsInWrappedQuestion();
     }
@@ -44,12 +52,15 @@ export default class QuestionWrapper extends React.Component<IProps, IState> {
     const { teacherTip, exemplar, correctExplanation, distractorsExplanation } = authoredState;
 
     let overlayClass = css.overlay;
+    let footerClass = css.footer;
     let footer = null;
     if (activeTab === "Correct") {
       overlayClass += " " + css.correctOverlay;
+      footerClass += " " + css.correctFooter;
       footer = correctExplanation;
     } else if (activeTab === "Distractors") {
       overlayClass += " " + css.distractorsOverlay;
+      footerClass += " " + css.distractorsFooter;
       footer = distractorsExplanation;
     } else if (activeTab === "TeacherTip") {
       overlayClass += " " + css.teacherTipOverlay;
@@ -59,43 +70,92 @@ export default class QuestionWrapper extends React.Component<IProps, IState> {
       footer = exemplar;
     }
 
+    let wrapperClass = css.questionWrapper;
+    if (this.isInteractive) {
+      wrapperClass += " " + css.interactiveWrapper;
+    }
+
+    let wrappedContentClass = css.wrappedContent;
+    if (activeTab !== null) {
+      wrappedContentClass += " " + css.open;
+    }
+
     return (
-      <div className={css.questionWrapper}>
+      <div className={wrapperClass}>
         <div className={css.headers}>
           {
             this.showCorrectTab &&
-            <div className={css.correct} onClick={this.toggleCorrect}>Correct</div>
+            <div className={css.correct} onClick={this.toggleCorrect} data-cy="correct"><CheckA/>Correct</div>
           }
           {
             this.showDistractorsTab &&
-            <div className={css.distractors} onClick={this.toggleDistractors}>Distractors</div>
+            <div className={css.distractors} onClick={this.toggleDistractors} data-cy="distractors">
+              <XA/>Distractors
+            </div>
           }
-          { teacherTip && <div className={css.teacherTip} onClick={this.toggleTeacherTip}>Teacher Tips</div> }
-          { exemplar && <div className={css.exemplar} onClick={this.toggleExemplar}>Exemplar</div> }
+          { teacherTip && this.renderTeacherTipToggle() }
+          {
+            exemplar &&
+            <div className={css.exemplar} onClick={this.toggleExemplar} data-cy="exemplar"><CheckA/>Exemplar</div>
+          }
         </div>
-        <div className={css.wrappedContent}>
+        <div className={wrappedContentClass}>
+          <div className={css.dotLeft}/>
+          <div className={css.dotRight}/>
           <div ref={this.wrappedEmbeddableDivContainer} />
           <div className={overlayClass} />
           { activeTab === "Correct" && this.renderCorrectOverlay() }
           { activeTab === "Distractors" && this.renderDistractorsOverlay() }
-          { footer && <div className={css.footer}>{ footer }</div> }
+          { activeTab === "TeacherTip" && this.renderImageOverlay() }
+          {
+            footer &&
+            <div className={footerClass}>
+              <Markdown className={css.authorMarkdown}>
+                { footer }
+              </Markdown>
+            </div>
+          }
         </div>
+      </div>
+    );
+  }
+
+  private get isMCQuestion() {
+    const { wrappedEmbeddableContext } = this.props;
+    return wrappedEmbeddableContext.type === LARA_MULTIPLE_CHOICE;
+  }
+
+  private get isInteractive() {
+    const { wrappedEmbeddableContext } = this.props;
+    return wrappedEmbeddableContext.type === LARA_INTERACTIVE;
+  }
+
+  private renderTeacherTipToggle() {
+    const Icon = this.isInteractive ? Exclamation : ExclamationSmall;
+    return (
+      <div className={css.teacherTip} onClick={this.toggleTeacherTip} data-cy="teacherTip">
+        <span className={css.teacherTipIcon}><Icon/></span>
+        <span className={css.teacherTipLabel}>Teacher Tips</span>
       </div>
     );
   }
 
   private renderCorrectOverlay() {
     const { choices } = this.props.wrappedEmbeddableContext;
+    if (this.answerInputs.length === 0) {
+      return null;
+    }
     return choices.map((choice: any, idx: number) =>
       choice.is_correct ?
         <div
+          className={css.correctTickMark}
           key={idx}
           style={{
-            position: "absolute",
             top: this.answerInputs[idx].offsetTop,
-            left: this.answerInputs[idx].offsetLeft}}
+            left: this.answerInputs[idx].offsetLeft
+          }}
         >
-          ✔
+          <CheckMark/>
         </div>
         :
         null
@@ -104,26 +164,39 @@ export default class QuestionWrapper extends React.Component<IProps, IState> {
 
   private renderDistractorsOverlay() {
     const { choices } = this.props.wrappedEmbeddableContext;
+    if (this.answerInputs.length === 0) {
+      return null;
+    }
     return choices.map((choice: any, idx: number) =>
       !choice.is_correct ?
         <div
+          className={css.distractorXMark}
           key={idx}
           style={{
-            position: "absolute",
             top: this.answerInputs[idx].offsetTop,
-            left: this.answerInputs[idx].offsetLeft}}
+            left: this.answerInputs[idx].offsetLeft
+          }}
         >
-          X
+          <XMark/>
         </div>
         :
         null
     );
   }
 
+  private renderImageOverlay() {
+    const { authoredState } = this.props;
+    const { teacherTipImageOverlay } = authoredState;
+    if (!teacherTipImageOverlay) {
+      return null;
+    }
+    return <img src={teacherTipImageOverlay} className={css.teacherTipImageOverlay} />;
+  }
+
   private get showCorrectTab() {
     const question = this.props.wrappedEmbeddableContext;
     const { correctExplanation } = this.props.authoredState;
-    if (question.type !== LARA_MULTIPLE_CHOICE) {
+    if (!this.isMCQuestion) {
       return false;
     }
     // There's an explanation or at least one choice marked as correct.
@@ -131,13 +204,8 @@ export default class QuestionWrapper extends React.Component<IProps, IState> {
   }
 
   private get showDistractorsTab() {
-    const question = this.props.wrappedEmbeddableContext;
     const { distractorsExplanation } = this.props.authoredState;
-    if (question.type !== LARA_MULTIPLE_CHOICE) {
-      return false;
-    }
-    // There's an explanation or at at least one choice marked as correct.
-    return distractorsExplanation || question.choices.filter((c: any) => c.is_correct === true).length > 0;
+    return distractorsExplanation && this.isMCQuestion;
   }
 
   private findInputsInWrappedQuestion() {

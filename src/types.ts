@@ -50,5 +50,6 @@ export interface IAuthoredQuestionWrapper {
   correctExplanation?: string;
   distractorsExplanation?: string;
   teacherTip?: string;
+  teacherTipImageOverlay?: string;
   exemplar?: string;
 }
