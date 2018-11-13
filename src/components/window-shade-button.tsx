@@ -1,34 +1,37 @@
 import * as React from "react";
 
-import * as css from "./window-shade.sass";
+import * as css from "./window-shade-button.sass";
 
-import ContentConfigurations from "../config/content-configurations";
+import { IWindowShadeConfiguration } from "../config/ui-configurations";
+import LeftEndCap from "./left-end-cap";
+import ButtonTitle from "./button-title";
+import RightEndCap from "./right-end-cap";
 
 interface IProps {
-  type: string;
   onClick: () => void;
+  mediaType: string;
+  config: IWindowShadeConfiguration;
 }
 
 interface IState { }
 
-export default class WindowShade extends React.Component<IProps, IState> {
+// WindowShadeButton's are presentation-only components composed of 3 sub-
+// components: a LeftEndCap, a ButtonLabel, and a RightEndCap. This component
+// is responsible for aligning the 3 sub-components horizontally, the overall
+// size and shape of the button (a rounded rectangle), and the border of the
+// button.
 
+export default class WindowShadeButton extends React.Component<IProps, IState> {
   public render() {
-    const { onClick, type } = this.props;
-    const { Icon, label, styleClassName } = ContentConfigurations[type];
-    const cssClassNames = [ css.windowShadeToggle, css[styleClassName] ];
-    const iconProps = {
-      width: "50px",
-      fill: "red"
-    };
+    const { onClick, mediaType, config } = this.props;
+    const { label, styleClassName } = config;
+    const cssClassNames = [ css.windowShadeButton, css[styleClassName] ];
     return (
       <div className={cssClassNames.join(" ")} onClick={onClick}>
-        <span>
-          <Icon {...iconProps} />
-          {label}
-        </span>
+        <LeftEndCap config={config} />
+        <ButtonTitle title={label} config={config} />
+        <RightEndCap mediaType={mediaType} config={config} />
       </div>
     );
   }
-
 }

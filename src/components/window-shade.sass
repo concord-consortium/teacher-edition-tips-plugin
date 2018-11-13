@@ -1,74 +1,38 @@
+@import "themes.sass"
+
 .windowShade
-  th
-    border-bottom: 3px solid black
-
-.windowShadeToggle
-  position: relative
-  height: 50px
-  max-width: 400px
-  top: 28px
-  left: 22px
-  margin-right: 44px
-  border-radius: 25px
-  border: #878706 solid 3px
-  display: flex
-  flex-direction: column
-  justify-content: center
-  text-align: center
-  font-family: "Roboto", sans-serif
-  font-size: 18pt
-  font-weight: bold
-  &:hover
-    background-color: #FDFDA4
-
-.windowShadeContentShow
-  height: auto
-  background-color: #FEFEE3
-  border: #878706 solid 3px
-  border-radius: 0px 0px 25px 25px
-  padding: 30px
-  padding-top: 45px
-  padding-bottom: 28px
-
-.windowShadeContentHide
-  height: 0
-  overflow: hidden
-  border-top: #878706 solid 3px
-
-.content
-  font-family: Arial, sans-serif
-  font-size: 16pt
-  font-weight: regular
-  line-height: 24pt
-  margin-bottom: 12pt
+  font: $labelFont
+  border: $border
+  border-radius: $borderRadius
+  margin-top: 50px
+  margin-bottom: 75px
+  border: $border
 
 .theoryAndBackground
-  background-color: #FCFC51
-  border-color: #878706
-  color: #5E5E04
-  &:hover
-    background-color: #FDFDA4
-  &.content
-    background-color: #FEFEE3
-    color: #1A1A1A
-  .authorMarkdown
-    h1,h2,h3,h4,h5,th,em,strong
-      color: #5E5E04
-    th
-      border-color: #5E5E04
+  border-color: $yellowBorderColor
+  background-color: $paleYellow
 
 .teacherTip
-  background-color: #1A97FF
-  border-color: #094F98
-  color: #E4F1FF
-  &:hover
-    background-color: #E4F1FF
-    color: #073A70
-  &.content
-    background-color: #E4F1FF
-    color: #1A1A1A
-  .authorMarkdown
-    h1,h2,h3,h4,h5,th,em,strong
-      color: #094F98
-    th
-      border-color: #094F98
+  border-color: $blueBorderColor
+  background-color: $paleBlue
+
+.discussionPoints
+  border-color: $orangeBorderColor
+  background-color: $paleOrange
+
+.diggingDeeper
+  border-color: $purpleBorderColor
+  background-color: $palePurple
+
+.windowShadeShown
+  height: auto
+
+.windowShadeHidden
+  height: 0
+  border-left: 0
+  border-right: 0
+  border-bottom: 0
+  border-radius: 0
+  .content
+    height: 0
+    overflow: hidden

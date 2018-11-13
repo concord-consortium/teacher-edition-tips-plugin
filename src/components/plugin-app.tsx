@@ -24,19 +24,17 @@ export default class PluginApp extends React.Component<IProps, IState> {
 
   constructor(props: IProps) {
     super(props);
-    const { type } = this.props.authoredState;
-    if (type === "sideTip") {
+    const { tipType } = this.props.authoredState;
+    if (tipType === "sideTip") {
       this.addSidebar();
     }
   }
 
   public render() {
-    const { type } = this.props.authoredState;
-    switch (type) {
+    const { tipType } = this.props.authoredState;
+    switch (tipType) {
       case "questionWrapper": return this.renderQuestionWrapper();
       case "windowShade":
-      case "teacherTip":
-      case "theoryAndBackground":
         return this.renderWindowShade();
       case "sideTip": return this.renderSidebarTip();
     }

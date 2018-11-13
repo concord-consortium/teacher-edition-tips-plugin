@@ -29,6 +29,22 @@ import LightbulbA_NoArtboard from "./icons/lightbulbA_NOartboard.svg";
 import LightbulbA_WITHArtboard from "./icons/lightbulbA_WITHartboard.svg";
 import LightbulbB_NoArtboard from "./icons/lightbulbA_NOartboard.svg";
 import LightbulbB_WITHArtboard from "./icons/lightbulbA_WITHartboard.svg";
+import { WindowShadeType, MediaType } from "./types";
+
+/*
+ * This plugin provides 5, stylistically and behaviorally related components
+ * supporting, at least in this first incarnation, teacher-edition activities.
+ * These components implement:
+ *
+ *  * a Banner,
+ *  * the SlideOutLegend,
+ *  * a WindowShade,
+ *  * an Overlay, and
+ *  * a QuestionOverlay.
+ *
+ * The demo presented in this file provides an easy way to observe the
+ * rendering and behavior of these components.
+ */
 
 const contentText =
 `
@@ -64,19 +80,7 @@ This page is the first of a series of model and data-based case studies
 
 ### Tests of Markdown Syntax
 
-#### 1 Can we do Tables?
-
-Yes, but, they are very primitive. The following is a simple example of a
-table in markdown.
-
-| PofL (Phase of Luna) | Wolfie Sightings |
-|:--------------------:|-----------------:|
-| Nu (-ish)            |                0 |
-| 1 Quad               |                2 |
-| Full                 |             3456 |
-| Dark Side            |               31 |
-
-#### 2 Text Styles
+#### 1 Text Styles
 
 The basic, semantic, text markdown stiles area supported:
 
@@ -87,7 +91,7 @@ The basic, semantic, text markdown stiles area supported:
 | \`_**bold & italic**_\` |  _**bold & italic**_ |
 | \` \`typewriter\` \`    | \`typewriter\`       |
 
-#### 3 Bullet Lists
+#### 2 Bullet Lists
 
 * This is a bullet item.
 * And a second bullet item.
@@ -98,7 +102,7 @@ The basic, semantic, text markdown stiles area supported:
 * Finally, we finish up with - a third bullet item; and,
 * a fourth bullet item.
 
-#### 4 Numbered Lists
+#### 3 Numbered Lists
 
 These work in a manner very similar to bullet lists, but use a
 \`1.\`, instead of a \`*\`, to preface each list item. The \`1\` is
@@ -111,7 +115,7 @@ the items.
   1. And more, of course.
 1. And the last one.
 
-#### 5 Other Stuff
+#### 4 Other Stuff
 
 Other markdown facilities might also be available, but have not been tested.
 Things like:
@@ -138,15 +142,47 @@ const smallIconStyle = {
 };
 
 const authoredStateA = {
-  type: "theoryAndBackground",
-  windowShadeType: {label: "label", icon: "icon"},
+  windowShadeType: WindowShadeType.TheoryAndBackground,
   content: contentText
 };
 
 const authoredStateB = {
-  type: "teacherTip",
-  windowShadeType: {label: "label", icon: "icon"},
+  windowShadeType: WindowShadeType.TeacherTip,
   content: contentText
+};
+
+const authoredStateC = {
+  windowShadeType: WindowShadeType.DiscussionPoints,
+  content: "Well now, folks, here we go! With an image!"
+};
+
+const authoredStateD = {
+  windowShadeType: WindowShadeType.DiggingDeeper,
+  content: "Well now, folks, here we go! With a video!"
+};
+
+const authoredStateE = {
+  windowShadeType: WindowShadeType.TheoryAndBackground,
+  content: contentText,
+  mediaType: MediaType.Image
+};
+
+const authoredStateF = {
+  windowShadeType: WindowShadeType.TeacherTip,
+  content: contentText,
+  mediaType: MediaType.Video
+};
+
+const authoredStateG = {
+  windowShadeType: WindowShadeType.DiscussionPoints,
+  content: "Well now, folks, here we go!\n\n# With an image!",
+  mediaType: MediaType.Image
+};
+
+const authoredStateH = {
+  windowShadeType: WindowShadeType.DiggingDeeper,
+  content: "Well now, **folks**, here we go! With a video!",
+  mediaType: MediaType.Video
 };
 
 // props = {authoredState: {type: 'dd', content:'xx'} }
@@ -154,6 +190,12 @@ ReactDOM.render(
   <div>
     <WindowShade authoredState={authoredStateA} />
     <WindowShade authoredState={authoredStateB} />
+    <WindowShade authoredState={authoredStateC} />
+    <WindowShade authoredState={authoredStateD} />
+    <WindowShade authoredState={authoredStateE} />
+    <WindowShade authoredState={authoredStateF} />
+    <WindowShade authoredState={authoredStateG} />
+    <WindowShade authoredState={authoredStateH} />
     <div>
       <br />
       <span>Display of all icons:</span>

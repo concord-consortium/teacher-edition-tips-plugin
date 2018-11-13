@@ -1,12 +1,40 @@
+export enum TeacherTipType {
+  QuestionWrapper = "questionWrapper",
+  WindowShade = "windowShade",
+  SideTip = "sideTip"
+}
+
 export interface IAuthoredState {
-  type: string;
-  windowShade?: IAuthoredWindowShade;
+  tipType: TeacherTipType;
+  windowShade?: IWindowShade;
   questionWrapper?: IAuthoredQuestionWrapper;
 }
 
-export interface IAuthoredWindowShade {
+export enum WindowShadeType {
+  TheoryAndBackground = "theoryAndBackground",
+  TeacherTip = "teacherTip",
+  DiscussionPoints = "discussionPoints",
+  DiggingDeeper = "diggingDeeper"
+}
+
+export enum WindowShadeLayout {
+  Default = "default",
+  RightText = "rightText"
+}
+
+export enum MediaType {
+  None = "none",
+  Image = "image",
+  Video = "video"
+}
+
+export interface IWindowShade {
+  windowShadeType: WindowShadeType;
   content: string;
-  type: string;
+  layout?: WindowShadeLayout;
+  mediaType?: MediaType;
+  mediaURL?: string;
+  mediaCaption?: string;
 }
 
 export interface IAuthoredQuestionWrapper {
