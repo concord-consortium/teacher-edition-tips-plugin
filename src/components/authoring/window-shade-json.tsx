@@ -24,10 +24,15 @@ export default class WindowShadeJSON extends React.Component<IProps, IState> {
   public render() {
     const {workingState} = this.state;
     return (
-          <textarea
-            value={workingState}
-            onChange={this.updateContent}
-            onBlur={this.updateContent}/>
+      <div>
+        JSON: (copy / paste into authoring)
+        <br/>
+        <br/>
+        <textarea
+          value={workingState}
+          onChange={this.updateContent}
+          onBlur={this.updateContent}/>
+      </div>
     );
   }
   private updateContent = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
