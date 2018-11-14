@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as css from "./window-shade-form.sass";
 
-import { IWindowShade, WindowShadeType, MediaType } from "../../types";
+import { IWindowShade, WindowShadeType, MediaType } from "../../../types";
 
 interface IProps {
   onSave?: (newState: IWindowShade) => any;

@@ -1,8 +1,8 @@
 import * as React from "react";
 import * as css from "./window-shade-form.sass";
 
-import { IWindowShade, WindowShadeType, MediaType } from "../../types";
-import { getContentConfiguration } from "../../config/ui-configurations";
+import { IWindowShade, WindowShadeType, MediaType } from "../../../types";
+import { getContentConfiguration } from "../../../config/ui-configurations";
 
 const allConfigurationTypes = [
   WindowShadeType.TeacherTip,

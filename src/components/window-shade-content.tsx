@@ -22,10 +22,13 @@ export default class WindowShadeContent extends React.Component<IProps, IState> 
       css.authorMarkdown,
       css[config.styleClassName],
       css.windowShadeContent
-    ].join(" ");
+    ];
+    if (this.hasMedia()) {
+      cssClassNames.push(css.twoColumns);
+    }
 
     return (
-      <div className={cssClassNames}>
+      <div className={cssClassNames.join(" ")}>
         { this.renderMedia() }
         <Markdown>
           {content}
@@ -33,10 +36,13 @@ export default class WindowShadeContent extends React.Component<IProps, IState> 
       </div>
     );
   }
-
-  private renderMedia() {
+  private hasMedia() {
     const { mediaType, mediaURL } = this.props;
-    if (mediaType && (mediaType !== MediaType.None) && mediaURL && mediaURL.length > 4) {
+    return (mediaType && (mediaType !== MediaType.None) && mediaURL && mediaURL.length > 4);
+  }
+  private renderMedia() {
+    const { mediaURL } = this.props;
+    if (this.hasMedia) {
       return <img src={mediaURL} />;
     }
   }
