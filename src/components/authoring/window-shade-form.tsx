@@ -24,26 +24,32 @@ interface IProps {
 
 interface IState {
   windowShadeType: WindowShadeType;
+  mediaType: MediaType;
+  mediaUrl: string;
   content: string;
 }
 
 export default class WindowShadeForm extends React.Component<IProps, IState> {
   public state: IState = {
     windowShadeType: this.props.authoredState.windowShadeType,
-    content: this.props.authoredState.content
+    content: this.props.authoredState.content,
+    mediaType: MediaType.None,
+    mediaUrl: ""
   };
 
   public componentDidUpdate(prevProps: IProps) {
     if (prevProps.authoredState !== this.props.authoredState) {
       this.setState({
         windowShadeType: this.props.authoredState.windowShadeType,
-        content: this.props.authoredState.content
+        content: this.props.authoredState.content,
+        mediaType: this.props.authoredState.mediaType || MediaType.None
       });
     }
   }
+
   public render() {
-    const { windowShadeType, content } = this.state;
-    const options = allConfigurationTypes.map( (key: WindowShadeType) => {
+    const { windowShadeType, content, mediaType, mediaUrl } = this.state;
+    const windowShadeTypeOptions = allConfigurationTypes.map( (key: WindowShadeType) => {
       const config = getContentConfiguration(key);
       return(
         <option
@@ -54,14 +60,38 @@ export default class WindowShadeForm extends React.Component<IProps, IState> {
       );
     });
 
+    const mediaTypeOptions = allMediaTypes.map( (key: MediaType ) => {
+      return(
+        <option
+          value={key}
+          key={key}>
+          {key}
+        </option>
+      );
+    });
+
     return (
       <div className={css.container}>
         <div>
-          <label> Type </label>
+          <label> Tip Type </label>
           <br/>
           <select onChange={this.updateType} value={windowShadeType}>
-            {options}
+            {windowShadeTypeOptions}
           </select>
+        </div>
+        <div>
+          <label> Media Type </label>
+          <br/>
+          <select onChange={this.updateMediaType} value={mediaType}>
+            {mediaTypeOptions}
+          </select>
+        </div>
+        <div>
+          <label> Media URL </label>
+          <br/>
+          <input type="text"
+            value={mediaUrl}
+            onChange={this.updateMediaUrl}/>
         </div>
         <div>
           <label> Content </label>
@@ -81,6 +111,11 @@ export default class WindowShadeForm extends React.Component<IProps, IState> {
     }
   }
 
+  private updateMediaType = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const newValue = event.target.value as MediaType;
+    this.setState({mediaType: newValue}, () => this.sendChangeEvent());
+  }
+
   private updateType = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const newValue = event.target.value as WindowShadeType;
     this.setState({windowShadeType: newValue}, () => this.sendChangeEvent());
@@ -90,5 +125,8 @@ export default class WindowShadeForm extends React.Component<IProps, IState> {
     const newValue = event.target.value;
     this.setState({content: newValue}, () => this.sendChangeEvent());
   }
-
+  private updateMediaUrl = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const newValue = event.target.value;
+    this.setState({mediaUrl: newValue}, () => this.sendChangeEvent());
+  }
 }
