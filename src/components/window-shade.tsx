@@ -27,7 +27,7 @@ export default class WindowShade extends React.Component<IProps, IState> {
 
   public render() {
     const { open } = this.state;
-    const { windowShadeType, content, mediaType } = this.props.authoredState;
+    const { windowShadeType, content, mediaType, mediaURL } = this.props.authoredState;
     const config = WindowShadeConfigurations[windowShadeType];
     const cssOpenState = open ? css.windowShadeShown : css.windowShadeHidden;
     const cssShadeType = css[config.styleClassName];
@@ -40,7 +40,7 @@ export default class WindowShade extends React.Component<IProps, IState> {
           config={config}
         />
         <div className={`${css.content} ${cssShadeType}`}>
-          <WindowShadeContent content={content} config={config} />
+          <WindowShadeContent content={content} mediaType={mediaType} mediaURL={mediaURL} config={config} />
         </div>
       </div>
     );

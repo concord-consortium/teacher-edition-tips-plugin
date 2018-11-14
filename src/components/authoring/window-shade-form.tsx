@@ -25,7 +25,7 @@ interface IProps {
 interface IState {
   windowShadeType: WindowShadeType;
   mediaType: MediaType;
-  mediaUrl: string;
+  mediaURL: string;
   content: string;
 }
 
@@ -34,7 +34,7 @@ export default class WindowShadeForm extends React.Component<IProps, IState> {
     windowShadeType: this.props.authoredState.windowShadeType,
     content: this.props.authoredState.content,
     mediaType: MediaType.None,
-    mediaUrl: ""
+    mediaURL: ""
   };
 
   public componentDidUpdate(prevProps: IProps) {
@@ -48,7 +48,7 @@ export default class WindowShadeForm extends React.Component<IProps, IState> {
   }
 
   public render() {
-    const { windowShadeType, content, mediaType, mediaUrl } = this.state;
+    const { windowShadeType, content, mediaType, mediaURL } = this.state;
     const windowShadeTypeOptions = allConfigurationTypes.map( (key: WindowShadeType) => {
       const config = getContentConfiguration(key);
       return(
@@ -90,8 +90,8 @@ export default class WindowShadeForm extends React.Component<IProps, IState> {
           <label> Media URL </label>
           <br/>
           <input type="text"
-            value={mediaUrl}
-            onChange={this.updateMediaUrl}/>
+            value={mediaURL}
+            onChange={this.updatemediaURL}/>
         </div>
         <div>
           <label> Content </label>
@@ -125,8 +125,8 @@ export default class WindowShadeForm extends React.Component<IProps, IState> {
     const newValue = event.target.value;
     this.setState({content: newValue}, () => this.sendChangeEvent());
   }
-  private updateMediaUrl = (event: React.ChangeEvent<HTMLInputElement>) => {
+  private updatemediaURL = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = event.target.value;
-    this.setState({mediaUrl: newValue}, () => this.sendChangeEvent());
+    this.setState({mediaURL: newValue}, () => this.sendChangeEvent());
   }
 }
