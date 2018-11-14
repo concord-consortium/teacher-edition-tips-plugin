@@ -7,7 +7,8 @@ import { getContentConfiguration } from "../../config/ui-configurations";
 const allConfigurationTypes = [
   WindowShadeType.TeacherTip,
   WindowShadeType.TheoryAndBackground,
-  WindowShadeType.DiscussionPoints
+  WindowShadeType.DiscussionPoints,
+  WindowShadeType.DiggingDeeper
 ];
 
 const allMediaTypes = [
@@ -52,6 +53,7 @@ export default class WindowShadeForm extends React.Component<IProps, IState> {
         </option>
       );
     });
+
     return (
       <div className={css.container}>
         <div>

@@ -36,7 +36,7 @@ export default class WindowShadeJSON extends React.Component<IProps, IState> {
       if (this.props.onSave) {
         try{
           const newProps = JSON.parse(newValue);
-          this.props.onSave(newProps);
+          this.props.onSave(newProps.windowShade);
         }
         catch (error) {
           // console.log(error);
@@ -47,6 +47,10 @@ export default class WindowShadeJSON extends React.Component<IProps, IState> {
   }
   private getAuthoredJson() {
     const {authoredState} = this.props;
-    return JSON.stringify(authoredState, null, 2);
+    const completeState = {
+      tipType: "windowShade",
+      windowShade: authoredState
+    };
+    return JSON.stringify(completeState, null, 2);
   }
 }
