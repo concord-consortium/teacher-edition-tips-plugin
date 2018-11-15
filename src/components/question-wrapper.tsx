@@ -12,7 +12,7 @@ import * as css from "./question-wrapper.sass";
 type TabName = "Correct" | "Distractors" | "TeacherTip" | "Exemplar";
 
 const LARA_MULTIPLE_CHOICE = "Embeddable::MultipleChoice";
-const LARA_INTERACTIVE = "MwInteractive";
+const LARA_INTERACTIVES = [ "MwInteractive", "ImageInteractive", "VideoInteractive" ];
 
 interface IProps {
   authoredState: IAuthoredQuestionWrapper;
@@ -93,7 +93,10 @@ export default class QuestionWrapper extends React.Component<IProps, IState> {
               <XA/>Distractors
             </div>
           }
-          { teacherTip && this.renderTeacherTipToggle() }
+          {
+            this.showTeacherTipTab &&
+            this.renderTeacherTipToggle()
+          }
           {
             exemplar &&
             <div className={css.exemplar} onClick={this.toggleExemplar} data-cy="exemplar"><CheckA/>Exemplar</div>
@@ -127,7 +130,7 @@ export default class QuestionWrapper extends React.Component<IProps, IState> {
 
   private get isInteractive() {
     const { wrappedEmbeddableContext } = this.props;
-    return wrappedEmbeddableContext.type === LARA_INTERACTIVE;
+    return LARA_INTERACTIVES.indexOf(wrappedEmbeddableContext.type) !== -1;
   }
 
   private renderTeacherTipToggle() {
@@ -206,6 +209,11 @@ export default class QuestionWrapper extends React.Component<IProps, IState> {
   private get showDistractorsTab() {
     const { distractorsExplanation } = this.props.authoredState;
     return distractorsExplanation && this.isMCQuestion;
+  }
+
+  private get showTeacherTipTab() {
+    const { teacherTip, teacherTipImageOverlay } = this.props.authoredState;
+    return teacherTip || teacherTipImageOverlay;
   }
 
   private findInputsInWrappedQuestion() {
