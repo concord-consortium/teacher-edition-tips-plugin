@@ -1,6 +1,7 @@
 @import "themes.sass"
 
 .windowShade
+  min-width: 480px
   font: $labelFont
   border: $border
   border-radius: $borderRadius
@@ -8,28 +9,47 @@
   margin-bottom: 75px
   border: $border
 
+.dot
+  width: 9px
+  height: 9px
+  border-radius: 4px
+  margin: -6px
+  z-index: 2000
+  &.dotLeft
+    float: left
+  &.dotRight
+    float: right
+
 .theoryAndBackground
   border-color: $yellowBorderColor
-  background-color: $paleYellow
+  background-color: $yellowContentBackgroundColor
+  .dot
+    background: $yellowBorderColor
 
 .teacherTip
   border-color: $blueBorderColor
-  background-color: $paleBlue
+  background-color: $blueContentBackgroundColor
+  .dot
+    background: $blueBorderColor
 
 .discussionPoints
   border-color: $orangeBorderColor
-  background-color: $paleOrange
+  background-color: $orangeContentBackgroundColor
+  .dot
+    background: $orangeBorderColor
 
 .diggingDeeper
   border-color: $purpleBorderColor
-  background-color: $palePurple
+  background-color: $purpleContentBackgroundColor
+  .dot
+    background: $purpleBorderColor
 
 .windowShadeShown
   height: auto
 
 .windowShadeHidden
   height: 0
-  border-left: 0
+  border-left: -3px
   border-right: 0
   border-bottom: 0
   border-radius: 0

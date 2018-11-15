@@ -34,6 +34,8 @@ export default class WindowShade extends React.Component<IProps, IState> {
 
     return (
       <div className={`${css.windowShade} ${cssShadeType} ${cssOpenState}`} >
+        <div className={`${css.dot} ${css.dotLeft}`} />
+        <div className={`${css.dot} ${css.dotRight}`} />
         <WindowShadeButton
           onClick={this.toggle}
           mediaType={mediaType ? mediaType : MediaType.None}
