@@ -51,31 +51,27 @@ export default class QuestionWrapper extends React.Component<IProps, IState> {
     const { authoredState } = this.props;
     const { teacherTip, exemplar, correctExplanation, distractorsExplanation } = authoredState;
 
-    let overlayClass = css.overlay;
-    let footerClass = css.footer;
-    let footer = null;
-    if (activeTab === "Correct") {
-      overlayClass += " " + css.correctOverlay;
-      footerClass += " " + css.correctFooter;
-      footer = correctExplanation;
-    } else if (activeTab === "Distractors") {
-      overlayClass += " " + css.distractorsOverlay;
-      footerClass += " " + css.distractorsFooter;
-      footer = distractorsExplanation;
-    } else if (activeTab === "TeacherTip") {
-      overlayClass += " " + css.teacherTipOverlay;
-      footer = teacherTip;
-    } else if (activeTab === "Exemplar") {
-      overlayClass += " " + css.exemplarOverlay;
-      footer = exemplar;
-    }
-
     let wrapperClass = css.questionWrapper;
     if (this.isInteractive) {
+      // Special style, different icons.
       wrapperClass += " " + css.interactiveWrapper;
     }
 
+    let footer = null;
     let wrappedContentClass = css.wrappedContent;
+    if (activeTab === "Correct") {
+      footer = correctExplanation;
+      wrappedContentClass += " " + css.correct;
+    } else if (activeTab === "Distractors") {
+      footer = distractorsExplanation;
+      wrappedContentClass += " " + css.distractors;
+    } else if (activeTab === "TeacherTip") {
+      footer = teacherTip;
+      wrappedContentClass += " " + css.teacherTip;
+    } else if (activeTab === "Exemplar") {
+      footer = exemplar;
+      wrappedContentClass += " " + css.examplar;
+    }
     if (activeTab !== null) {
       wrappedContentClass += " " + css.open;
     }
@@ -106,13 +102,13 @@ export default class QuestionWrapper extends React.Component<IProps, IState> {
           <div className={css.dotLeft}/>
           <div className={css.dotRight}/>
           <div ref={this.wrappedEmbeddableDivContainer} />
-          <div className={overlayClass} />
+          <div className={css.overlay} />
           { activeTab === "Correct" && this.renderCorrectOverlay() }
           { activeTab === "Distractors" && this.renderDistractorsOverlay() }
           { activeTab === "TeacherTip" && this.renderImageOverlay() }
           {
             footer &&
-            <div className={footerClass}>
+            <div className={css.footer}>
               <Markdown className={css.authorMarkdown}>
                 { footer }
               </Markdown>
