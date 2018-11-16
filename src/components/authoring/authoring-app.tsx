@@ -1,6 +1,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
+import * as css from "./authoring-app.sass";
 import WindowShade from "../window-shade";
 import WindowShadeForm from "./window-shade/window-shade-Form";
 
@@ -54,11 +55,11 @@ export default class AuthoringApp extends React.Component<IProps, IState> {
     const showWindowShade =  tipType === TeacherTipType.WindowShade;
     const showQuestionWrapper =  tipType === TeacherTipType.QuestionWrapper;
     return (
-      <div>
-        <div>
+      <div className={css.container}>
+        <div className={css.selector}>
           {this.renderTypeSelector()}
         </div>
-        <div>
+        <div className={css.preview}>
           {
             showWindowShade &&
             <WindowShade authoredState={ windowShade || defaultWindowShadeProps } />
@@ -70,7 +71,7 @@ export default class AuthoringApp extends React.Component<IProps, IState> {
             />
           }
         </div>
-        <div>
+        <div className={css.editor}>
           {
           showWindowShade &&
           <WindowShadeForm
@@ -78,8 +79,6 @@ export default class AuthoringApp extends React.Component<IProps, IState> {
             onSave={ this.updateWindowShade }
           />
           }
-        </div>
-        <div>
           {
           showQuestionWrapper &&
           <QuestionWrapperForm
@@ -88,7 +87,7 @@ export default class AuthoringApp extends React.Component<IProps, IState> {
           />
           }
         </div>
-        <div>
+        <div className={css.json}>
           <JsonEditor authoredState={authoredState} onSave={this.updateState} />
         </div>
       </div>

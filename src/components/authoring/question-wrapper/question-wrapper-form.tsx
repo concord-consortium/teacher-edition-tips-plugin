@@ -79,7 +79,6 @@ export default class QuestionWRapperForm extends React.Component<IProps, IState>
             onChange={this.updateExemplar}
           />
         </div>
-
       </div>
     );
   }

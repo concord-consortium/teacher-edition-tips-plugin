@@ -1,5 +1,5 @@
 import * as React from "react";
-import * as css from "./window-shade-form.sass";
+import * as css from "./json-editor.sass";
 
 import {
   IAuthoredState
