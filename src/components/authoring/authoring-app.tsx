@@ -103,7 +103,7 @@ export default class AuthoringApp extends React.Component<IProps, IState> {
     ].map( (type) => <option value={type} key={type}>{type} </option>);
 
     return (
-      <select value={tipType} onChange={this.changeTypeSelection}>
+      <select className={css.big} value={tipType} onChange={this.changeTypeSelection}>
         {options}
       </select>
     );

@@ -27,7 +27,7 @@ export default class JsonEditor extends React.Component<IProps, IState> {
   public render() {
     const {workingState} = this.state;
     return (
-      <div>
+      <div className={css.json}>
         JSON: (copy / paste into authoring)
         <br/>
         <br/>
