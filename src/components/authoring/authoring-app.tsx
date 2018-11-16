@@ -1,8 +1,12 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import WindowShadeForm from "./window-shade/window-shade-Form";
+
 import WindowShade from "../window-shade";
+import WindowShadeForm from "./window-shade/window-shade-Form";
+
 import QuestionAndQuestionWrapper from "../question-and-question-wrapper";
+import QuestionWrapperForm from "./question-wrapper/question-wrapper-form";
+
 import JsonEditor from "./json-editor";
 
 import {
@@ -62,7 +66,7 @@ export default class AuthoringApp extends React.Component<IProps, IState> {
           {
             showQuestionWrapper &&
             <QuestionAndQuestionWrapper
-              authoredState={ questionWrapper || defaultQuestionWrapperProps}
+              authoredState={ questionWrapper || defaultQuestionWrapperProps }
             />
           }
         </div>
@@ -72,6 +76,15 @@ export default class AuthoringApp extends React.Component<IProps, IState> {
           <WindowShadeForm
             authoredState={ windowShade || defaultWindowShadeProps }
             onSave={ this.updateWindowShade }
+          />
+          }
+        </div>
+        <div>
+          {
+          showQuestionWrapper &&
+          <QuestionWrapperForm
+            authoredState={ questionWrapper || defaultQuestionWrapperProps }
+            onSave={ this.updateQuestionWRapper }
           />
           }
         </div>
@@ -97,7 +110,6 @@ export default class AuthoringApp extends React.Component<IProps, IState> {
     );
   }
   private changeTypeSelection = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    console.log(event.target.value);
     const newType = event.target.value as TeacherTipType;
     this.updateState({tipType: newType});
   }
@@ -106,12 +118,17 @@ export default class AuthoringApp extends React.Component<IProps, IState> {
     this.updateState({windowShade: newWindowShade} as IAuthoredState);
   }
 
+  private updateQuestionWRapper = (newQuestionWrapper: IAuthoredQuestionWrapper) => {
+    this.updateState({questionWrapper: newQuestionWrapper} as IAuthoredState);
+  }
+
   private updateState = (newState: IAuthoredState) => {
     this.setState({authoredState: this.cloneState(newState)}, () => console.log(this.state));
   }
 
   private cloneState(newState: IAuthoredState) {
-    return Object.assign({}, this.props.initialAuthoredState, newState);
+    const prevState = (this.state && this.state.authoredState) || this.props.initialAuthoredState;
+    return Object.assign({}, prevState, newState);
   }
 
   private setInitialState(): IAuthoredState {

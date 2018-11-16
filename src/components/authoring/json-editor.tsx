@@ -47,7 +47,7 @@ export default class JsonEditor extends React.Component<IProps, IState> {
           this.props.onSave(newProps.windowShade);
         }
         catch (error) {
-          // console.log(error);
+          console.log(error);
           this.setState({workingState: this.getAuthoredJson()});
         }
       }
