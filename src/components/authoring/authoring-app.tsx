@@ -15,7 +15,7 @@ import {
 } from "../../types";
 
 const defaultWindowShadeProps: IWindowShade = {
-  windowShadeType: WindowShadeType.TheoryAndBackground,
+  windowShadeType: WindowShadeType.TeacherTip,
   content: "## This is something"
 };
 
