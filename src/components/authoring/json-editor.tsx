@@ -1,17 +1,20 @@
 import * as React from "react";
 import * as css from "./window-shade-form.sass";
 
-import { IWindowShade, WindowShadeType, MediaType } from "../../../types";
+import {
+  IAuthoredState
+} from "../../types";
 
 interface IProps {
-  onSave?: (newState: IWindowShade) => any;
+  onSave?: (newState: IAuthoredState) => any;
   validate?: (jsObject: object) => { valid: boolean; error: string; };
-  authoredState: IWindowShade;
+  authoredState: IAuthoredState;
 }
+
 interface IState {
   workingState: string;
 }
-export default class WindowShadeJSON extends React.Component<IProps, IState> {
+export default class JsonEditor extends React.Component<IProps, IState> {
   public state: IState = {
     workingState: this.getAuthoredJson()
   };
@@ -52,10 +55,6 @@ export default class WindowShadeJSON extends React.Component<IProps, IState> {
   }
   private getAuthoredJson() {
     const {authoredState} = this.props;
-    const completeState = {
-      tipType: "questionWrapper",
-      questionWrapper: authoredState
-    };
-    return JSON.stringify(completeState, null, 2);
+    return JSON.stringify(authoredState, null, 2);
   }
 }
