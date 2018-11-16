@@ -1,7 +1,11 @@
 import * as React from "react";
 import * as css from "./window-shade-form.sass";
 
-import { IWindowShade, WindowShadeType, MediaType } from "../../../types";
+import {
+  IAuthoredState,
+  IWindowShade,
+  WindowShadeType, MediaType
+} from "../../../types";
 import { getContentConfiguration } from "../../../config/ui-configurations";
 
 const allConfigurationTypes = [
@@ -19,31 +23,22 @@ const allMediaTypes = [
 
 interface IProps {
   onSave?: (newState: IWindowShade) => any;
-  authoredState: IWindowShade;
+  authoredState: IAuthoredState;
 }
 
 interface IState {
   windowShadeType: WindowShadeType;
-  mediaType: MediaType;
-  mediaURL: string;
   content: string;
+  mediaType?: MediaType;
+  mediaURL?: string;
 }
 
 export default class WindowShadeForm extends React.Component<IProps, IState> {
-  public state: IState = {
-    windowShadeType: this.props.authoredState.windowShadeType,
-    content: this.props.authoredState.content,
-    mediaType: MediaType.None,
-    mediaURL: ""
-  };
+  public state: IState = this.windowShadeProps(this.props);
 
   public componentDidUpdate(prevProps: IProps) {
     if (prevProps.authoredState !== this.props.authoredState) {
-      this.setState({
-        windowShadeType: this.props.authoredState.windowShadeType,
-        content: this.props.authoredState.content,
-        mediaType: this.props.authoredState.mediaType || MediaType.None
-      });
+      this.updateStateFromProps(this.props);
     }
   }
 
@@ -107,8 +102,24 @@ export default class WindowShadeForm extends React.Component<IProps, IState> {
 
   private sendChangeEvent = () => {
     if (this.props.onSave) {
-      this.props.onSave(this.state);
+      const nextState = Object.assign({}, this.props.authoredState, this.state);
+      this.props.onSave(nextState);
     }
+  }
+
+  private windowShadeProps(theProps: IProps) {
+    const { windowShade } = theProps.authoredState;
+    const defaultProps = {
+      windowShadeType: WindowShadeType.TeacherTip,
+      content: "",
+      mediaURL: "",
+      mediaType: MediaType.None
+    };
+    return windowShade || defaultProps;
+  }
+
+  private updateStateFromProps(theProps: IProps) {
+    this.setState(this.windowShadeProps(theProps));
   }
 
   private updateMediaType = (event: React.ChangeEvent<HTMLSelectElement>) => {
