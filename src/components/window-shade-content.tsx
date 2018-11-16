@@ -3,7 +3,7 @@ import Markdown from "markdown-to-jsx";
 
 import * as css from "./window-shade-content.sass";
 import { IWindowShadeConfiguration } from "../config/ui-configurations";
-import { MediaType } from "../types"
+import { MediaType } from "../types";
 
 interface IProps {
   content: string;

@@ -122,7 +122,9 @@ export default class AuthoringApp extends React.Component<IProps, IState> {
   }
 
   private updateState = (newState: IAuthoredState) => {
-    this.setState({authoredState: this.cloneState(newState)}, () => console.log(this.state));
+    this.setState({authoredState: this.cloneState(newState)}, () => {
+      // console.log(this.state)
+    });
   }
 
   private cloneState(newState: IAuthoredState) {
