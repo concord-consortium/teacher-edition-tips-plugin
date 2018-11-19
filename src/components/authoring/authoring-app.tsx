@@ -8,7 +8,7 @@ import WindowShadeForm from "./window-shade/window-shade-form";
 import QuestionAndQuestionWrapper from "../question-and-question-wrapper";
 import QuestionWrapperForm from "./question-wrapper/question-wrapper-form";
 
-import SideBar from "../side-bar";
+import SideTip from "../side-tip";
 import SideTipForm from "./side-tip/side-tip-form";
 
 import JsonEditor from "./json-editor";
@@ -93,7 +93,7 @@ export default class AuthoringApp extends React.Component<IProps, IState> {
           }
           {
             showSideTip &&
-            <SideBar
+            <SideTip
               authoredState={ sideTip || defaultSideTipProps }
               addSideBarMethod={this.addSideBarMethod}
             />

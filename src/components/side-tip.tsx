@@ -1,7 +1,7 @@
 import * as React from "react";
 import Markdown from "markdown-to-jsx";
 
-import * as css from "./side-bar.sass";
+import * as css from "./side-tip.sass";
 import { ISideTip } from "../types";
 
 interface IProps {
@@ -15,7 +15,7 @@ interface ISidebarController {
   close: () => void;
 }
 
-export default class SideBar extends React.Component<IProps, IState> {
+export default class SideTip extends React.Component<IProps, IState> {
   public state: IState = {};
   private sidebarContainer: HTMLElement;
   private sidebarController: ISidebarController;

@@ -2,7 +2,7 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import WindowShade from "./window-shade";
 import QuestionWrapper from "./question-wrapper";
-import SideBar from "./side-bar";
+import SideTip from "./side-tip";
 
 import { IAuthoredState, ISideTip } from "../types";
 
@@ -63,7 +63,7 @@ export default class PluginApp extends React.Component<IProps, IState> {
     const { sideTip } = this.props.authoredState;
     const { PluginAPI } = this.props;
     return(
-      <SideBar
+      <SideTip
         authoredState={sideTip as ISideTip}
         addSideBarMethod={PluginAPI.addSidebar}
       />
