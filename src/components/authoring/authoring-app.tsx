@@ -8,10 +8,13 @@ import WindowShadeForm from "./window-shade/window-shade-form";
 import QuestionAndQuestionWrapper from "../question-and-question-wrapper";
 import QuestionWrapperForm from "./question-wrapper/question-wrapper-form";
 
+import SideBar from "../side-bar";
+import SideTipForm from "./side-tip/side-tip-form";
+
 import JsonEditor from "./json-editor";
 
 import {
-  IAuthoredState, IWindowShade, WindowShadeType,
+  IAuthoredState, IWindowShade, ISideTip, WindowShadeType,
   IAuthoredQuestionWrapper, TeacherTipType
 } from "../../types";
 
@@ -19,6 +22,23 @@ const defaultWindowShadeProps: IWindowShade = {
   windowShadeType: WindowShadeType.TeacherTip,
   content: "## This is something"
 };
+
+/* tslint:disable max-line-length*/
+const defaultSideTipProps: ISideTip = {
+  content: `Welcome to the **Teacher Edition** of the **GEODE: What will Earth look like in 500 million years?** activity sequence. This interactive guide will help you get acquainted with these activities from a student’s perspective and also provide you with learning theory and learning objectives, additional information on subject matter, classroom discussion points, and tips on achieving learning goals.
+
+  ## Getting Started
+
+  To begin, work through the lesson’s content page by page. The Teacher Edition components — which you can click or tap to open and close — will highlight additional information in several key areas:
+
+  ## Getting Started
+
+  To begin, work through the lesson’s content page by page. The Teacher Edition components — which you can click or tap to open and close — will highlight additional information in several key areas:
+
+
+  `
+};
+/* tslint:enable max-line-length*/
 
 const defaultQuestionWrapperProps: IAuthoredQuestionWrapper = {
   correctExplanation: "correct",
@@ -51,9 +71,10 @@ export default class AuthoringApp extends React.Component<IProps, IState> {
 
   public render() {
     const { authoredState } = this.state;
-    const { tipType, windowShade, questionWrapper } = authoredState;
+    const { tipType, windowShade, questionWrapper, sideTip } = authoredState;
     const showWindowShade =  tipType === TeacherTipType.WindowShade;
     const showQuestionWrapper =  tipType === TeacherTipType.QuestionWrapper;
+    const showSideTip =  tipType === TeacherTipType.SideTip;
     return (
       <div className={css.container}>
         <div className={css.selector}>
@@ -68,6 +89,13 @@ export default class AuthoringApp extends React.Component<IProps, IState> {
             showQuestionWrapper &&
             <QuestionAndQuestionWrapper
               authoredState={ questionWrapper || defaultQuestionWrapperProps }
+            />
+          }
+          {
+            showSideTip &&
+            <SideBar
+              authoredState={ sideTip || defaultSideTipProps }
+              addSideBarMethod={this.addSideBarMethod}
             />
           }
         </div>
@@ -86,12 +114,27 @@ export default class AuthoringApp extends React.Component<IProps, IState> {
             onSave={ this.updateQuestionWRapper }
           />
           }
+          {
+          showSideTip &&
+          <SideTipForm
+            authoredState={ sideTip || defaultSideTipProps }
+            onSave={ this.updateSideTip }
+          />
+          }
         </div>
         <div className={css.json}>
           <JsonEditor authoredState={authoredState} onSave={this.updateState} />
         </div>
       </div>
     );
+  }
+
+  private addSideBarMethod() {
+    const fakeController = {
+      open: () => null,
+      close: () => null
+    };
+    return fakeController;
   }
 
   private renderTypeSelector() {
@@ -115,6 +158,10 @@ export default class AuthoringApp extends React.Component<IProps, IState> {
 
   private updateWindowShade = (newWindowShade: IWindowShade) => {
     this.updateState({windowShade: newWindowShade} as IAuthoredState);
+  }
+
+  private updateSideTip = (newSideTip: ISideTip) => {
+    this.updateState({sideTip: newSideTip} as IAuthoredState);
   }
 
   private updateQuestionWRapper = (newQuestionWrapper: IAuthoredQuestionWrapper) => {

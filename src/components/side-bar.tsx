@@ -28,10 +28,12 @@ export default class SideBar extends React.Component<IProps, IState> {
   public render() {
     const { content } = this.props.authoredState;
     return (
-      <div>
-         <Markdown className={css.authorMarkdown}>
+      <div className={css.sideBar}>
+        <div className={css.text}>
+          <Markdown>
             {content}
           </Markdown>
+        </div>
         {this.props.children}
       </div>
     );
