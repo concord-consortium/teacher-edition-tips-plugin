@@ -3,7 +3,7 @@ import * as ReactDOM from "react-dom";
 
 import * as css from "./authoring-app.sass";
 import WindowShade from "../window-shade";
-import WindowShadeForm from "./window-shade/window-shade-Form";
+import WindowShadeForm from "./window-shade/window-shade-form";
 
 import QuestionAndQuestionWrapper from "../question-and-question-wrapper";
 import QuestionWrapperForm from "./question-wrapper/question-wrapper-form";

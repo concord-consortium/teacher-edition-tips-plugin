@@ -2,7 +2,6 @@ import * as React from "react";
 
 import * as css from "./question-and-question-wrapper.sass";
 import { IAuthoredQuestionWrapper } from "../types";
-import ContentConfigurations from "../config/ui-configurations";
 import QuestionWrapper from "./question-wrapper";
 
 const testQuestionContext = {

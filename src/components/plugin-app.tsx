@@ -3,8 +3,8 @@ import * as ReactDOM from "react-dom";
 import WindowShade from "./window-shade";
 import QuestionWrapper from "./question-wrapper";
 import SideBar from "./side-bar";
+
 import { IAuthoredState, ISideTip } from "../types";
-import Markdown from "markdown-to-jsx";
 
 interface IProps {
   PluginAPI: any;

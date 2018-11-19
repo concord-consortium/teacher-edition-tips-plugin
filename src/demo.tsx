@@ -113,14 +113,6 @@ const authoredStateDVgSection: IWindowShade = {
   tabNameOverride: "SVG Icons"
 };
 
-const authoredStateSideBar = {
-  content: "Side BarContent"
-};
-
-const addSideBarMethod = () => {
-  return document.createElement("div");
-};
-
 // props = {authoredState: {type: 'dd', content:'xx'} }
 ReactDOM.render(
   <div>

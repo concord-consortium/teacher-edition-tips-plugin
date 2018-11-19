@@ -3,7 +3,6 @@ import Markdown from "markdown-to-jsx";
 
 import * as css from "./side-bar.sass";
 import { ISideTip } from "../types";
-import WindowShadeButton from "./window-shade-button";
 
 interface IProps {
   authoredState: ISideTip;
