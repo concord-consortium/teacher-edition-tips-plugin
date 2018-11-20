@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import WindowShade from "./components/window-shade";
-import SideBar from "./components/side-bar";
+import SideTip from "./components/side-tip";
 
 import CheckA from "./icons/check_A.svg";
 import CheckB from "./icons/check_B.svg";
@@ -111,14 +111,6 @@ const authoredStateDVgSection: IWindowShade = {
   windowShadeType: WindowShadeType.TeacherTip,
   content: "",
   tabNameOverride: "SVG Icons"
-};
-
-const authoredStateSideBar = {
-  content: "Side BarContent"
-};
-
-const addSideBarMethod = () => {
-  return document.createElement("div");
 };
 
 // props = {authoredState: {type: 'dd', content:'xx'} }

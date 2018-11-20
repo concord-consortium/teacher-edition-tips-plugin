@@ -1,9 +1,8 @@
 import * as React from "react";
 import Markdown from "markdown-to-jsx";
 
-import * as css from "./side-bar.sass";
+import * as css from "./side-tip.sass";
 import { ISideTip } from "../types";
-import WindowShadeButton from "./window-shade-button";
 
 interface IProps {
   authoredState: ISideTip;
@@ -16,7 +15,7 @@ interface ISidebarController {
   close: () => void;
 }
 
-export default class SideBar extends React.Component<IProps, IState> {
+export default class SideTip extends React.Component<IProps, IState> {
   public state: IState = {};
   private sidebarContainer: HTMLElement;
   private sidebarController: ISidebarController;
@@ -29,10 +28,12 @@ export default class SideBar extends React.Component<IProps, IState> {
   public render() {
     const { content } = this.props.authoredState;
     return (
-      <div>
-         <Markdown className={css.authorMarkdown}>
+      <div className={css.sideBar}>
+        <div className={css.text}>
+          <Markdown>
             {content}
           </Markdown>
+        </div>
         {this.props.children}
       </div>
     );
