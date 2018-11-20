@@ -64,17 +64,26 @@
       z-index: 1000
       border-radius: inherit
 
-      &.correctOverlay, &.exemplarOverlay
+    &.correct, &.examplar
+      .overlay
         background: #2FE450
         opacity: 0.12
+      .footer
+        background: #B8F7C3
 
-      &.distractorsOverlay
+    &.distractors
+      .overlay
         background: #FC1B1B
         opacity: 0.12
+      .footer
+        background: #FDB2B2
 
-      &.teacherTipOverlay
+    &.teacherTip
+      .overlay
         background: #A6D5FF
         opacity: 0.12
+      .footer
+        background: #A6D5FF
 
   .correctTickMark
     position: absolute
@@ -100,6 +109,8 @@
 
   .footer
     padding: 10px
+    border-bottom-left-radius: 13px
+    border-bottom-right-radius: 13px
 
 
   // Interactive teacher tip has different styles. It's enough to amend basic styles.
@@ -107,8 +118,8 @@
     .wrappedContent
       border-color: transparent
       border-top-color: #094F98
-      border-bottom-left-radius: 25px
-      border-bottom-right-radius: 25px
+      border-bottom-left-radius: 17px
+      border-bottom-right-radius: 17px
       &.open
         border-color: #094F98
 
