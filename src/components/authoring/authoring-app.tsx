@@ -13,6 +13,8 @@ import SideTipForm from "./side-tip/side-tip-form";
 
 import JsonEditor from "./json-editor";
 
+import markdownHelpContent from "./markdown-help";
+
 import {
   IAuthoredState, IWindowShade, ISideTip, WindowShadeType,
   IAuthoredQuestionWrapper, TeacherTipType
@@ -39,6 +41,12 @@ const defaultSideTipProps: ISideTip = {
   `
 };
 /* tslint:enable max-line-length*/
+
+const markdownHelper = {
+  windowShadeType: WindowShadeType.TeacherTip,
+  content: markdownHelpContent,
+  tabNameOverride: "Help with Markdown"
+};
 
 const defaultQuestionWrapperProps: IAuthoredQuestionWrapper = {
   correctExplanation: "correct",
@@ -122,6 +130,7 @@ export default class AuthoringApp extends React.Component<IProps, IState> {
           />
           }
         </div>
+        <WindowShade authoredState={markdownHelper} />
         <div className={css.json}>
           <JsonEditor authoredState={authoredState} onSave={this.updateState} />
         </div>
