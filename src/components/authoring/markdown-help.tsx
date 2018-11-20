@@ -1,4 +1,4 @@
-const markdownHelpContent = 
+const markdownHelpContent =
 `
 This plugin supports a formating convention called
 [Markdown](https://en.wikipedia.org/wiki/Markdown). It is powerful enough
