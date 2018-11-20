@@ -11,9 +11,14 @@ interface IProps {
 export default class LeftEndCap extends React.Component<IProps, {}> {
 
   public render() {
-    const { Icon, styleClassName } = this.props.config;
+    const { FrontIcon, RearIcon, styleClassName } = this.props.config;
+    const cssShadeType = css[styleClassName];
     return (
-      <Icon className={`${css.leftEndCap} ${css[styleClassName]}`} />
+      <div className={`${css.leftEndCap} ${cssShadeType}`}>
+        <RearIcon className={`${css.icon} ${cssShadeType} ${css.rearIcon}`} />
+        <FrontIcon className={`${css.icon} ${cssShadeType} ${css.frontIcon}`} />
+      </div>
     );
   }
+
 }

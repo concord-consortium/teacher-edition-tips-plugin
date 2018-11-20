@@ -10,67 +10,94 @@
 // | diggingDeeper       | purple |
 //
 // Orthognal to each of these color sets based on the window shade type, each
-// one has a set stylistic properties used in it's rendering:
+// one has a set stylistic properties that are used in it's rendering:
 //
-//  * textColor, textColorOnHover: for the title text, in the button, itself.
+//  * ButtonTextColor, ButtonTextHoverColor, ButtonBackgroundColor,
+//    ButtonBackgroundHoverColor: colors behind the button's title-text, shown
+//    inside the WindowShadeButton, itself. The background colors are also used
+//    behind the media icon, if present in the button.
 //
-//  * backgroundColor, backgroundColorOnHover: background behind the title
-//    text of the button, and the media icon, if one is present.
+//  * BorderColor: the color used to draw the border around the button and the
+//    around the content, when it's displayed.
 //
-//  * borderColor: border color draw around the button, and the content when it
-//    is displayed.
+//  * ContentTextColor, ContentTextAccentColor, ContentBackgroundColor: the
+//    normal-text, emphasiazed-text, and background colors used for the text
+//    content displayed in an "open" WindowShadedContent component.
 //
-//  * iconColor, iconBackgroundColor: how this will actually work is yet to be
-//    determeind.
+//  * RearIconColor, FrontIconColor, MediaIconColor: the svg "fill" colors used
+//    to render the icons of the LeftEndCap and RightEndCap components.
 //
-//  * mediaIconColor: the color used to render the media icon, if one is
-//    present in the window shade button.
+//  * IconBackgroundColor: the background color behind the combination of the
+//    rear and front icons in the LeftEndCap component.
 
-// The "yellow" theme, used for theoryAndBackground
+// The "yellow" theme; used for theoryAndBackground
 
-$yellowTextColor: $darkYellow
-$yellowTextColorOnHover: $darkYellow
-$yellowBackgroundColor: $fullYellow
-$yellowBackgroundColorOnHover: $brightYellow
-$yellowIconColor: $paleYellow
-$yellowIconBackgroundColor: $mediumYellow
+$yellowButtonTextColor: $darkYellow
+$yellowButtonTextHoverColor: $darkYellow
+$yellowButtonBackgroundColor: $fullYellow
+$yellowButtonBackgroundHoverColor: $brightYellow
+
 $yellowBorderColor: $deepYellow
-$yellowContentBackground: $paleYellow
+
+$yellowContentTextColor: $textBlack
+$yellowContentTextAccentColor: $deepYellow
+$yellowContentBackgroundColor: $paleYellow  
+
+$yellowRearIconColor: $lightYellow
+$yellowFrontIconColor: $paleYellow
 $yellowMediaIconColor: $mediumYellow
-$yellowHilitText: $deepYellow
+$yellowIconBackgroundColor: $mediumYellow
 
-// The "blue" theme, used for teacherTips & teacherTipOverlay
+// The "blue" theme; used for teacherTips & teacherTipOverlay
 
-$blueTextColor: $paleBlue
-$blueTextColorOnHover: $darkBlue
-$blueBackgroundColor: $fullBlue
-$blueBackgroundColorOnHover: $brightBlue
-$blueIconColor: $paleBlue
-$blueIconBackgroundColor: $mediumBlue
+$blueButtonTextColor: $paleBlue
+$blueButtonTextHoverColor: $darkBlue
+$blueButtonBackgroundColor: $fullBlue
+$blueButtonBackgroundHoverColor: $brightBlue
+
 $blueBorderColor: $deepBlue
+
+$blueContentTextColor: $textBlack
+$blueContentTextAccentColor: $mediumBlue
+$blueContentBackgroundColor: $paleBlue
+
+$blueRearIconColor: $brightBlue
+$blueFrontIconColor: $paleBlue
 $blueMediaIconColor: $mediumBlue
-$blueHilitText: $mediumBlue
+$blueIconBackgroundColor: $mediumBlue  
 
-// The "orange" theme, used for discussionPoints
+// The "orange" theme; used for discussionPoints
 
-$orangeTextColor: $paleOrange
-$orangeTextColorOnHover: $darkOrange
-$orangeBackgroundColor: $fullOrange
-$orangeBackgroundColorOnHover: $brightOrange
-$orangeIconColor: $paleOrange
-$orangeIconBackgroundColor: $mediumOrange
+$orangeButtonTextColor: $paleOrange
+$orangeButtonTextHoverColor: $darkOrange
+$orangeButtonBackgroundColor: $fullOrange
+$orangeButtonBackgroundHoverColor: $brightOrange
+
 $orangeBorderColor: $deepOrange
+
+$orangeContentTextColor: $textBlack
+$orangeContentTextAccentColor: $darkOrange
+$orangeContentBackgroundColor: $paleOrange
+
+$orangeRearIconColor: $fadedOrange
+$orangeFrontIconColor: $paleOrange
 $orangeMediaIconColor: $mediumOrange
-$orangeHilitText: $darkOrange
+$orangeIconBackgroundColor: $mediumOrange
 
-// The "purple" theme, used for diggingDeeper
+// The "purple" theme; used for diggingDeeper
 
-$purpleTextColor: $palePurple
-$purpleTextColorOnHover: $darkPurple
-$purpleBackgroundColor: $fullPurple
-$purpleBackgroundColorOnHover: $brightPurple
-$purpleIconColor: $palePurple
-$purpleIconBackgroundColor: $mediumPurple
-$purpleBorderColor: $darkPurple
+$purpleButtonTextColor: $palePurple
+$purpleButtonTextHoverColor: $darkPurple
+$purpleButtonBackgroundColor: $fullPurple
+$purpleButtonBackgroundHoverColor: $brightPurple
+
+$purpleBorderColor: $deepPurple
+
+$purpleContentTextColor: $textBlack
+$purpleContentTextAccentColor: $deepPurple
+$purpleContentBackgroundColor: $palePurple
+
+$purpleRearIconColor: $somePurple
+$purpleFrontIconColor: $palePurple
 $purpleMediaIconColor: $mediumPurple
-$purpleHilitText: $deepPurple
+$purpleIconBackgroundColor: $mediumPurple
