@@ -1,27 +1,58 @@
 @import "themes.sass"
 
 .leftEndCap
+  position: relative
   width: 50px
   height: 50px
-  padding: 0
-  margin: 0
-  border: 3px solid
+  border: $border-width $border-style
+
+.theoryAndBackground
+  border-color: $yellowBorderColor
+  background-color: $yellowIconBackgroundColor
   border-radius: $endCapRadius 0 0 $endCapRadius
-  border-right: 0
+
+.teacherTip
+  border-color: $blueBorderColor
+  background-color: $blueIconBackgroundColor
+  border-radius: $endCapRadius 0 0 $endCapRadius
+
+.discussionPoints
+  border-color: $orangeBorderColor
+  background-color: $orangeIconBackgroundColor
+  border-radius: $endCapRadius 0 0 $endCapRadius
+
+.diggingDeeper
+  border-color: $purpleBorderColor
+  background-color: $purpleIconBackgroundColor
+  border-radius: $endCapRadius 0 0 $endCapRadius
+
+.icon
+  position: absolute
+  background-color: transparent
+
+.frontIcon
+  z-index: 1
   &.theoryAndBackground
-    fill: $yellowIconColor
-    background-color: $yellowIconBackgroundColor
-    border-color: $yellowBorderColor
+    fill: $yellowFrontIconColor
   &.teacherTip
-    fill: $blueIconColor
-    background-color: $blueIconBackgroundColor
-    border-color: $blueBorderColor
+    fill: $blueFrontIconColor
   &.discussionPoints
-    fill: $orangeIconColor
-    background-color: $orangeIconBackgroundColor
-    border-color: $orangeBorderColor
+    fill: $orangeFrontIconColor
   &.diggingDeeper
-    fill: $purpleIconColor
-    background-color: $purpleIconBackgroundColor
-    border-color: $purpleBorderColor
-    
+    fill: $purpleFrontIconColor
+  
+.rearIcon
+  z-index: 2
+  fill-opacity: 0
+  transition: fill-opacity 0.25s ease
+  &.theoryAndBackground
+    fill: $yellowRearIconColor
+  &.teacherTip
+    fill: $blueRearIconColor
+  &.discussionPoints
+    fill: $orangeRearIconColor
+  &.diggingDeeper
+    fill: $purpleRearIconColor
+  &:hover
+    fill-opacity: 1
+    transition: fill-opacity 0.5s
