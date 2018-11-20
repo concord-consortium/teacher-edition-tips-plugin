@@ -2,8 +2,8 @@
   
 .windowShadeButton
   top: -28px
-  left: 40px
-  max-width: 400px
+  left: 25px
+  max-width: $windowShadeButtonWidth
   height: 50px
   position: relative
   display: flex
@@ -13,36 +13,35 @@
   align-items: center
   font-weight: bold
   font-size: 18pt
+  border: none
   border-radius: $radius
   cursor: pointer
   user-select: none
+  
 .theoryAndBackground
-  background-color: $yellowBackgroundColor
-  border-color: $yellowBorderColor
-  color: $yellowTextColor
+  color: $yellowButtonTextColor
+  background-color: $yellowButtonBackgroundColor
   &:hover
-    background-color: $yellowBackgroundColorOnHover
+    color: $yellowButtonTextHoverColor
+    background-color: $yellowButtonBackgroundHoverColor
 
 .teacherTip
-  background-color: $blueBackgroundColor
-  border-color: $blueBorderColor
-  color: $blueTextColor
+  color: $blueButtonTextColor
+  background-color: $blueButtonBackgroundColor
   &:hover
-    background-color: $blueBackgroundColorOnHover
-    color: $blueTextColorOnHover
+    color: $blueButtonTextHoverColor
+    background-color: $blueButtonBackgroundHoverColor
 
 .discussionPoints
-  background-color: $orangeBackgroundColor
-  border-color: $orangeBorderColor
-  color: $orangeTextColor
+  color: $orangeButtonTextColor
+  background-color: $orangeButtonBackgroundColor
   &:hover
-    background-color: $orangeBackgroundColorOnHover
-    color: $orangeTextColorOnHover
+    color: $orangeButtonTextHoverColor
+    background-color: $orangeButtonBackgroundHoverColor
 
 .diggingDeeper
-  background-color: $purpleBackgroundColor
-  border-color: $purpleBorderColor
-  color: $purpleTextColor
+  color: $purpleButtonTextColor
+  background-color: $purpleButtonBackgroundColor
   &:hover
-    background-color: $purpleBackgroundColorOnHover
-    color: $purpleTextColorOnHover
+    color: $purpleButtonTextHoverColor
+    background-color: $purpleButtonBackgroundHoverColor

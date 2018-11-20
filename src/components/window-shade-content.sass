@@ -9,39 +9,73 @@
   margin-bottom: 12pt
 
 .theoryAndBackground
-  color: $yellowTextColor
-  border-color: $yellowBorderColor
-  background-color: $yellowContentBackgroundColor
+  color: $yellowContentTextColor
   &.authorMarkdown
     h1,h2,h3,h4,h5,th,em,strong
-      color: $yellowHilitText
-    th
-      border-bottom: $yellowHilitText 2px solid
-    td
-      border-bottom: $yellowHilitText 1px solid
-      border-left: $yellowHilitText 1px solid
-      border-right: $yellowHilitText 1px solid
+      color: $yellowContentTextAccentColor
+    table
+      border-collapse: collapse
+    th, td
+      padding-left: 10px
+      padding-right: 19px
+      border-right: 1px solid $yellowContentTextColor
+      border-bottom: 1px solid $yellowContentTextColor
+    th:last-child, td:last-child
+      border-right: none
+    tr:last-child
+      td
+        border-bottom: none
      
 .teacherTip
-  color: $blueBorderColor
-  border-color: $blueBorderColor
-  background-color: $blueContentBackgroundColor
+  color: $blueContentTextColor
   &.authorMarkdown
     h1,h2,h3,h4,h5,th,em,strong
-      color: $blueHilitText
+      color: $blueContentTextAccentColor
+    table
+      border-collapse: collapse
+    th, td
+      padding-left: 10px
+      padding-right: 19px
+      border-right: 1px solid $blueContentTextColor
+      border-bottom: 1px solid $blueContentTextColor
+    th:last-child, td:last-child
+      border-right: none
+    tr:last-child
+      td
+        border-bottom: none
 
 .discussionPoints
-  color: $orangeBorderColor
-  border-color: $orangeBorderColor
-  background-color: $orangeContentBackgroundColor
+  color: $orangeContentTextColor
   &.authorMarkdown
     h1,h2,h3,h4,h5,th,em,strong
-      color: $orangeHilitText
+      color: $orangeContentTextAccentColor
+    table
+      border-collapse: collapse
+    th, td
+      padding-left: 10px
+      padding-right: 19px
+      border-right: 1px solid $orangeContentTextColor
+      border-bottom: 1px solid $orangeContentTextColor
+    th:last-child, td:last-child
+      border-right: none
+    tr:last-child
+      td
+        border-bottom: none
 
 .diggingDeeper
-  color: $purpleBorderColor
-  border-color: $purpleBorderColor
-  background-color: $purpleContentBackgroundColor
+  color: $purpleContentTextColor
   &.authorMarkdown
     h1,h2,h3,h4,h5,th,em,strong
-      color: $purpleHilitText
+      color: $purpleContentTextAccentColor
+    table
+      border-collapse: collapse
+    th, td
+      padding-left: 10px
+      padding-right: 19px
+      border-right: 1px solid $purpleContentTextColor
+      border-bottom: 1px solid $purpleContentTextColor
+    th:last-child, td:last-child
+      border-right: none
+    tr:last-child
+      td
+        border-bottom: none

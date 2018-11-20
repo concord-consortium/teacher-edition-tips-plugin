@@ -3,46 +3,26 @@
 .windowShade
   min-width: 480px
   font: $labelFont
-  border: $border
   border-radius: $borderRadius
   margin-top: 50px
   margin-bottom: 75px
-  border: $border
-
-.dot
-  width: 9px
-  height: 9px
-  border-radius: 4px
-  margin: -6px
-  z-index: 2000
-  &.dotLeft
-    float: left
-  &.dotRight
-    float: right
-
+  border: $border-style $border-width
+  
 .theoryAndBackground
   border-color: $yellowBorderColor
   background-color: $yellowContentBackgroundColor
-  .dot
-    background: $yellowBorderColor
 
 .teacherTip
   border-color: $blueBorderColor
   background-color: $blueContentBackgroundColor
-  .dot
-    background: $blueBorderColor
 
 .discussionPoints
   border-color: $orangeBorderColor
   background-color: $orangeContentBackgroundColor
-  .dot
-    background: $orangeBorderColor
 
 .diggingDeeper
   border-color: $purpleBorderColor
   background-color: $purpleContentBackgroundColor
-  .dot
-    background: $purpleBorderColor
 
 .windowShadeShown
   height: auto
@@ -53,6 +33,7 @@
   border-right: 0
   border-bottom: 0
   border-radius: 0
+  margin-right: 3px;
   .content
     height: 0
     overflow: hidden

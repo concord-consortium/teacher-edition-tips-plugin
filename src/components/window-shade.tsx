@@ -5,15 +5,17 @@ import { IWindowShade, MediaType } from "../types";
 import { WindowShadeConfigurations } from "../config/ui-configurations";
 import WindowShadeButton from "./window-shade-button";
 import WindowShadeContent from "./window-shade-content";
+import { Dot, sidePosition } from "./helpers/dot";
 
 interface IProps {
   authoredState: IWindowShade;
 }
+
 interface IState {
   open: boolean;
 }
 
-// WindowShades are rendered across the whole width of the page and are composed
+// WindowShades render across the whole width of the page and are composed
 // of a WindowShadeButton and a WindowShadeContent. When a WindowShadeButton
 // is clicked, the Boolean state variable "open" is toggled. The value of this
 // state variable controls the display state, visible or hidden, of the
@@ -34,12 +36,12 @@ export default class WindowShade extends React.Component<IProps, IState> {
 
     return (
       <div className={`${css.windowShade} ${cssShadeType} ${cssOpenState}`} >
-        <div className={`${css.dot} ${css.dotLeft}`} />
-        <div className={`${css.dot} ${css.dotRight}`} />
+        <Dot config={config} side={sidePosition.left} />
+        <Dot config={config} side={sidePosition.right} />
         <WindowShadeButton
-          onClick={this.toggle}
-          mediaType={mediaType ? mediaType : MediaType.None}
           config={config}
+          mediaType={mediaType ? mediaType : MediaType.None}
+          onClick={this.toggle}
         />
         <div className={`${css.content} ${cssShadeType}`}>
           <WindowShadeContent content={content} config={config} />
@@ -49,7 +51,6 @@ export default class WindowShade extends React.Component<IProps, IState> {
   }
 
   private toggle = () => {
-    const { open } = this.state;
-    this.setState({open: !open});
+    this.setState({open: !this.state.open});
   }
 }
