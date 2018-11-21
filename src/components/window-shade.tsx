@@ -29,10 +29,12 @@ export default class WindowShade extends React.Component<IProps, IState> {
 
   public render() {
     const { open } = this.state;
-    const { windowShadeType, content, mediaType, mediaURL } = this.props.authoredState;
+    const { windowShadeType, tabNameOverride, content, mediaType, mediaURL } =
+      this.props.authoredState;
     const config = WindowShadeConfigurations[windowShadeType];
     const cssOpenState = open ? css.windowShadeShown : css.windowShadeHidden;
     const cssShadeType = css[config.styleClassName];
+    const label = tabNameOverride !== undefined ? tabNameOverride : config.label;
 
     return (
       <div className={`${css.windowShade} ${cssShadeType} ${cssOpenState}`} >
@@ -40,6 +42,7 @@ export default class WindowShade extends React.Component<IProps, IState> {
         <Dot config={config} side={sidePosition.right} />
         <WindowShadeButton
           config={config}
+          buttonLabel={label}
           mediaType={mediaType ? mediaType : MediaType.None}
           onClick={this.toggle}
         />

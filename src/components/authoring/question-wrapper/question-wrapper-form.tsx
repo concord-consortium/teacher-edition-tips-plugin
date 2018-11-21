@@ -36,7 +36,7 @@ export default class QuestionWRapperForm extends React.Component<IProps, IState>
     return (
       <div className={css.container}>
         <div className={css.section}>
-          <label> Correct Explanation </label>
+          <label> Correct Explanation (Markdown) </label>
           <br/>
           <textarea
             value={correctExplanation}
@@ -45,7 +45,7 @@ export default class QuestionWRapperForm extends React.Component<IProps, IState>
         </div>
 
         <div className={css.section}>
-          <label> Distractor Explanation </label>
+          <label> Distractor Explanation (Markdown) </label>
           <br/>
           <textarea
             value={distractorsExplanation}
@@ -54,7 +54,7 @@ export default class QuestionWRapperForm extends React.Component<IProps, IState>
         </div>
 
         <div className={css.section}>
-          <label> Teacher Tip </label>
+          <label> Teacher Tip (Markdown) </label>
           <br/>
           <textarea
             value={teacherTip}
@@ -63,7 +63,7 @@ export default class QuestionWRapperForm extends React.Component<IProps, IState>
         </div>
 
         <div className={css.section}>
-          <label> Teacher Tip Image Overlay</label>
+          <label> Teacher Tip Image Overlay (Markdown) </label>
           <br/>
           <input type="text"
             value={teacherTipImageOverlay}

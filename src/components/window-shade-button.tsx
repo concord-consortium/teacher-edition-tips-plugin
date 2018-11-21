@@ -9,6 +9,7 @@ import RightEndCap from "./right-end-cap";
 interface IProps {
   config: IWindowShadeConfiguration;
   mediaType: string;
+  buttonLabel: string;
   onClick: () => void;
 }
 
@@ -21,13 +22,13 @@ interface IProps {
 
 export default class WindowShadeButton extends React.Component<IProps, {}> {
   public render() {
-    const { onClick, mediaType, config } = this.props;
-    const { label, styleClassName } = config;
+    const { onClick, mediaType, config, buttonLabel } = this.props;
+    const { styleClassName } = config;
     const cssClassNames = [ css.windowShadeButton, css[styleClassName] ];
     return (
       <div className={cssClassNames.join(" ")} onClick={onClick}>
         <LeftEndCap config={config} />
-        <ButtonTitle config={config} title={label} />
+        <ButtonTitle config={config} title={buttonLabel} />
         <RightEndCap config={config} mediaType={mediaType} />
       </div>
     );

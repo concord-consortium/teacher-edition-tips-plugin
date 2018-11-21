@@ -67,7 +67,7 @@ export default class SideTipForm extends React.Component<IProps, IState> {
             onChange={this.updatemediaURL}/>
         </div>
         <div>
-          <label> Content </label>
+          <label> Content (Markdown) </label>
           <br/>
           <textarea
             value={content}
