@@ -62,11 +62,16 @@ export default class PluginApp extends React.Component<IProps, IState> {
   public renderSidebarTip() {
     const { sideTip } = this.props.authoredState;
     const { PluginAPI } = this.props;
+    const portalDom = document.createElement("div");
     return(
-      <SideTip
-        authoredState={sideTip as ISideTip}
-        addSideBarMethod={PluginAPI.addSidebar}
-      />
+      ReactDOM.createPortal(
+        <SideTip
+          authoredState={sideTip as ISideTip}
+          addSideBarMethod={PluginAPI.addSidebar}
+          portalDom={portalDom}
+        />
+        ,
+        portalDom)
     );
   }
 
