@@ -22,6 +22,7 @@ import {
 
 const defaultWindowShadeProps: IWindowShade = {
   windowShadeType: WindowShadeType.TeacherTip,
+  initialOpenState: true,
   content: "## This is something"
 };
 

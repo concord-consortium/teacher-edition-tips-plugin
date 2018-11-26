@@ -55,7 +55,7 @@ export default class WindowShadeContent extends React.Component<IProps, IState> 
   // new-line to the content.
 
   private appendNewline(content: string): string {
-    return (content + "\n")
+    return (content + "\n");
   }
 
 }
