@@ -31,6 +31,7 @@ export enum MediaType {
 
 export interface IWindowShade {
   windowShadeType: WindowShadeType;
+  initialOpenState?: boolean;
   content: string;
   layout?: WindowShadeLayout;
   tabNameOverride?: string;

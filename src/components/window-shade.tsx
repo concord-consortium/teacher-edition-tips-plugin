@@ -23,9 +23,11 @@ interface IState {
 
 export default class WindowShade extends React.Component<IProps, IState> {
 
-  public state: IState = {
-    open: false
-  };
+  constructor(props: IProps) {
+    super(props);
+    const open = props.authoredState.initialOpenState;
+    this.state = {open: open === undefined ? false : open };
+  }
 
   public render() {
     const { open } = this.state;
@@ -47,7 +49,8 @@ export default class WindowShade extends React.Component<IProps, IState> {
           onClick={this.toggle}
         />
         <div className={`${css.content} ${cssShadeType}`}>
-          <WindowShadeContent content={content} mediaType={mediaType} mediaURL={mediaURL} config={config} />
+          <WindowShadeContent content={content} mediaType={mediaType}
+            mediaURL={mediaURL} config={config} />
         </div>
       </div>
     );
