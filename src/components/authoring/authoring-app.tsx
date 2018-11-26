@@ -107,8 +107,7 @@ export default class AuthoringApp extends React.Component<IProps, IState> {
               addSideBarMethod={this.addSideBarMethod}
             />
           }
-        </div>
-        <div className={css.editor}>
+          <br/>
           {
           showWindowShade &&
           <WindowShadeForm
@@ -131,9 +130,11 @@ export default class AuthoringApp extends React.Component<IProps, IState> {
           />
           }
         </div>
-        <WindowShade authoredState={markdownHelper} />
         <div className={css.json}>
           <JsonEditor authoredState={authoredState} onSave={this.updateState} />
+        </div>
+        <div className={css.markdownHelper}>
+          <WindowShade authoredState={markdownHelper} />
         </div>
       </div>
     );
