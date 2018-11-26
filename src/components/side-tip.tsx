@@ -1,7 +1,6 @@
 import * as React from "react";
 import sideBarIcon from "../side-bar-icon";
 import Markdown from "markdown-to-jsx";
-import TeacherTip from "../icons/teacher_edition_A.svg";
 import * as css from "./side-tip.sass";
 import { ISideTip } from "../types";
 
