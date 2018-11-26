@@ -1,12 +1,14 @@
 import * as React from "react";
+import sideBarIcon from "../side-bar-icon";
 import Markdown from "markdown-to-jsx";
-
+import TeacherTip from "../icons/teacher_edition_A.svg";
 import * as css from "./side-tip.sass";
 import { ISideTip } from "../types";
 
 interface IProps {
   authoredState: ISideTip;
   addSideBarMethod: any;
+  portalDom: HTMLElement;
 }
 interface IState {}
 
@@ -40,20 +42,21 @@ export default class SideTip extends React.Component<IProps, IState> {
   }
 
   private addSidebar() {
-    const {addSideBarMethod} = this.props;
-    this.sidebarContainer = document.createElement("div");
+    const {addSideBarMethod, portalDom} = this.props;
     // This is important for sidebar UI. Max height enables scrolling of the definitions container.
     // Exact value is inherited from the container provided by LARA.
-    this.sidebarContainer.style.maxHeight = "inherit";
+    // icon?: string | HTMLElement;
+    portalDom.style.maxHeight = "inherit";
     this.sidebarController = addSideBarMethod({
-      handle: "Teacher Help",
+      handle: "",
       titleBar: "Teacher Edition Help",
-      titleBarColor: "#bbb",
-      handleColor: "#777",
+      icon: sideBarIcon,
+      titleBarColor: "#FDA61C",
+      handleColor: "#DC8008",
       width: 450,
       height: 500,
-      padding: 20,
-      content: this.sidebarContainer
+      padding: 0,
+      content: portalDom
     });
   }
 }
