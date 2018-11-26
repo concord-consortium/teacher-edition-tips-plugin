@@ -31,7 +31,7 @@ export default class WindowShadeContent extends React.Component<IProps, IState> 
       <div className={cssClassNames.join(" ")}>
         { this.renderMedia() }
         <Markdown>
-          {content}
+          {this.appendNewline(content)}
         </Markdown>
       </div>
     );
@@ -40,11 +40,22 @@ export default class WindowShadeContent extends React.Component<IProps, IState> 
     const { mediaType, mediaURL } = this.props;
     return (mediaType && (mediaType !== MediaType.None) && mediaURL && mediaURL.length > 4);
   }
+
   private renderMedia() {
     const { mediaURL } = this.props;
-    if (this.hasMedia) {
+    if (this.hasMedia()) {
       return <img src={mediaURL} />;
     }
+  }
+
+  // There is a subtle difference in the behavior of the Markdown react
+  // component, depending on if the content contains one or more new-line
+  // characters. To make the rendering/spacing behavior consistent, no
+  // matter what the author might type in, we simply append an extra
+  // new-line to the content.
+
+  private appendNewline(content: string): string {
+    return (content + "\n")
   }
 
 }

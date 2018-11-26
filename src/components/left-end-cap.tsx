@@ -14,12 +14,10 @@ export default class LeftEndCap extends React.Component<IProps, {}> {
   public render() {
     const { FrontIcon, RearIcon, styleClassName } = this.props.config;
     const cssShadeType = css[styleClassName];
-    const hoverStyle = this.props.hover ?
-      css.hover : "";
-
+    const cssHoverStyle = this.props.hover ? css.hover : "";
     return (
       <div className={`${css.leftEndCap} ${cssShadeType}`}>
-        <RearIcon className={`${css.icon} ${cssShadeType} ${css.rearIcon} ${hoverStyle}`} />
+        <RearIcon className={`${css.icon} ${cssShadeType} ${css.rearIcon} ${cssHoverStyle}`} />
         <FrontIcon className={`${css.icon} ${cssShadeType} ${css.frontIcon}`} />
       </div>
     );

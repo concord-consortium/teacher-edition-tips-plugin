@@ -17,12 +17,15 @@ interface IState {
   hovering: boolean;
 }
 
-// WindowShadeButton's are presentation-only components composed of 3 sub-
-// components: a LeftEndCap, a ButtonLabel, and a RightEndCap. This component
-// is responsible for aligning the 3 sub-components horizontally, the overall
-// size and shape of the button (a rounded rectangle). Since the LeftEndCap
-// component can be used, isolated from a WindowShadeButton, the responsibility
-// for rendering the borders are delegated to the there sub-components.
+// WindowShadeButton's are components composed of 3 sub-components: a LeftEndCap,
+// a ButtonLabel, and a RightEndCap. This component is responsible for aligning
+// the 3 sub-components horizontally, the overall size and shape of the button
+// (a rounded rectangle). Since the LeftEndCap component can be used, isolated
+// from a WindowShadeButton, the responsibility for rendering the borders are
+// delegated to the there sub-components.
+//
+// The "hovering" state is used to propagate the UI's mouse-hover event to the
+// LeftEndCap so the icon can "light up".
 
 export default class WindowShadeButton extends React.Component<IProps, IState> {
 
@@ -36,8 +39,7 @@ export default class WindowShadeButton extends React.Component<IProps, IState> {
     const cssClassNames = [ css.windowShadeButton, css[styleClassName] ];
     return (
       <div className={cssClassNames.join(" ")} onClick={onClick}
-      onMouseEnter={this.mouseEnter}
-      onMouseLeave={this.mouseLeave}>
+        onMouseEnter={this.mouseEnter} onMouseLeave={this.mouseLeave}>
         <LeftEndCap config={config} hover={this.state.hovering} />
         <ButtonTitle config={config} title={buttonLabel} />
         <RightEndCap config={config} mediaType={mediaType} />
