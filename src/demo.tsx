@@ -113,17 +113,38 @@ const authoredStateDVgSection: IWindowShade = {
   tabNameOverride: "SVG Icons"
 };
 
+const windowShadeContainerDivStyle = {
+  marginTop: "23px",
+  marginBottom: "73px"
+};
+
 // props = {authoredState: {type: 'dd', content:'xx'} }
 ReactDOM.render(
   <div>
-    <WindowShade authoredState={authoredStateA} />
-    <WindowShade authoredState={authoredStateB} />
-    <WindowShade authoredState={authoredStateC} />
-    <WindowShade authoredState={authoredStateD} />
-    <WindowShade authoredState={authoredStateE} />
-    <WindowShade authoredState={authoredStateF} />
-    <WindowShade authoredState={authoredStateG} />
-    <WindowShade authoredState={authoredStateH} />
+    <div style={windowShadeContainerDivStyle}>
+      <WindowShade authoredState={authoredStateA} />
+    </div>
+    <div style={windowShadeContainerDivStyle}>
+      <WindowShade authoredState={authoredStateB} />
+    </div>
+    <div style={windowShadeContainerDivStyle}>
+      <WindowShade authoredState={authoredStateC} />
+    </div>
+    <div style={windowShadeContainerDivStyle}>
+      <WindowShade authoredState={authoredStateD} />
+    </div>
+    <div style={windowShadeContainerDivStyle}>
+      <WindowShade authoredState={authoredStateE} />
+    </div>
+    <div style={windowShadeContainerDivStyle}>
+      <WindowShade authoredState={authoredStateF} />
+    </div>
+    <div style={windowShadeContainerDivStyle}>
+      <WindowShade authoredState={authoredStateG} />
+    </div>
+    <div style={windowShadeContainerDivStyle}>
+      <WindowShade authoredState={authoredStateH} />
+    </div>
     <div>
       <br />
       <span>Display of all icons:</span>
