@@ -13,6 +13,10 @@ interface IProps {
   onClick: () => void;
 }
 
+interface IState {
+  hovering: boolean;
+}
+
 // WindowShadeButton's are presentation-only components composed of 3 sub-
 // components: a LeftEndCap, a ButtonLabel, and a RightEndCap. This component
 // is responsible for aligning the 3 sub-components horizontally, the overall
@@ -20,17 +24,33 @@ interface IProps {
 // component can be used, isolated from a WindowShadeButton, the responsibility
 // for rendering the borders are delegated to the there sub-components.
 
-export default class WindowShadeButton extends React.Component<IProps, {}> {
+export default class WindowShadeButton extends React.Component<IProps, IState> {
+
+  public state: IState = {
+    hovering: false
+  };
+
   public render() {
     const { onClick, mediaType, config, buttonLabel } = this.props;
     const { styleClassName } = config;
     const cssClassNames = [ css.windowShadeButton, css[styleClassName] ];
     return (
-      <div className={cssClassNames.join(" ")} onClick={onClick}>
-        <LeftEndCap config={config} />
+      <div className={cssClassNames.join(" ")} onClick={onClick}
+      onMouseEnter={this.mouseEnter}
+      onMouseLeave={this.mouseLeave}>
+        <LeftEndCap config={config} hover={this.state.hovering} />
         <ButtonTitle config={config} title={buttonLabel} />
         <RightEndCap config={config} mediaType={mediaType} />
       </div>
     );
   }
+
+  private mouseEnter = () => {
+    this.setState({hovering: true});
+  }
+
+  private mouseLeave = () =>  {
+    this.setState({hovering: false});
+  }
+
 }
