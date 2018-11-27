@@ -233,10 +233,10 @@ export default class QuestionWrapper extends React.Component<IProps, IState> {
     const {tabOpened, tabClosed} = AnalyiticsActionType;
     const action = (activeTab === tabName) ? tabClosed : tabOpened;
     const nextTab = (action === tabClosed) ? null : tabName;
-    this.setState({activeTab: nextTab}, () => this.logAction(action));
+    this.setState({activeTab: nextTab}, () => this.logAction(action, tabName));
   }
 
-  private logAction = (action: AnalyiticsActionType) => {
+  private logAction = (action: AnalyiticsActionType, tabName = "none") => {
     const location = (action === AnalyiticsActionType.loaded)
       ? window.location.toString()
       : undefined;
@@ -244,7 +244,7 @@ export default class QuestionWrapper extends React.Component<IProps, IState> {
     logAnalyticsEvent({
       tipType: TeacherTipType.QuestionWrapper,
       eventAction: action,
-      tabName: this.state.activeTab || "none",
+      tabName,
       location
     });
   }
