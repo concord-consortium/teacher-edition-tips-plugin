@@ -4,7 +4,7 @@ import Markdown from "markdown-to-jsx";
 import * as css from "./side-tip.sass";
 import { ISideTip, TeacherTipType } from "../types";
 import {
-  logAnalyticsEvent, ILogEvent, AnalyiticsActionType
+  logAnalyticsEvent, ILogEvent, AnalyticsActionType
 } from "../utilities/analytics";
 
 interface IProps {
@@ -62,19 +62,19 @@ export default class SideTip extends React.Component<IProps, IState> {
       onOpen: this.onOpen,
       onClose: this.onClose
     });
-    this.logAction(AnalyiticsActionType.loaded);
+    this.logAction(AnalyticsActionType.loaded);
   }
 
   private onOpen = () => {
-    this.logAction(AnalyiticsActionType.tabOpened);
+    this.logAction(AnalyticsActionType.tabOpened);
   }
 
   private onClose = () => {
-    this.logAction(AnalyiticsActionType.tabClosed);
+    this.logAction(AnalyticsActionType.tabClosed);
   }
 
-  private logAction = (action: AnalyiticsActionType) => {
-    const location = (action === AnalyiticsActionType.loaded)
+  private logAction = (action: AnalyticsActionType) => {
+    const location = (action === AnalyticsActionType.loaded)
       ? window.location.toString()
       : undefined;
 

@@ -7,7 +7,7 @@
 
 import { TeacherTipType } from "../types";
 
-export enum AnalyiticsActionType {
+export enum AnalyticsActionType {
   loaded = "TeacherTip Loaded",
   tabOpened = "TeacherTip TabOpened",
   tabClosed = "TeacherTip TabClosed"
@@ -15,7 +15,7 @@ export enum AnalyiticsActionType {
 
 export interface ILogEvent {
   readonly tipType: TeacherTipType | "";
-  readonly eventAction: AnalyiticsActionType;
+  readonly eventAction: AnalyticsActionType;
   readonly tabName: string;
   readonly location?: string;
 }
@@ -33,7 +33,7 @@ interface IAnalyticsService {
 }
 
 // We create a service that looks like Google's `window.ga` interface
-// but mearly logs to the console.
+// but merely logs to the console.
 // TSLint doesn't like console messages.
 const mockGa = {
   // tslint:disable no-console

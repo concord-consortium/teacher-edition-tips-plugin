@@ -9,7 +9,7 @@ import CheckMark from "../icons/check_mark.svg";
 import XMark from "../icons/x_mark.svg";
 import * as css from "./question-wrapper.sass";
 import {
-  logAnalyticsEvent, ILogEvent, AnalyiticsActionType
+  logAnalyticsEvent, ILogEvent, AnalyticsActionType
 } from "../utilities/analytics";
 
 type TabName = "Correct" | "Distractors" | "TeacherTip" | "Exemplar";
@@ -47,7 +47,7 @@ export default class QuestionWrapper extends React.Component<IProps, IState> {
       // Find multiple choice answer inputs. Used later to position icons.
       this.answerInputs = this.findInputsInWrappedQuestion();
     }
-    this.logAction(AnalyiticsActionType.loaded);
+    this.logAction(AnalyticsActionType.loaded);
   }
 
   public render() {
@@ -230,14 +230,14 @@ export default class QuestionWrapper extends React.Component<IProps, IState> {
 
   private toggleTab = (tabName: TabName) => {
     const { activeTab } = this.state;
-    const {tabOpened, tabClosed} = AnalyiticsActionType;
+    const {tabOpened, tabClosed} = AnalyticsActionType;
     const action = (activeTab === tabName) ? tabClosed : tabOpened;
     const nextTab = (action === tabClosed) ? null : tabName;
     this.setState({activeTab: nextTab}, () => this.logAction(action, tabName));
   }
 
-  private logAction = (action: AnalyiticsActionType, tabName = "none") => {
-    const location = (action === AnalyiticsActionType.loaded)
+  private logAction = (action: AnalyticsActionType, tabName = "none") => {
+    const location = (action === AnalyticsActionType.loaded)
       ? window.location.toString()
       : undefined;
 
