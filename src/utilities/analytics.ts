@@ -2,9 +2,9 @@
 import { TeacherTipType } from "../types";
 
 export enum AnalyiticsActionType {
-  loaded = "tip Loaded",
-  tabOpened = "tip TabOpened",
-  tabClosed = "tip TabClosed"
+  loaded = "TeacherTip Loaded",
+  tabOpened = "TeacherTip TabOpened",
+  tabClosed = "TeacherTip TabClosed"
 }
 
 export interface ILogEvent {
