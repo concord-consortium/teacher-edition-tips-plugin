@@ -26,12 +26,14 @@ interface IAnalyticsService {
 }
 
 const mockGa = {
+  // tslint:disable no-console
   ga: (send: "send", data: IGAData) => {
-    console.group("mock analytics send payload:");
-    console.log(send);
-    console.log(JSON.stringify(data, null, 2));
+    console.group("Mock analytics send payload:");
+    console.debug(send);
+    console.debug(JSON.stringify(data, null, 2));
     console.groupEnd();
   }
+  // tslint:enable no-console
 };
 
 export const logAnalyticsEvent = (event: ILogEvent) => {
@@ -44,10 +46,17 @@ export const logAnalyticsEvent = (event: ILogEvent) => {
     eventLabel: event.location ? event.location : event.tabName
   };
 
-  if (windowWithPossibleGa.ga instanceof Function) {
-    windowWithPossibleGa.ga("send", payload);
-  } else {
-    mockGa.ga("send", payload);
+  try {
+    if (windowWithPossibleGa.ga instanceof Function) {
+      windowWithPossibleGa.ga("send", payload);
+    } else {
+      mockGa.ga("send", payload);
+    }
+  } catch (e) {
+    // tslint:disable no-console
+    console.error("Unable to send Google Analytics");
+    console.error(e);
+    // tslint:enable no-console
   }
 
 };
