@@ -97,8 +97,8 @@ export default class WindowShadeContent extends React.Component<IProps, IState> 
           { mediaType === MediaType.Image ?
               <img src={mediaURL} className={className}/>
             :
-              <video controls={true}>
-                <source src={mediaURL} />
+              <video controls={true} className={className}>
+                <source src={mediaURL}/>
               </video>
           }
           <div className={css.mediaCaption}>

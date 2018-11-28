@@ -61,10 +61,21 @@ Give or take.
 
 const authoredStateH = {
   windowShadeType: WindowShadeType.DiggingDeeper,
-  content: "Well now, **folks**, here we go! With a video!",
-  content2: "Blah blah blah.",
+  content: `
+You just gotta love a time-lapse view of the night sky!
+
+Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
+doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore
+veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim
+ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia
+consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.
+
+Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur,
+adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et
+dolore magnam aliquam quaerat voluptatem.
+`,
   mediaType: MediaType.Video,
-  layout: Layout.MediaCenter,
+  layout: Layout.MediaLeft,
   mediaURL: "https://www.videvo.net/videvo_files/converted/2014_12/preview/mlky_6.mp453110.webm",
   mediaCaption: "Timelaps of the Milky Way. https://www.videvo.net/video/milky-way-timelapse/2974/"
 };
