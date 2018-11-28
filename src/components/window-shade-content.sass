@@ -8,16 +8,6 @@
   line-height: 24pt
   margin-bottom: 12pt
 
-  .twoColumns
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: space-between;
-
-  img
-    width: 512px;
-    margin-right: 2em;
-
 .authorMarkdown
   margin: 30px
   margin-top: -15px
@@ -51,3 +41,68 @@
   &.authorMarkdown
     h1,h2,h3,h4,h5,th,em,strong
       color: $purpleContentTextAccentColor
+
+.mediaContainerLeft
+  display: grid
+  margin-left: 20px
+  margin-right: 20px
+  margin-bottom: 20px
+  grid-column-gap: 20px
+  .mediaWrapper
+    grid-column-start: 1
+    grid-column-end: 2
+    grid-row-start: 1
+    grid-row-end: 1
+    max-width: 570px
+    min-width: 570px
+    img
+      width: 512px
+      border: solid 5px
+      .theoryAndBackground
+        border-color: $deepYellow
+      .teacherTip
+        border-color: $deepBlue
+      .discussionPoints
+        border-color: $deepOrange
+      .diggingDeeper
+        border-color: $deepPurple
+    .mediaCaption
+      width: 492px
+      text-align: center
+      font-size: 14pt
+      font-style: italic
+      line-height: 17pt
+      color: $captionBlack
+      em,strong
+        color: $captionBlack
+  .leftLayoutContentWrapper
+    grid-column-start: 2
+    grid-column-end: 3
+    grid-row-start: 1
+    grid-row-end: 2
+    font-size: 16pt
+    line-height: 24pt
+
+
+
+  // .theoryAndBackground
+  //   img
+  //     border-color: $deepYellow
+  // .teacherTip
+  //   border-color: $deepBlue
+  // .discussionPoints
+    // border-color: $deepOrange
+  // .diggingDeeper
+  //   border-color: $deepPurple
+
+.mediaContainerRight
+  .mediaWrapper
+    min-width: 512px
+    max-width: 512px
+    img
+      border: solid 3px red
+  .mediaCaption
+    text-align: center
+    width: 490px
+  .centerLayoutContentWrapper
+    margin-left: 60px

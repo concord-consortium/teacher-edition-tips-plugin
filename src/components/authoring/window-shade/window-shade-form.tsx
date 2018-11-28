@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as css from "./window-shade-form.sass";
 
-import { IWindowShade, WindowShadeType, MediaType } from "../../../types";
+import { IWindowShade, WindowShadeType, MediaType, Layout } from "../../../types";
 import { getContentConfiguration } from "../../../config/ui-configurations";
 
 const allConfigurationTypes = [
@@ -17,6 +17,11 @@ const allMediaTypes = [
   MediaType.Video
 ];
 
+const allMediaLayouts = [
+  Layout.MediaLeft,
+  Layout.MediaCenter
+];
+
 interface IProps {
   onSave?: (newState: IWindowShade) => any;
   authoredState: IWindowShade;
@@ -24,16 +29,22 @@ interface IProps {
 
 interface IState {
   windowShadeType: WindowShadeType;
+  layout: Layout;
   mediaType: MediaType;
   mediaURL: string;
+  mediaCaption: string;
   content: string;
+  content2: string;
 }
 
 export default class WindowShadeForm extends React.Component<IProps, IState> {
   public state: IState = {
     windowShadeType: this.props.authoredState.windowShadeType,
+    layout: this.props.authoredState.layout || Layout.MediaLeft,
     content: this.props.authoredState.content,
+    content2: this.props.authoredState.content2 || "",
     mediaType: MediaType.None,
+    mediaCaption: this.props.authoredState.mediaCaption || "",
     mediaURL: ""
   };
 
@@ -41,14 +52,19 @@ export default class WindowShadeForm extends React.Component<IProps, IState> {
     if (prevProps.authoredState !== this.props.authoredState) {
       this.setState({
         windowShadeType: this.props.authoredState.windowShadeType,
+        layout: this.props.authoredState.layout || Layout.MediaLeft,
         content: this.props.authoredState.content,
-        mediaType: this.props.authoredState.mediaType || MediaType.None
+        content2: this.props.authoredState.content2 || "",
+        mediaType: this.props.authoredState.mediaType || MediaType.None,
+        mediaCaption: this.props.authoredState.mediaCaption || "",
+        mediaURL: this.props.authoredState.mediaURL || ""
       });
     }
   }
 
   public render() {
-    const { windowShadeType, content, mediaType, mediaURL } = this.state;
+    const { windowShadeType, content, content2, layout, mediaType, mediaURL,
+      mediaCaption } = this.state;
     const windowShadeTypeOptions = allConfigurationTypes.map( (key: WindowShadeType) => {
       const config = getContentConfiguration(key);
       return(
@@ -59,8 +75,16 @@ export default class WindowShadeForm extends React.Component<IProps, IState> {
         </option>
       );
     });
-
     const mediaTypeOptions = allMediaTypes.map( (key: MediaType ) => {
+      return(
+        <option
+          value={key}
+          key={key}>
+          {key}
+        </option>
+      );
+    });
+    const layoutTypeOptions = allMediaLayouts.map( (key: Layout ) => {
       return(
         <option
           value={key}
@@ -87,11 +111,26 @@ export default class WindowShadeForm extends React.Component<IProps, IState> {
           </select>
         </div>
         <div>
+          <label> Layout -- for Media Containers </label>
+          <br/>
+          <select onChange={this.updateLayout} value={layout}>
+            {layoutTypeOptions}
+          </select>
+        </div>
+        <div>
           <label> Media URL </label>
           <br/>
           <input type="text"
             value={mediaURL}
-            onChange={this.updatemediaURL}/>
+            onChange={this.updateMediaURL}/>
+        </div>
+        <div>
+          <label> Media Caption (Markdown) </label>
+          <br/>
+          <textarea
+            className={css.caption}
+            value={mediaCaption}
+            onChange={this.updateMediaCaption}/>
         </div>
         <div>
           <label> Content (Markdown) </label>
@@ -99,6 +138,13 @@ export default class WindowShadeForm extends React.Component<IProps, IState> {
           <textarea
             value={content}
             onChange={this.updateContent}/>
+        </div>
+        <div>
+          <label> Content-2 (Markdown) </label>
+          <br/>
+          <textarea
+            value={content2}
+            onChange={this.updateContent2}/>
         </div>
         <button onClick={this.sendChangeEvent}> Save </button>
       </div>
@@ -116,6 +162,11 @@ export default class WindowShadeForm extends React.Component<IProps, IState> {
     this.setState({mediaType: newValue}, () => this.sendChangeEvent());
   }
 
+  private updateLayout = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const newValue = event.target.value as Layout;
+    this.setState({layout: newValue}, () => this.sendChangeEvent());
+  }
+
   private updateType = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const newValue = event.target.value as WindowShadeType;
     this.setState({windowShadeType: newValue}, () => this.sendChangeEvent());
@@ -125,8 +176,20 @@ export default class WindowShadeForm extends React.Component<IProps, IState> {
     const newValue = event.target.value;
     this.setState({content: newValue}, () => this.sendChangeEvent());
   }
-  private updatemediaURL = (event: React.ChangeEvent<HTMLInputElement>) => {
+
+  private updateContent2 = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const newValue = event.target.value;
+    this.setState({content2: newValue}, () => this.sendChangeEvent());
+  }
+
+  private updateMediaURL = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = event.target.value;
     this.setState({mediaURL: newValue}, () => this.sendChangeEvent());
   }
+
+  private updateMediaCaption = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const newValue = event.target.value;
+    this.setState({mediaCaption: newValue}, () => this.sendChangeEvent());
+  }
+
 }
