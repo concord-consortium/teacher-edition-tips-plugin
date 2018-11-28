@@ -6,6 +6,10 @@ import { WindowShadeConfigurations } from "../config/ui-configurations";
 import WindowShadeButton from "./window-shade-button";
 import WindowShadeContent from "./window-shade-content";
 import { Dot, sidePosition } from "./helpers/dot";
+import { TeacherTipType } from "../types";
+import {
+  logAnalyticsEvent, ILogEvent, AnalyticsActionType
+} from "../utilities/analytics";
 
 interface IProps {
   authoredState: IWindowShade;
@@ -63,7 +67,27 @@ export default class WindowShade extends React.Component<IProps, IState> {
     );
   }
 
+  public componentDidMount() {
+    this.logAction(AnalyticsActionType.loaded);
+  }
+
   private toggle = () => {
-    this.setState({open: !this.state.open});
+    const nextOpen = !this.state.open;
+    const action = nextOpen ? AnalyticsActionType.tabOpened : AnalyticsActionType.tabClosed;
+    this.setState({open: nextOpen});
+    this.logAction(action);
+  }
+
+  private logAction = (action: AnalyticsActionType) => {
+    const location = (action === AnalyticsActionType.loaded)
+      ? window.location.toString()
+      : undefined;
+
+    logAnalyticsEvent({
+      tipType: TeacherTipType.WindowShade,
+      eventAction: action,
+      tabName: this.props.authoredState.windowShadeType,
+      location
+    });
   }
 }
