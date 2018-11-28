@@ -1,6 +1,6 @@
 import * as React from "react";
 import Markdown from "markdown-to-jsx";
-import { IAuthoredQuestionWrapper } from "../types";
+import { IAuthoredQuestionWrapper, TeacherTipType } from "../types";
 import CheckA from "../icons/check_A.svg";
 import XA from "../icons/x_A.svg";
 import ExclamationSmall from "../icons/exclamation_small_A.svg";
@@ -8,6 +8,9 @@ import Exclamation from "../icons/exclamation_A.svg";
 import CheckMark from "../icons/check_mark.svg";
 import XMark from "../icons/x_mark.svg";
 import * as css from "./question-wrapper.sass";
+import {
+  logAnalyticsEvent, ILogEvent, AnalyticsActionType
+} from "../utilities/analytics";
 
 type TabName = "Correct" | "Distractors" | "TeacherTip" | "Exemplar";
 
@@ -44,6 +47,7 @@ export default class QuestionWrapper extends React.Component<IProps, IState> {
       // Find multiple choice answer inputs. Used later to position icons.
       this.answerInputs = this.findInputsInWrappedQuestion();
     }
+    this.logAction(AnalyticsActionType.loaded);
   }
 
   public render() {
@@ -219,23 +223,29 @@ export default class QuestionWrapper extends React.Component<IProps, IState> {
     return wrappedEmbeddableDiv.querySelectorAll(`input[type="${inputType}"]`) as NodeListOf<HTMLInputElement>;
   }
 
-  private toggleCorrect = () => {
+  private toggleCorrect = () => this.toggleTab("Correct");
+  private toggleDistractors = () => this.toggleTab("Distractors");
+  private toggleTeacherTip = () => this.toggleTab("TeacherTip");
+  private toggleExemplar = () => this.toggleTab("Exemplar");
+
+  private toggleTab = (tabName: TabName) => {
     const { activeTab } = this.state;
-    this.setState({ activeTab: activeTab === "Correct" ? null : "Correct" });
+    const {tabOpened, tabClosed} = AnalyticsActionType;
+    const action = (activeTab === tabName) ? tabClosed : tabOpened;
+    const nextTab = (action === tabClosed) ? null : tabName;
+    this.setState({activeTab: nextTab}, () => this.logAction(action, tabName));
   }
 
-  private toggleDistractors = () => {
-    const { activeTab } = this.state;
-    this.setState({ activeTab: activeTab === "Distractors" ? null : "Distractors" });
-  }
+  private logAction = (action: AnalyticsActionType, tabName = "none") => {
+    const location = (action === AnalyticsActionType.loaded)
+      ? window.location.toString()
+      : undefined;
 
-  private toggleTeacherTip = () => {
-    const { activeTab } = this.state;
-    this.setState({ activeTab: activeTab === "TeacherTip" ? null : "TeacherTip" });
-  }
-
-  private toggleExemplar = () => {
-    const { activeTab } = this.state;
-    this.setState({ activeTab: activeTab === "Exemplar" ? null : "Exemplar" });
+    logAnalyticsEvent({
+      tipType: TeacherTipType.QuestionWrapper,
+      eventAction: action,
+      tabName,
+      location
+    });
   }
 }

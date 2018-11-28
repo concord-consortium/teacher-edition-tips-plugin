@@ -2,7 +2,10 @@ import * as React from "react";
 import sideBarIcon from "../side-bar-icon";
 import Markdown from "markdown-to-jsx";
 import * as css from "./side-tip.sass";
-import { ISideTip } from "../types";
+import { ISideTip, TeacherTipType } from "../types";
+import {
+  logAnalyticsEvent, ILogEvent, AnalyticsActionType
+} from "../utilities/analytics";
 
 interface IProps {
   authoredState: ISideTip;
@@ -55,7 +58,31 @@ export default class SideTip extends React.Component<IProps, IState> {
       width: 450,
       height: 500,
       padding: 0,
-      content: portalDom
+      content: portalDom,
+      onOpen: this.onOpen,
+      onClose: this.onClose
+    });
+    this.logAction(AnalyticsActionType.loaded);
+  }
+
+  private onOpen = () => {
+    this.logAction(AnalyticsActionType.tabOpened);
+  }
+
+  private onClose = () => {
+    this.logAction(AnalyticsActionType.tabClosed);
+  }
+
+  private logAction = (action: AnalyticsActionType) => {
+    const location = (action === AnalyticsActionType.loaded)
+      ? window.location.toString()
+      : undefined;
+
+    logAnalyticsEvent({
+      tipType: TeacherTipType.SideTip,
+      eventAction: action,
+      tabName: "SideTip",
+      location
     });
   }
 }
