@@ -60,15 +60,19 @@ export default class WindowShadeContent extends React.Component<IProps, IState> 
         }
         case Layout.MediaCenter: {
           return (
-            <div className={css.mediaContainerRight}>
-              <div className={css.centerLayoutContentWrapper} >
-                {content + "\n"}
+            <div className={css.mediaContainerCenter}>
+              <div className={css.centerLayoutContentWrapper}>
+                <Markdown>
+                  {content + "\n"}
+                </Markdown>
               </div>
               <div className={css.mediaWrapper}>
                 { this.renderMedia(mediaCaption, css[config.styleClassName]) }
               </div>
               <div className={css.centerLayoutContentWrapper} >
-                {(content2 ? content2 : "") + "\n"}
+                <Markdown>
+                  {(content2 ? content2 : "") + "\n"}
+                </Markdown>
               </div>
             </div>
           );

@@ -2,10 +2,10 @@
 
 .windowShadeContent
   margin: 20px
-  font-family: Arial, sans-serif
-  font-size: 16pt
-  font-weight: regular
-  line-height: 24pt
+  font-family: $textFont
+  font-weight: $textWeight
+  font-size: $textSize
+  line-height: $textHeight
   margin-bottom: 12pt
 
 .authorMarkdown
@@ -52,8 +52,8 @@
     grid-column-end: 2
     grid-row-start: 1
     grid-row-end: 1
-    max-width: 570px
-    min-width: 570px
+    grid-column-gap: 0
+    width: 570px
     img
       width: 512px
       border: solid 2px
@@ -76,13 +76,14 @@
         border-color: $deepOrange
       &.diggingDeeper
         border-color: $deepPurple
-
     .mediaCaption
       width: 492px
       text-align: center
-      font-size: 14pt
+      font-family: $captionFont
+      font-weight: $captionWeight
+      font-size: $captionSize
       font-style: italic
-      line-height: 17pt
+      line-height: $captionHeight
       color: $captionBlack
       em,strong
         color: $captionBlack
@@ -91,29 +92,55 @@
     grid-column-end: 3
     grid-row-start: 1
     grid-row-end: 2
-    font-size: 16pt
-    line-height: 24pt
 
-
-
-  // .theoryAndBackground
+.mediaContainerCenter
+  margin-left: 20px
+  margin-right: 20px
+  margin-bottom: 20px
+  width: 880px
+  // .centerLayoutContentWrapper
+  //   width: 570px
   //   img
-  //     border-color: $deepYellow
-  // .teacherTip
-  //   border-color: $deepBlue
-  // .discussionPoints
-    // border-color: $deepOrange
-  // .diggingDeeper
-  //   border-color: $deepPurple
-
-.mediaContainerRight
-  .mediaWrapper
-    min-width: 512px
-    max-width: 512px
-    img
-      border: solid 3px red
-  .mediaCaption
-    text-align: center
-    width: 490px
-  .centerLayoutContentWrapper
-    margin-left: 60px
+  //     width: 512px
+  //     border: solid 2px
+  //     &.theoryAndBackground
+  //       border-color: $deepYellow
+  //     &.teacherTip
+  //       border-color: $deepBlue
+  //     &.discussionPoints
+  //       border-color: $deepOrange
+  //     &.diggingDeeper
+  //       border-color: $deepPurple
+  //   video
+  //     width: 512px
+  //     border: solid 2px
+  //     &.theoryAndBackground
+  //       border-color: $deepYellow
+  //     &.teacherTip
+  //       border-color: $deepBlue
+  //     &.discussionPoints
+  //       border-color: $deepOrange
+  //     &.diggingDeeper
+  //       border-color: $deepPurple
+  //   .mediaCaption
+  //     width: 492px
+  //     text-align: center
+  //     font-size: 14pt
+  //     font-style: italic
+  //     line-height: 17pt
+  //     color: $captionBlack
+  //     em,strong
+  //       color: $captionBlack
+  // .leftLayoutContentWrapper
+  //   font-size: 16pt
+  //   line-height: 24pt
+  // .mediaWrapper
+  //   min-width: 512px
+  //   max-width: 512px
+  //   img
+  //     border: solid 3px red
+  // .mediaCaption
+  //   text-align: center
+  //   width: 490px
+  // .centerLayoutContentWrapper
+  //   margin-left: 60px

@@ -62,7 +62,10 @@ Give or take.
 const authoredStateH = {
   windowShadeType: WindowShadeType.DiggingDeeper,
   content: `
-You just gotta love a time-lapse view of the night sky!
+You just gotta love a **time-lapse** view of the night sky!
+
+* Let's make sure bullet items
+* Still work.
 
 Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
 doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore
@@ -74,8 +77,19 @@ Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur,
 adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et
 dolore magnam aliquam quaerat voluptatem.
 `,
+  content2: `
+Twas brillig, and the slithy toves
+  Did gyre and gimble in the wabe:
+All mimsy were the borogoves, And the mome raths outgrabe.
+
+“Beware the Jabberwock, my son! The jaws that bite, the claws that catch!
+Beware the Jubjub bird, and shun The frumious Bandersnatch!”
+
+He took his vorpal sword in hand; Long time the manxome foe he sought—
+So rested he by the Tumtum tree And stood awhile in thought.
+`,
   mediaType: MediaType.Video,
-  layout: Layout.MediaLeft,
+  layout: Layout.MediaCenter,
   mediaURL: "https://www.videvo.net/videvo_files/converted/2014_12/preview/mlky_6.mp453110.webm",
   mediaCaption: "Timelaps of the Milky Way. https://www.videvo.net/video/milky-way-timelapse/2974/"
 };
