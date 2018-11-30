@@ -48,9 +48,9 @@ export default class WindowShadeContent extends React.Component<IProps, IState> 
           return (
             <div className={css.mediaContainerLeft}>
               <div className={css.mediaWrapper}>
-                { this.renderMedia(mediaCaption, css[config.styleClassName]) }
+                { this.renderMedia(layout, mediaCaption, css[config.styleClassName]) }
               </div>
-              <div className={`${cssClassNames.join(" ")} ${css.leftLayoutContentWrapper}`} >
+              <div className={`${cssClassNames.join(" ")} ${css.leftLayoutContent}`} >
                 <Markdown>
                   {content + "\n" + (content2 ? content2 : "")}
                 </Markdown>
@@ -61,15 +61,15 @@ export default class WindowShadeContent extends React.Component<IProps, IState> 
         case Layout.MediaCenter: {
           return (
             <div className={css.mediaContainerCenter}>
-              <div className={css.centerLayoutContentWrapper}>
+              <div className={`${cssClassNames.join(" ")} ${css.centerLayoutContent}`}>
                 <Markdown>
                   {content + "\n"}
                 </Markdown>
               </div>
               <div className={css.mediaWrapper}>
-                { this.renderMedia(mediaCaption, css[config.styleClassName]) }
+                { this.renderMedia(layout, mediaCaption, css[config.styleClassName]) }
               </div>
-              <div className={css.centerLayoutContentWrapper} >
+              <div className={`${cssClassNames.join(" ")} ${css.centerLayoutContent}`}>
                 <Markdown>
                   {(content2 ? content2 : "") + "\n"}
                 </Markdown>
@@ -93,11 +93,11 @@ export default class WindowShadeContent extends React.Component<IProps, IState> 
   }
 
   // Renders the media (either image or video) with a caption underneath.
-  private renderMedia(caption: string, className: string) {
+  private renderMedia(layout: Layout, caption: string, className: string) {
     const { mediaType, mediaURL } = this.props;
     if (this.hasMedia()) {
       return(
-        <div className={css.mediaContainerLeft}>
+        <div className={layout === Layout.MediaLeft ? css.mediaContainerLeft : css.mediaContainerCenter}>
           { mediaType === MediaType.Image ?
               <img src={mediaURL} className={className}/>
             :
