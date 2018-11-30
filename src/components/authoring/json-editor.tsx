@@ -34,24 +34,32 @@ export default class JsonEditor extends React.Component<IProps, IState> {
         <textarea
           value={workingState}
           onChange={this.updateContent}
-          onBlur={this.updateContent}/>
+          onBlur={this.saveContent}/>
       </div>
     );
   }
   private updateContent = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     const newValue = event.target.value;
-    this.setState({workingState: newValue}, () => {
-      if (this.props.onSave) {
-        try{
-          const newProps = JSON.parse(newValue);
-          this.props.onSave(newProps.windowShade);
-        }
-        catch (error) {
-          this.setState({workingState: this.getAuthoredJson()});
-        }
-      }
-    });
+    this.setState({workingState: newValue});
   }
+
+  private saveContent = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const newValue = event.target.value;
+    if (this.props.onSave) {
+      try{
+        const newProps = JSON.parse(newValue);
+        this.props.onSave(newProps);
+      }
+      catch (error) {
+        // tslint:disable no-console
+        console.error("unable to paste json");
+        console.error(error);
+        this.setState({workingState: this.getAuthoredJson()});
+        // tslint:enable no-console
+      }
+    }
+  }
+
   private getAuthoredJson() {
     const {authoredState} = this.props;
     return JSON.stringify(authoredState, null, 2);
