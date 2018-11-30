@@ -21,9 +21,11 @@ import {
 } from "../../types";
 
 const defaultWindowShadeProps: IWindowShade = {
-  windowShadeType: WindowShadeType.TeacherTip,
+  windowShadeType: WindowShadeType.TheoryAndBackground,
   initialOpenState: true,
-  content: "## This is something"
+  content: "This is something",
+  mediaCaption: "Last, First. \"Title of Work.\" Year created. Site Title " +
+    "[OR] Publisher. Gallery [OR] Location. http://www.url.com."
 };
 
 /* tslint:disable max-line-length*/

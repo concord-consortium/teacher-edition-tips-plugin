@@ -2,21 +2,11 @@
 
 .windowShadeContent
   margin: 20px
-  font-family: Arial, sans-serif
-  font-size: 16pt
-  font-weight: regular
-  line-height: 24pt
+  font-family: $textFont
+  font-weight: $textWeight
+  font-size: $textSize
+  line-height: $textHeight
   margin-bottom: 12pt
-
-  .twoColumns
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: space-between;
-
-  img
-    width: 512px;
-    margin-right: 2em;
 
 .authorMarkdown
   margin: 30px
@@ -28,12 +18,34 @@
     padding-right: 19px
     border: solid 1px $textBlack
 
+  // *************************************************
+  // Local Reset
+  // LARA does *weird* things to normal list items
+  // **************************************************
+  // ol > li, ul > li
+  //   &::before
+  //     content: none
+  // ul
+  //   list-style-type: disc
+  //   list-style-position: inside
+  //   margin-left: 0px
+  // ol
+  //   list-style-type: decimal
+  //   list-style-position: inside
+  //   margin-left: 0px
+  // ul ul, ol ul
+  //   list-style-type: circle;
+  //   list-style-position: inside;
+  // ol ol, ul ol
+  //   list-style-type: decimal;
+  //   list-style-position: inside;
+
 .theoryAndBackground
   color: $yellowContentTextColor
   &.authorMarkdown
     h1,h2,h3,h4,h5,th,em,strong
       color: $yellowContentTextAccentColor
-     
+
 .teacherTip
   color: $blueContentTextColor
   &.authorMarkdown
@@ -51,3 +63,98 @@
   &.authorMarkdown
     h1,h2,h3,h4,h5,th,em,strong
       color: $purpleContentTextAccentColor
+
+.mediaContainerLeft
+  display: grid
+  margin-left: 20px
+  margin-right: 20px
+  margin-bottom: 20px
+  .mediaWrapper
+    grid-column-start: 1
+    grid-column-end: 2
+    grid-row-start: 1
+    grid-row-end: 1
+    grid-column-gap: 0
+    width: 570px
+    img
+      width: 512px
+      border: solid 2px
+      &.theoryAndBackground
+        border-color: $deepYellow
+      &.teacherTip
+        border-color: $deepBlue
+      &.discussionPoints
+        border-color: $deepOrange
+      &.diggingDeeper
+        border-color: $deepPurple
+    video
+      width: 512px
+      border: solid 2px
+      &.theoryAndBackground
+        border-color: $deepYellow
+      &.teacherTip
+        border-color: $deepBlue
+      &.discussionPoints
+        border-color: $deepOrange
+      &.diggingDeeper
+        border-color: $deepPurple
+    .mediaCaption
+      width: 492px
+      text-align: center
+      font-family: $captionFont
+      font-weight: $captionWeight
+      font-size: $captionSize
+      font-style: italic
+      line-height: $captionHeight
+      color: $captionBlack
+      em,strong
+        color: $captionBlack
+  .leftLayoutContent
+    grid-column-start: 2
+    grid-column-end: 3
+    grid-row-start: 1
+    grid-row-end: 2
+
+.mediaContainerCenter
+  display: flex
+  flex-direction: column
+  align-items: center
+  margin-left: 30px
+  margin-right: 30px
+  margin-bottom: 20px
+  .centerLayoutContent
+    text-align: left
+  .mediaWrapper
+    img
+      width: 880px
+      border: solid 2px
+      &.theoryAndBackground
+        border-color: $deepYellow
+      &.teacherTip
+        border-color: $deepBlue
+      &.discussionPoints
+        border-color: $deepOrange
+      &.diggingDeeper
+        border-color: $deepPurple
+    video
+      width: 768px
+      border: solid 2px
+      &.theoryAndBackground
+        border-color: $deepYellow
+      &.teacherTip
+        border-color: $deepBlue
+      &.discussionPoints
+        border-color: $deepOrange
+      &.diggingDeeper
+        border-color: $deepPurple
+    .mediaCaption
+      width: 750px
+      text-align: center
+      font-family: $captionFont
+      font-weight: $captionWeight
+      font-size: $captionSize
+      font-style: italic
+      line-height: $captionHeight
+      color: $captionBlack
+      em,strong
+        color: $captionBlack

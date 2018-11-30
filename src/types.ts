@@ -18,30 +18,32 @@ export enum WindowShadeType {
   DiggingDeeper = "diggingDeeper"
 }
 
-export enum WindowShadeLayout {
-  Default = "default",
-  RightText = "rightText"
-}
-
 export enum MediaType {
   None = "none",
   Image = "image",
   Video = "video"
 }
 
+export enum Layout {
+  MediaLeft = "mediaLeft",
+  MediaCenter = "mediaCenter"
+}
+
 export interface IWindowShade {
   windowShadeType: WindowShadeType;
   initialOpenState?: boolean;
   content: string;
-  layout?: WindowShadeLayout;
+  content2?: string;
+  layout?: Layout;
   tabNameOverride?: string;
   mediaType?: MediaType;
   mediaURL?: string;
   mediaCaption?: string;
 }
+
 export interface ISideTip {
   content: string;
-  layout?: WindowShadeLayout;
+  layout?: Layout;
   mediaType?: MediaType;
   mediaURL?: string;
   mediaCaption?: string;

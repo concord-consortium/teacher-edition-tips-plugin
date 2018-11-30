@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import * as css from "./window-shade.sass";
-import { IWindowShade, MediaType } from "../types";
+import { IWindowShade, MediaType, Layout } from "../types";
 import { WindowShadeConfigurations } from "../config/ui-configurations";
 import WindowShadeButton from "./window-shade-button";
 import WindowShadeContent from "./window-shade-content";
@@ -35,8 +35,8 @@ export default class WindowShade extends React.Component<IProps, IState> {
 
   public render() {
     const { open } = this.state;
-    const { windowShadeType, tabNameOverride, content, mediaType, mediaURL } =
-      this.props.authoredState;
+    const { windowShadeType, tabNameOverride, content, content2, layout,
+      mediaType, mediaURL, mediaCaption } = this.props.authoredState;
     const config = WindowShadeConfigurations[windowShadeType];
     const cssOpenState = open ? css.windowShadeShown : css.windowShadeHidden;
     const cssShadeType = css[config.styleClassName];
@@ -53,8 +53,15 @@ export default class WindowShade extends React.Component<IProps, IState> {
           onClick={this.toggle}
         />
         <div className={`${css.content} ${cssShadeType}`}>
-          <WindowShadeContent content={content} mediaType={mediaType}
-            mediaURL={mediaURL} config={config} />
+          <WindowShadeContent
+            config={config}
+            content={content}
+            content2={content2 ? content2 : ""}
+            layout={layout ? layout : Layout.MediaLeft}
+            mediaType={mediaType ? mediaType : MediaType.None}
+            mediaURL={mediaURL ? mediaURL : ""}
+            mediaCaption={mediaCaption ? mediaCaption : ""}
+          />
         </div>
       </div>
     );
