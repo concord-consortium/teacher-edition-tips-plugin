@@ -134,8 +134,10 @@ Give or take.
 `,
   // tslint:disable:no-trailing-whitespace
   content2: `
-Here is some **\`content2\`** text.  
-This bit of text contains  
+- - -
+
+Here is some **\`content2\`**  
+text.  This bit of text has  
 forced line-breaks.  
 `,
   // tslint:enable:no-trailing-whitespace
@@ -148,7 +150,7 @@ forced line-breaks.
 
 const authoredStateH = {
   windowShadeType: WindowShadeType.DiggingDeeper,
-  content: `
+  content2: `
 You just gotta love a **time-lapse** view of the night sky!
 
 Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
@@ -162,7 +164,7 @@ adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et
 dolore magnam aliquam quaerat voluptatem.
 `,
   // tslint:disable:no-trailing-whitespace
-  content2: `
+  content: `
 ## A Poem
 
 There once was a writer from Nantucket,  

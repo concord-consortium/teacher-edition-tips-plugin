@@ -26,7 +26,7 @@ describe("QuestionWrapper component", () => {
     it("renders teacher tip tab", () => {
       const props = getProps({ authoredState });
       const wrapper = mount(<QuestionWrapper {...props}/>);
-      expect(wrapper.text()).toEqual(expect.stringContaining("Teacher Tips"));
+      expect(wrapper.text()).toEqual(expect.stringContaining("Teacher Tip"));
     });
 
     it("renders teacher tip once the tab is clicked", () => {
