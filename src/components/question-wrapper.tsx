@@ -138,7 +138,7 @@ export default class QuestionWrapper extends React.Component<IProps, IState> {
     return (
       <div className={css.teacherTip} onClick={this.toggleTeacherTip} data-cy="teacherTip">
         <span className={css.teacherTipIcon}><Icon/></span>
-        <span className={css.teacherTipLabel}>Teacher Tips</span>
+        <span className={css.teacherTipLabel}>Teacher Tip</span>
       </div>
     );
   }
