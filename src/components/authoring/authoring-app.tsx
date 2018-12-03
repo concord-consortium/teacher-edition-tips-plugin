@@ -53,8 +53,8 @@ const markdownHelper = {
 
 const defaultQuestionWrapperProps: IAuthoredQuestionWrapper = {
   correctExplanation: "correct",
-  distractorsExplanation: "disractor",
-  exemplar: "exemplare",
+  distractorsExplanation: "distractor",
+  exemplar: "exemplar",
   teacherTip: "teacherTip",
   teacherTipImageOverlay: ""
 };
@@ -184,9 +184,7 @@ export default class AuthoringApp extends React.Component<IProps, IState> {
   }
 
   private updateState = (newState: IAuthoredState) => {
-    this.setState({authoredState: this.cloneState(newState)}, () => {
-      // console.log(this.state)
-    });
+    this.setState({authoredState: this.cloneState(newState)});
   }
 
   private cloneState(newState: IAuthoredState) {
