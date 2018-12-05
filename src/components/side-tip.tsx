@@ -51,7 +51,7 @@ export default class SideTip extends React.Component<IProps, IState> {
     portalDom.style.maxHeight = "inherit";
     this.sidebarController = addSideBarMethod({
       handle: "",
-      titleBar: "Teacher Edition Help",
+      titleBar: "Teacher Edition",
       icon: sideBarIcon,
       titleBarColor: "#FDA61C",
       handleColor: "#DC8008",
