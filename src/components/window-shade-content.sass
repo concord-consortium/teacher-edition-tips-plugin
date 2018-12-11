@@ -31,23 +31,23 @@
   // Local Reset
   // LARA does *weird* things to normal list items
   // **************************************************
-  // ol > li, ul > li
-  //   &::before
-  //     content: none
-  // ul
-  //   list-style-type: disc
-  //   list-style-position: inside
-  //   margin-left: 0px
-  // ol
-  //   list-style-type: decimal
-  //   list-style-position: inside
-  //   margin-left: 0px
-  // ul ul, ol ul
-  //   list-style-type: circle;
-  //   list-style-position: inside;
-  // ol ol, ul ol
-  //   list-style-type: decimal;
-  //   list-style-position: inside;
+  ol > li, ul > li
+    &::before
+      content: none
+  ul
+    list-style-type: disc
+    // list-style-position: inside
+    margin-left: 0px
+  ol
+    list-style-type: decimal
+    // list-style-position: inside
+    margin-left: 0px
+  ul ul, ol ul
+    list-style-type: circle;
+    // list-style-position: inside;
+  ol ol, ul ol
+    list-style-type: decimal;
+    // list-style-position: inside;
 
 .theoryAndBackground
   color: $yellowContentTextColor
