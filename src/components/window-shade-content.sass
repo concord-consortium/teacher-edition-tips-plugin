@@ -26,28 +26,42 @@
     border: solid 1px $textBlack
   hr
     margin-top: 20px
-
-  // *************************************************
-  // Local Reset
-  // LARA does *weird* things to normal list items
-  // **************************************************
-  // ol > li, ul > li
-  //   &::before
-  //     content: none
-  // ul
-  //   list-style-type: disc
-  //   list-style-position: inside
-  //   margin-left: 0px
-  // ol
-  //   list-style-type: decimal
-  //   list-style-position: inside
-  //   margin-left: 0px
-  // ul ul, ol ul
-  //   list-style-type: circle;
-  //   list-style-position: inside;
-  // ol ol, ul ol
-  //   list-style-type: decimal;
-  //   list-style-position: inside;
+  // **************************************************************************
+  // Local reset of list item styles.
+  //
+  // Turns out that LARA does some kind of *weird* things to normal list item
+  // styles with a few that seem to be overly specfic. This set of styles is
+  // really just trying to reset the critical list-oriented styles to some
+  // resonable values so list items will render consistently in a LARA run-time
+  // display as well as in the authoring environment.
+  // **************************************************************************
+  ol > li, ul > li
+    &::before
+      content: none
+  ul
+    list-style-type: disc
+    list-style-position: outside
+    margin-left: 0px
+    p
+      margin: 0px
+  ol
+    list-style-type: decimal
+    list-style-position: outside
+    margin-left: 0px
+    p
+      margin: 0px
+  ul ul, ol ul
+    list-style-type: circle;
+    margin-left: 0px
+    list-style-position: outside
+    p
+      margin: 0px
+  ol ol, ul ol
+    list-style-type: decimal;
+    list-style-position: outside
+    margin-left: 0px
+    p
+      margin: 0px
 
 .theoryAndBackground
   color: $yellowContentTextColor
