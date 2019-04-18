@@ -1,19 +1,9 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import PluginApp from "./components/plugin-app";
+import * as PluginAPI from "@concord-consortium/lara-plugin-api";
 
-interface IExternalScriptContext {
-  div: any;
-  authoredState: string;
-  learnerState: string;
-  pluginId: string;
-  wrappedEmbeddableDiv?: any;
-  wrappedEmbeddableContext?: any;
-}
-
-let PluginAPI: any;
-
-const getAuthoredState = (context: IExternalScriptContext) => {
+const getAuthoredState = (context: PluginAPI.IPluginRuntimeContext) => {
   if (!context.authoredState) {
     return {};
   }
@@ -28,33 +18,37 @@ const getAuthoredState = (context: IExternalScriptContext) => {
   return authoredState;
 };
 
+const isTeacherEdition = () => {
+  // If we decide to do something more complex in the future,
+  // the client's API won't change.
+  return window.location.search.indexOf("mode=teacher-edition") > 0;
+};
+
 export class TeacherEditionTipsPlugin {
-  public context: IExternalScriptContext;
+  public context: PluginAPI.IPluginRuntimeContext;
   public pluginAppComponent: any;
 
-  constructor(context: IExternalScriptContext) {
+  constructor(context: PluginAPI.IPluginRuntimeContext) {
     this.context = context;
     this.renderPluginApp();
   }
 
   public renderPluginApp = () => {
-    PluginAPI = (window as any).LARA;
     const authoredState = getAuthoredState(this.context);
-    if (PluginAPI.isTeacherEdition()) {
+    const wrappedEmbeddable = this.context.wrappedEmbeddable;
+    if (isTeacherEdition()) {
       this.pluginAppComponent = ReactDOM.render(
         <PluginApp
           authoredState={authoredState}
-          wrappedEmbeddableDiv={this.context.wrappedEmbeddableDiv}
-          wrappedEmbeddableContext={this.context.wrappedEmbeddableContext}
-          PluginAPI={PluginAPI}
+          wrappedEmbeddableDiv={wrappedEmbeddable && wrappedEmbeddable.container}
+          wrappedEmbeddableContext={wrappedEmbeddable && wrappedEmbeddable.laraJson}
         />,
-        this.context.div);
+        this.context.container);
     }
   }
 }
 
 export const initPlugin = () => {
-  PluginAPI = (window as any).LARA;
   if (!PluginAPI || !PluginAPI.registerPlugin) {
     // tslint:disable-next-line:no-console
     console.warn("LARA Plugin API not available, TeacherEditionTipsPlugin terminating");

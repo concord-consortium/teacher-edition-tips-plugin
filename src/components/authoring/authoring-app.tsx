@@ -145,11 +145,10 @@ export default class AuthoringApp extends React.Component<IProps, IState> {
   }
 
   private addSideBarMethod() {
-    const fakeController = {
+    return {
       open: () => null,
       close: () => null
     };
-    return fakeController;
   }
 
   private renderTypeSelector() {

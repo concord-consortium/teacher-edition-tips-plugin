@@ -19,7 +19,7 @@ const LARA_INTERACTIVES = [ "MwInteractive", "ImageInteractive", "VideoInteracti
 
 interface IProps {
   authoredState: IAuthoredQuestionWrapper;
-  wrappedEmbeddableDiv: HTMLDivElement;
+  wrappedEmbeddableDiv: HTMLElement;
   wrappedEmbeddableContext: any;
 }
 

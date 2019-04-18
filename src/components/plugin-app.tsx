@@ -3,14 +3,14 @@ import * as ReactDOM from "react-dom";
 import WindowShade from "./window-shade";
 import QuestionWrapper from "./question-wrapper";
 import SideTip from "./side-tip";
+import * as PluginAPI from "@concord-consortium/lara-plugin-api";
 
 import { IAuthoredState, ISideTip } from "../types";
 
 interface IProps {
-  PluginAPI: any;
   authoredState: IAuthoredState;
-  wrappedEmbeddableDiv?: HTMLDivElement;
-  wrappedEmbeddableContext?: object;
+  wrappedEmbeddableDiv: HTMLElement | null;
+  wrappedEmbeddableContext: object | null;
 }
 
 interface IState {}
@@ -61,7 +61,6 @@ export default class PluginApp extends React.Component<IProps, IState> {
 
   public renderSidebarTip() {
     const { sideTip } = this.props.authoredState;
-    const { PluginAPI } = this.props;
     const portalDom = document.createElement("div");
     return(
       ReactDOM.createPortal(
