@@ -1,5 +1,10 @@
 # Teacher Edition Tips Plugin
 
+## Try It
+
+- [Demonstration of features](https://teacher-edition-tips-plugin.concord.org/demo.html)
+- [Authoring Page](https://teacher-edition-tips-plugin.concord.org/authoring.html)
+
 ## Development
 
 ### Initial steps
