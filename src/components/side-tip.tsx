@@ -3,26 +3,21 @@ import sideBarIcon from "../side-bar-icon";
 import Markdown from "markdown-to-jsx";
 import * as css from "./side-tip.sass";
 import { ISideTip, TeacherTipType } from "../types";
+import * as PluginAPI from "@concord-consortium/lara-plugin-api";
 import {
-  logAnalyticsEvent, ILogEvent, AnalyticsActionType
+  logAnalyticsEvent, AnalyticsActionType
 } from "../utilities/analytics";
 
 interface IProps {
   authoredState: ISideTip;
-  addSideBarMethod: any;
+  addSideBarMethod: (options: PluginAPI.ISidebarOptions) => PluginAPI.ISidebarController;
   portalDom: HTMLElement;
 }
 interface IState {}
 
-interface ISidebarController {
-  open: () => void;
-  close: () => void;
-}
-
 export default class SideTip extends React.Component<IProps, IState> {
   public state: IState = {};
-  private sidebarContainer: HTMLElement;
-  private sidebarController: ISidebarController;
+  private sidebarController: PluginAPI.ISidebarController;
 
   constructor(props: IProps) {
     super(props);
@@ -44,7 +39,7 @@ export default class SideTip extends React.Component<IProps, IState> {
   }
 
   private addSidebar() {
-    const {addSideBarMethod, portalDom} = this.props;
+    const { addSideBarMethod, portalDom } = this.props;
     // This is important for sidebar UI. Max height enables scrolling of the definitions container.
     // Exact value is inherited from the container provided by LARA.
     // icon?: string | HTMLElement;
@@ -56,7 +51,6 @@ export default class SideTip extends React.Component<IProps, IState> {
       titleBarColor: "#FDA61C",
       handleColor: "#DC8008",
       width: 450,
-      height: 500,
       padding: 0,
       content: portalDom,
       onOpen: this.onOpen,
