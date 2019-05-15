@@ -6,7 +6,7 @@
  *************************************************************/
 
 import { TeacherTipType } from "../types";
-import PluginAPI from "@concord-consortium/lara-plugin-api";
+import * as PluginAPI from "@concord-consortium/lara-plugin-api";
 
 export enum AnalyticsActionType {
   loaded = "TeacherTip Loaded",
