@@ -5,7 +5,7 @@ import * as css from "./side-tip.sass";
 import { ISideTip, TeacherTipType } from "../types";
 import * as PluginAPI from "@concord-consortium/lara-plugin-api";
 import {
-  logAnalyticsEvent, AnalyticsActionType
+  logEvent, AnalyticsActionType
 } from "../utilities/analytics";
 
 interface IProps {
@@ -72,7 +72,7 @@ export default class SideTip extends React.Component<IProps, IState> {
       ? window.location.toString()
       : undefined;
 
-    logAnalyticsEvent({
+    logEvent({
       tipType: TeacherTipType.SideTip,
       eventAction: action,
       tabName: "SideTip",

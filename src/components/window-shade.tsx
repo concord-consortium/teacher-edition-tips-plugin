@@ -8,7 +8,7 @@ import WindowShadeContent from "./window-shade-content";
 import { Dot, sidePosition } from "./helpers/dot";
 import { TeacherTipType } from "../types";
 import {
-  logAnalyticsEvent, ILogEvent, AnalyticsActionType
+  logEvent, ILogEvent, AnalyticsActionType
 } from "../utilities/analytics";
 
 interface IProps {
@@ -83,7 +83,7 @@ export default class WindowShade extends React.Component<IProps, IState> {
       ? window.location.toString()
       : undefined;
 
-    logAnalyticsEvent({
+    logEvent({
       tipType: TeacherTipType.WindowShade,
       eventAction: action,
       tabName: this.props.authoredState.windowShadeType,

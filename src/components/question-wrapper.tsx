@@ -9,7 +9,7 @@ import CheckMark from "../icons/check_mark.svg";
 import XMark from "../icons/x_mark.svg";
 import * as css from "./question-wrapper.sass";
 import {
-  logAnalyticsEvent, ILogEvent, AnalyticsActionType
+  logEvent, ILogEvent, AnalyticsActionType
 } from "../utilities/analytics";
 
 type TabName = "Correct" | "Distractors" | "TeacherTip" | "Exemplar";
@@ -241,7 +241,7 @@ export default class QuestionWrapper extends React.Component<IProps, IState> {
       ? window.location.toString()
       : undefined;
 
-    logAnalyticsEvent({
+    logEvent({
       tipType: TeacherTipType.QuestionWrapper,
       eventAction: action,
       tabName,
