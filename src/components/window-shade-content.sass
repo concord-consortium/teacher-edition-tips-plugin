@@ -18,6 +18,8 @@
     margin-left: 10px
 
 .authorMarkdown
+  p
+    margin: 0
   table
     border-collapse: collapse
   th, td
@@ -39,11 +41,13 @@
     &::before
       content: none
   ul
-    list-style-type: disc
     list-style-position: outside
-    margin-left: 0px
+    list-style: square
+    padding: 0
+    margin: 16px 0 16px 16px
     p
-      margin: 0px
+      margin: 0
+
   ol
     list-style-type: decimal
     list-style-position: outside
@@ -51,8 +55,7 @@
     p
       margin: 0px
   ul ul, ol ul
-    list-style-type: circle;
-    margin-left: 0px
+    list-style-type: circle
     list-style-position: outside
     p
       margin: 0px
