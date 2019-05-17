@@ -19,6 +19,7 @@ import {
   IAuthoredState, IWindowShade, ISideTip, WindowShadeType,
   IAuthoredQuestionWrapper, TeacherTipType
 } from "../../types";
+import { ILogEvent } from "../../utilities/analytics";
 
 const defaultWindowShadeProps: IWindowShade = {
   windowShadeType: WindowShadeType.TheoryAndBackground,
@@ -95,12 +96,14 @@ export default class AuthoringApp extends React.Component<IProps, IState> {
         <div className={css.preview}>
           {
             showWindowShade &&
-            <WindowShade authoredState={ windowShade || defaultWindowShadeProps } />
+            <WindowShade authoredState={ windowShade || defaultWindowShadeProps }
+            logEvent={this.logEventMethod} />
           }
           {
             showQuestionWrapper &&
             <QuestionAndQuestionWrapper
               authoredState={ questionWrapper || defaultQuestionWrapperProps }
+              logEvent={this.logEventMethod}
             />
           }
           {
@@ -109,6 +112,7 @@ export default class AuthoringApp extends React.Component<IProps, IState> {
               authoredState={ sideTip || defaultSideTipProps }
               addSideBarMethod={this.addSideBarMethod}
               portalDom={portalDom}
+              logEvent={this.logEventMethod}
             />
           }
           <br/>
@@ -138,10 +142,16 @@ export default class AuthoringApp extends React.Component<IProps, IState> {
           <JsonEditor authoredState={authoredState} onSave={this.updateState} />
         </div>
         <div className={css.markdownHelper}>
-          <WindowShade authoredState={markdownHelper} />
+          <WindowShade authoredState={markdownHelper} logEvent={this.logEventMethod} />
         </div>
       </div>
     );
+  }
+
+  private logEventMethod = (logData: ILogEvent) => {
+    // tslint:disable no-console
+    console.log(`WindowShade Log Event: ${JSON.stringify(logData)}`);
+    // tslint:enable no-console
   }
 
   private addSideBarMethod() {

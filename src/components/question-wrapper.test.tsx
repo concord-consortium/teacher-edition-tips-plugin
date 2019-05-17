@@ -6,7 +6,8 @@ describe("QuestionWrapper component", () => {
   const getProps = (customProps: any = {}) => Object.assign({
     wrappedEmbeddableDiv: document.createElement("div"),
     wrappedEmbeddableContext: {},
-    authoredState: {}
+    authoredState: {},
+    logEvent: jest.fn()
   }, customProps);
 
   it("wraps provided HTML element", () => {

@@ -2,9 +2,9 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 
 import WindowShade from "./components/window-shade";
-// import SideTip from "./components/side-tip";
 import { WindowShadeType, MediaType, Layout } from "./types";
 import { DemoMarkdown } from "./demo-content-markdown";
+import { ILogEvent } from "./utilities/analytics";
 
 const authoredStateA = {
   windowShadeType: WindowShadeType.TheoryAndBackground,
@@ -194,6 +194,12 @@ const windowShadeContainerDivStyle = {
   marginBottom: "73px"
 };
 
+const logEventMethod = (logData: ILogEvent) => {
+  // tslint:disable no-console
+  console.log(`WindowShade Log Event: ${JSON.stringify(logData)}`);
+  // tslint:enable no-console
+};
+
 ReactDOM.render(
   <div>
     <h2>Teacher Edition Demo</h2>
@@ -203,35 +209,35 @@ ReactDOM.render(
     </p>
     <p>Basic contents, featuring Markdown styling:</p>
     <div style={windowShadeContainerDivStyle}>
-      <WindowShade authoredState={authoredStateA} />
+      <WindowShade authoredState={authoredStateA} logEvent={logEventMethod} />
     </div>
     <p>Simple concatenation of the "content" and "content2" JSON fields:</p>
     <div style={windowShadeContainerDivStyle}>
-      <WindowShade authoredState={authoredStateB} />
+      <WindowShade authoredState={authoredStateB} logEvent={logEventMethod} />
     </div>
     <p>Numbered Lists:</p>
     <div style={windowShadeContainerDivStyle}>
-      <WindowShade authoredState={authoredStateC} />
+      <WindowShade authoredState={authoredStateC} logEvent={logEventMethod} />
     </div>
     <p>Bullet Lists:</p>
     <div style={windowShadeContainerDivStyle}>
-      <WindowShade authoredState={authoredStateD} />
+      <WindowShade authoredState={authoredStateD} logEvent={logEventMethod} />
     </div>
     <p>Image w/ "center" layout:</p>
     <div style={windowShadeContainerDivStyle}>
-      <WindowShade authoredState={authoredStateE} />
+      <WindowShade authoredState={authoredStateE} logEvent={logEventMethod} />
     </div>
     <p>Video w/ "left" layout:</p>
     <div style={windowShadeContainerDivStyle}>
-      <WindowShade authoredState={authoredStateF} />
+      <WindowShade authoredState={authoredStateF} logEvent={logEventMethod} />
     </div>
     <p>Image w/ "left" layout:</p>
     <div style={windowShadeContainerDivStyle}>
-      <WindowShade authoredState={authoredStateG} />
+      <WindowShade authoredState={authoredStateG} logEvent={logEventMethod} />
     </div>
     <p>Video w/ "center" layout:</p>
     <div style={windowShadeContainerDivStyle}>
-      <WindowShade authoredState={authoredStateH} />
+      <WindowShade authoredState={authoredStateH} logEvent={logEventMethod} />
     </div>
   </div>,
   document.getElementById("window-shade")

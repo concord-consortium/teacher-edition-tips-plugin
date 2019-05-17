@@ -10,7 +10,12 @@ const windowShadeProps = {
 
 describe("WindowShade component", () => {
   it("renders Hello World", () => {
-    const wrapper = shallow(<WindowShade authoredState={windowShadeProps}/>);
+    const wrapper = shallow(
+      <WindowShade
+        authoredState={windowShadeProps}
+        logEvent={jest.fn()}
+      />
+    );
     expect(wrapper.text()).toEqual("<Dot /><Dot /><WindowShadeButton /><WindowShadeContent />");
   });
 });

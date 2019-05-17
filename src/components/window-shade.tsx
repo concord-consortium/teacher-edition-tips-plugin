@@ -7,12 +7,11 @@ import WindowShadeButton from "./window-shade-button";
 import WindowShadeContent from "./window-shade-content";
 import { Dot, sidePosition } from "./helpers/dot";
 import { TeacherTipType } from "../types";
-import {
-  logEvent, ILogEvent, AnalyticsActionType
-} from "../utilities/analytics";
+import { ILogEvent, AnalyticsActionType } from "../utilities/analytics";
 
 interface IProps {
   authoredState: IWindowShade;
+  logEvent: (logData: ILogEvent) => void;
 }
 
 interface IState {
@@ -82,8 +81,7 @@ export default class WindowShade extends React.Component<IProps, IState> {
     const location = (action === AnalyticsActionType.loaded)
       ? window.location.toString()
       : undefined;
-
-    logEvent({
+    this.props.logEvent({
       tipType: TeacherTipType.WindowShade,
       eventAction: action,
       tabName: this.props.authoredState.windowShadeType,

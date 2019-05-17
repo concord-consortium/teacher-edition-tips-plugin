@@ -6,7 +6,7 @@
  *************************************************************/
 
 import { TeacherTipType } from "../types";
-import * as PluginAPI from "@concord-consortium/lara-plugin-api";
+import { IPluginRuntimeContext } from "@concord-consortium/lara-plugin-api";
 
 export enum AnalyticsActionType {
   loaded = "TeacherTip Loaded",
@@ -52,18 +52,18 @@ const mockGa = {
   // tslint:enable no-console
 };
 
-export const logEvent = (event: ILogEvent) => {
+export const logEvent = (runtimeContext: IPluginRuntimeContext, event: ILogEvent) => {
   logAnalyticsEvent(event);
-  logPluginEvent(event);
+  logPluginEvent(runtimeContext, event);
 };
 
-const logPluginEvent = (event: ILogEvent) => {
+const logPluginEvent = (context: IPluginRuntimeContext, event: ILogEvent) => {
   const eventTypeName = `TeacherEdition-${event.tipType}-${event.eventAction}`;
   const logEventPayload: IPluginEventPayload = {
     eventAction: event.eventAction,
     eventContent: event.location ? event.location : event.tabName
   };
-  PluginAPI.log({event: eventTypeName, event_value: logEventPayload});
+  context.log({ event: eventTypeName, event_value: logEventPayload });
 };
 
 const logAnalyticsEvent = (event: ILogEvent) => {

@@ -3,6 +3,7 @@ import * as React from "react";
 import * as css from "./question-and-question-wrapper.sass";
 import { IAuthoredQuestionWrapper } from "../types";
 import QuestionWrapper from "./question-wrapper";
+import { ILogEvent } from "../utilities/analytics";
 
 const testQuestionContext = {
   type: "Embeddable::MultipleChoice",
@@ -16,6 +17,7 @@ const testQuestionContext = {
 
 interface IProps {
   authoredState: IAuthoredQuestionWrapper;
+  logEvent: (logData: ILogEvent) => void;
   updateFunction?: (nextState: IAuthoredQuestionWrapper) => void;
 }
 
@@ -41,6 +43,7 @@ export default class QuestionAndQuestionWrapper extends React.Component<IProps, 
         authoredState={authoredState}
         wrappedEmbeddableDiv={this.domRef}
         wrappedEmbeddableContext={testQuestionContext}
+        logEvent={this.props.logEvent}
       />
     );
   }

@@ -8,9 +8,7 @@ import Exclamation from "../icons/exclamation_A.svg";
 import CheckMark from "../icons/check_mark.svg";
 import XMark from "../icons/x_mark.svg";
 import * as css from "./question-wrapper.sass";
-import {
-  logEvent, ILogEvent, AnalyticsActionType
-} from "../utilities/analytics";
+import { ILogEvent, AnalyticsActionType } from "../utilities/analytics";
 
 type TabName = "Correct" | "Distractors" | "TeacherTip" | "Exemplar";
 
@@ -21,6 +19,7 @@ interface IProps {
   authoredState: IAuthoredQuestionWrapper;
   wrappedEmbeddableDiv: HTMLElement;
   wrappedEmbeddableContext: any;
+  logEvent: (logData: ILogEvent) => void;
 }
 
 interface IState {
@@ -240,8 +239,7 @@ export default class QuestionWrapper extends React.Component<IProps, IState> {
     const location = (action === AnalyticsActionType.loaded)
       ? window.location.toString()
       : undefined;
-
-    logEvent({
+    this.props.logEvent({
       tipType: TeacherTipType.QuestionWrapper,
       eventAction: action,
       tabName,
