@@ -20,6 +20,17 @@
     </style>
     <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script>
+      window.LARA = {
+        PluginAPI_V3:  {
+          log: (event, event_value) => {
+            console.log(`EventLog\n` +
+                        `  event: ${JSON.stringify(event)}\n` +
+                        `  event_value: ${JSON.stringify(event_value)}`);
+          }
+        }
+      }
+    </script>
   </head>
   <body>
     <div id="window-shade"></div>

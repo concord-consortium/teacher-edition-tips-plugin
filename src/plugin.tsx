@@ -42,6 +42,7 @@ export class TeacherEditionTipsPlugin {
           authoredState={authoredState}
           wrappedEmbeddableDiv={wrappedEmbeddable && wrappedEmbeddable.container}
           wrappedEmbeddableContext={wrappedEmbeddable && wrappedEmbeddable.laraJson}
+          pluginContext={this.context}
         />,
         this.context.container);
     }

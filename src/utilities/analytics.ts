@@ -6,6 +6,7 @@
  *************************************************************/
 
 import { TeacherTipType } from "../types";
+import { IPluginRuntimeContext } from "@concord-consortium/lara-plugin-api";
 
 export enum AnalyticsActionType {
   loaded = "TeacherTip Loaded",
@@ -32,6 +33,11 @@ interface IAnalyticsService {
   ga?: (send: "send", type: "event", data: IGAData) => void;
 }
 
+interface IPluginEventPayload {
+  eventAction: string;
+  eventContent: string;
+}
+
 // We create a service that looks like Google's `window.ga` interface
 // but merely logs to the console.
 // TSLint doesn't like console messages.
@@ -46,7 +52,20 @@ const mockGa = {
   // tslint:enable no-console
 };
 
-export const logAnalyticsEvent = (event: ILogEvent) => {
+export const logEvent = (runtimeContext: IPluginRuntimeContext, event: ILogEvent) => {
+  logAnalyticsEvent(event);
+  logPluginEvent(runtimeContext, event);
+};
+
+const logPluginEvent = (context: IPluginRuntimeContext, event: ILogEvent) => {
+  const eventTypeName = `TeacherEdition-${event.tipType}-${event.eventAction}`;
+  // The location is set for loaded events,
+  // and the tabName is set for tab switching events
+  const eventValue = event.location ? event.location : event.tabName;
+  context.log({ event: eventTypeName, event_value: eventValue });
+};
+
+const logAnalyticsEvent = (event: ILogEvent) => {
   const windowWithPossibleGa = (window as IAnalyticsService);
 
   const payload: IGAData = {

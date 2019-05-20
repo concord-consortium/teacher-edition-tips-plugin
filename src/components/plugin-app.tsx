@@ -6,11 +6,14 @@ import SideTip from "./side-tip";
 import * as PluginAPI from "@concord-consortium/lara-plugin-api";
 
 import { IAuthoredState, ISideTip } from "../types";
+import { IPluginRuntimeContext } from "@concord-consortium/lara-plugin-api";
+import { ILogEvent, logEvent } from "../utilities/analytics";
 
 interface IProps {
   authoredState: IAuthoredState;
   wrappedEmbeddableDiv: HTMLElement | null;
   wrappedEmbeddableContext: object | null;
+  pluginContext: IPluginRuntimeContext;
 }
 
 interface IState {}
@@ -28,6 +31,10 @@ export default class PluginApp extends React.Component<IProps, IState> {
     return null;
   }
 
+  public logEventMethod = (logData: ILogEvent) => {
+    logEvent(this.props.pluginContext, logData);
+  }
+
   public renderWindowShade() {
     const { windowShade } = this.props.authoredState;
     if (!windowShade) {
@@ -35,7 +42,10 @@ export default class PluginApp extends React.Component<IProps, IState> {
     }
     return (
       <div>
-        <WindowShade authoredState={windowShade} />
+        <WindowShade
+          authoredState={windowShade}
+          logEvent={this.logEventMethod}
+        />
       </div>
     );
   }
@@ -54,6 +64,7 @@ export default class PluginApp extends React.Component<IProps, IState> {
           authoredState={questionWrapper || {}}
           wrappedEmbeddableDiv={wrappedEmbeddableDiv}
           wrappedEmbeddableContext={wrappedEmbeddableContext}
+          logEvent={this.logEventMethod}
         />
       </div>
     );
@@ -68,6 +79,7 @@ export default class PluginApp extends React.Component<IProps, IState> {
           authoredState={sideTip as ISideTip}
           addSideBarMethod={PluginAPI.addSidebar}
           portalDom={portalDom}
+          logEvent={this.logEventMethod}
         />
         ,
         portalDom)

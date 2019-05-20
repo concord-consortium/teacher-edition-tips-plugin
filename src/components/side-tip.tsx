@@ -5,13 +5,14 @@ import * as css from "./side-tip.sass";
 import { ISideTip, TeacherTipType } from "../types";
 import * as PluginAPI from "@concord-consortium/lara-plugin-api";
 import {
-  logAnalyticsEvent, AnalyticsActionType
+  ILogEvent, AnalyticsActionType
 } from "../utilities/analytics";
 
 interface IProps {
   authoredState: ISideTip;
   addSideBarMethod: (options: PluginAPI.ISidebarOptions) => PluginAPI.ISidebarController;
   portalDom: HTMLElement;
+  logEvent: (logData: ILogEvent) => void;
 }
 interface IState {}
 
@@ -71,8 +72,7 @@ export default class SideTip extends React.Component<IProps, IState> {
     const location = (action === AnalyticsActionType.loaded)
       ? window.location.toString()
       : undefined;
-
-    logAnalyticsEvent({
+    this.props.logEvent({
       tipType: TeacherTipType.SideTip,
       eventAction: action,
       tabName: "SideTip",
