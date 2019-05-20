@@ -59,11 +59,10 @@ export const logEvent = (runtimeContext: IPluginRuntimeContext, event: ILogEvent
 
 const logPluginEvent = (context: IPluginRuntimeContext, event: ILogEvent) => {
   const eventTypeName = `TeacherEdition-${event.tipType}-${event.eventAction}`;
-  const logEventPayload: IPluginEventPayload = {
-    eventAction: event.eventAction,
-    eventContent: event.location ? event.location : event.tabName
-  };
-  context.log({ event: eventTypeName, event_value: logEventPayload });
+  // The location is set for loaded events,
+  // and the tabName is set for tab switching events
+  const eventValue = event.location ? event.location : event.tabName;
+  context.log({ event: eventTypeName, event_value: eventValue });
 };
 
 const logAnalyticsEvent = (event: ILogEvent) => {
