@@ -30,6 +30,7 @@ interface IProps {
 interface IState {
   windowShadeType: WindowShadeType;
   layout: Layout;
+  initialOpenState: boolean;
   mediaType: MediaType;
   mediaURL: string;
   mediaCaption: string;
@@ -41,6 +42,7 @@ export default class WindowShadeForm extends React.Component<IProps, IState> {
   public state: IState = {
     windowShadeType: this.props.authoredState.windowShadeType,
     layout: this.props.authoredState.layout || Layout.MediaLeft,
+    initialOpenState: false,
     content: this.props.authoredState.content,
     content2: this.props.authoredState.content2 || "",
     mediaType: MediaType.None,
@@ -63,7 +65,7 @@ export default class WindowShadeForm extends React.Component<IProps, IState> {
   }
 
   public render() {
-    const { windowShadeType, content, content2, layout, mediaType, mediaURL,
+    const { windowShadeType, content, content2, layout, initialOpenState, mediaType, mediaURL,
       mediaCaption } = this.state;
     const windowShadeTypeOptions = allConfigurationTypes.map( (key: WindowShadeType) => {
       const config = getContentConfiguration(key);
@@ -118,6 +120,10 @@ export default class WindowShadeForm extends React.Component<IProps, IState> {
           </select>
         </div>
         <div>
+          <label> Window shade starts out open </label>
+          <input type="checkbox" onChange={this.updateInitialOpenState} checked={initialOpenState} />
+        </div>
+        <div>
           <label> Media URL </label>
           <br/>
           <input type="text"
@@ -165,6 +171,11 @@ export default class WindowShadeForm extends React.Component<IProps, IState> {
   private updateLayout = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const newValue = event.target.value as Layout;
     this.setState({layout: newValue}, () => this.sendChangeEvent());
+  }
+
+  private updateInitialOpenState = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.checked;
+    this.setState({initialOpenState: value}, () => this.sendChangeEvent());
   }
 
   private updateType = (event: React.ChangeEvent<HTMLSelectElement>) => {
