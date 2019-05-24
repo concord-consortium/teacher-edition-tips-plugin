@@ -25,12 +25,14 @@
       cursor: pointer
       vertical-align: top
       margin-top: 15px
-      transition: margin-top 250ms
+      transition: margin-top 250ms cubic-bezier(.43,.77,1,1.76)
       margin-right: 4px
       &:last-child
         margin-right: 0
       &:hover
         margin-top: 0 !important
+        transition: margin-top 0.25s
+        transition-timing-function: ease-in-out
 
       svg
         width: 45px
