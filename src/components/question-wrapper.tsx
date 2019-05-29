@@ -60,19 +60,19 @@ export default class QuestionWrapper extends React.Component<IProps, IState> {
       wrapperClass += " " + css.interactiveWrapper;
     }
 
-    let footer = null;
+    let visibleText = null;
     let wrappedContentClass = css.wrappedContent;
     if (activeTab === "Correct") {
-      footer = correctExplanation;
+      visibleText = correctExplanation;
       wrappedContentClass += " " + css.correct;
     } else if (activeTab === "Distractors") {
-      footer = distractorsExplanation;
+      visibleText = distractorsExplanation;
       wrappedContentClass += " " + css.distractors;
     } else if (activeTab === "TeacherTip") {
-      footer = teacherTip;
+      visibleText = teacherTip;
       wrappedContentClass += " " + css.teacherTip;
     } else if (activeTab === "Exemplar") {
-      footer = exemplar;
+      visibleText = exemplar;
       wrappedContentClass += " " + css.examplar;
     }
     if (activeTab !== null) {
@@ -110,10 +110,10 @@ export default class QuestionWrapper extends React.Component<IProps, IState> {
           { activeTab === "Distractors" && this.renderDistractorsOverlay() }
           { activeTab === "TeacherTip" && this.renderImageOverlay() }
           {
-            footer &&
-            <div className={css.footer}>
+            visibleText &&
+            <div className={css.questionWrapperText}>
               <Markdown className={css.authorMarkdown}>
-                { footer }
+                { visibleText }
               </Markdown>
             </div>
           }
