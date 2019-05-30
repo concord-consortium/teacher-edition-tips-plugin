@@ -1,6 +1,6 @@
 import * as React from "react";
 import Markdown from "markdown-to-jsx";
-import { IAuthoredQuestionWrapper, TeacherTipType } from "../types";
+import { IAuthoredQuestionWrapper, TeacherTipType, QuestionWrapperLocation } from "../types";
 import CheckA from "../icons/check_A.svg";
 import XA from "../icons/x_A.svg";
 import ExclamationSmall from "../icons/exclamation_small_A.svg";
@@ -52,7 +52,9 @@ export default class QuestionWrapper extends React.Component<IProps, IState> {
   public render() {
     const { activeTab } = this.state;
     const { authoredState } = this.props;
-    const { teacherTip, exemplar, correctExplanation, distractorsExplanation } = authoredState;
+    const { teacherTip, exemplar, correctExplanation, distractorsExplanation, location } = authoredState;
+
+    const _location = location ? location : QuestionWrapperLocation.Bottom;
 
     let wrapperClass = css.questionWrapper;
     if (this.isInteractive) {
@@ -77,6 +79,11 @@ export default class QuestionWrapper extends React.Component<IProps, IState> {
     }
     if (activeTab !== null) {
       wrappedContentClass += " " + css.open;
+    }
+
+    let visibleTextClass = css.questionWrapperText;
+    if (_location === QuestionWrapperLocation.StickyNote) {
+      visibleTextClass += " " + css.stickyNote;
     }
 
     return (
@@ -111,7 +118,7 @@ export default class QuestionWrapper extends React.Component<IProps, IState> {
           { activeTab === "TeacherTip" && this.renderImageOverlay() }
           {
             visibleText &&
-            <div className={css.questionWrapperText}>
+            <div className={visibleTextClass}>
               <Markdown className={css.authorMarkdown}>
                 { visibleText }
               </Markdown>
