@@ -29,6 +29,12 @@ export enum Layout {
   MediaCenter = "mediaCenter"
 }
 
+export enum QuestionWrapperLocation {
+  Bottom = "bottom",
+  StickyNote = "stickyNote",
+  Top = "top"
+}
+
 export interface IWindowShade {
   windowShadeType: WindowShadeType;
   initialOpenState?: boolean;
@@ -55,4 +61,5 @@ export interface IAuthoredQuestionWrapper {
   teacherTip?: string;
   teacherTipImageOverlay?: string;
   exemplar?: string;
+  location?: QuestionWrapperLocation;
 }

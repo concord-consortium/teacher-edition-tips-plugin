@@ -1,8 +1,13 @@
 import * as React from "react";
 import * as css from "./question-wrapper-form.sass";
 
-import { IAuthoredQuestionWrapper  } from "../../../types";
-import { getContentConfiguration } from "../../../config/ui-configurations";
+import { IAuthoredQuestionWrapper, QuestionWrapperLocation  } from "../../../types";
+
+const QuestionWrapperLocationStrings = {
+  [QuestionWrapperLocation.Bottom]: "Bottom",
+  [QuestionWrapperLocation.StickyNote]: "Sticky note",
+  [QuestionWrapperLocation.Top]: "Top"
+};
 
 interface IProps {
   onSave?: (newState: IAuthoredQuestionWrapper) => void;
@@ -15,6 +20,7 @@ interface IState {
   teacherTip?: string;
   teacherTipImageOverlay?: string;
   exemplar?: string;
+  location?: QuestionWrapperLocation;
 }
 
 export default class QuestionWRapperForm extends React.Component<IProps, IState> {
@@ -30,8 +36,15 @@ export default class QuestionWRapperForm extends React.Component<IProps, IState>
   public render() {
     const {
       correctExplanation, distractorsExplanation,  teacherTip,
-      teacherTipImageOverlay, exemplar
+      teacherTipImageOverlay, exemplar, location
     } = this.state;
+
+    const _location = location ? location : QuestionWrapperLocation.Bottom;
+
+    const allLocations = [
+      QuestionWrapperLocation.Bottom,
+      QuestionWrapperLocation.StickyNote
+    ];
 
     return (
       <div className={css.container}>
@@ -79,6 +92,24 @@ export default class QuestionWRapperForm extends React.Component<IProps, IState>
             onChange={this.updateExemplar}
           />
         </div>
+
+        <div className={css.section}>
+          <label> Note location </label>
+          <br/>
+          <select onChange={this.updateLocation} value={_location}>
+            {
+              allLocations.map( (key: QuestionWrapperLocation ) => {
+                return(
+                  <option
+                    value={key}
+                    key={key}>
+                    {QuestionWrapperLocationStrings[key]}
+                  </option>
+                );
+              })
+            }
+          </select>
+        </div>
       </div>
     );
   }
@@ -112,6 +143,11 @@ export default class QuestionWRapperForm extends React.Component<IProps, IState>
   private updateTeacherTipOverlay = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = event.target.value;
     this.setState({teacherTipImageOverlay: newValue}, () => this.sendChangeEvent());
+  }
+
+  private updateLocation = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const newValue = event.target.value as QuestionWrapperLocation;
+    this.setState({location: newValue}, () => this.sendChangeEvent());
   }
 
 }

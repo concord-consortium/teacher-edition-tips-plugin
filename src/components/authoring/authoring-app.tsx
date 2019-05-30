@@ -17,7 +17,7 @@ import markdownHelpContent from "./markdown-help";
 
 import {
   IAuthoredState, IWindowShade, ISideTip, WindowShadeType,
-  IAuthoredQuestionWrapper, TeacherTipType
+  IAuthoredQuestionWrapper, TeacherTipType, QuestionWrapperLocation
 } from "../../types";
 import { ILogEvent } from "../../utilities/analytics";
 
@@ -57,7 +57,8 @@ const defaultQuestionWrapperProps: IAuthoredQuestionWrapper = {
   distractorsExplanation: "distractor",
   exemplar: "exemplar",
   teacherTip: "teacherTip",
-  teacherTipImageOverlay: ""
+  teacherTipImageOverlay: "",
+  location: QuestionWrapperLocation.Bottom
 };
 
 const defaultProps: IAuthoredState = {
