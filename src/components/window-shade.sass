@@ -1,12 +1,11 @@
 @import "themes.sass"
 
 .windowShade
-  width: 946px
+  width: 100%
   max-width: 946px
-  min-width: 946px
   border-radius: $borderRadius
   border: $border-style $border-width
-  
+
 .theoryAndBackground
   border-color: $yellowBorderColor
   background-color: $yellowContentBackgroundColor
@@ -28,11 +27,12 @@
 
 .windowShadeHidden
   height: 0
-  border-left: -3px
-  border-right: 0
   border-bottom: 0
   border-radius: 0
   margin-right: 3px;
+  margin-bottom: 27px
+  border-left-color: transparent
+  border-right-color: transparent
   .content
     height: 0
     overflow: hidden
