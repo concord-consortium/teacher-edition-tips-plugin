@@ -59,7 +59,7 @@
     padding: 1px
     display: grid
     grid-template-columns: 100%
-    grid-template-rows: [main-content] auto [footer] auto
+    grid-template-rows: [header] auto [main-content] auto [footer] auto
     position: relative
 
     .originalContent
@@ -136,6 +136,10 @@
     p
       margin-top: 0px
       margin-bottom: 12pt
+
+    &.header
+      grid-row-start: header
+      border-radius: 0
 
     &.stickyNote
       grid-row-start: main-content

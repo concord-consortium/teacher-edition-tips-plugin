@@ -43,7 +43,8 @@ export default class QuestionWRapperForm extends React.Component<IProps, IState>
 
     const allLocations = [
       QuestionWrapperLocation.Bottom,
-      QuestionWrapperLocation.StickyNote
+      QuestionWrapperLocation.StickyNote,
+      QuestionWrapperLocation.Top
     ];
 
     return (
