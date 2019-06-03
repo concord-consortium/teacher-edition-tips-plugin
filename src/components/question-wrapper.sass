@@ -1,5 +1,5 @@
 @import "themes.sass"
-  
+
 .questionWrapper
   .headers
     height: 50px
@@ -73,21 +73,21 @@
       .overlay
         background: #2FE450
         opacity: 0.12
-      .footer
+      .questionWrapperText
         background: #B8F7C3
 
     &.distractors
       .overlay
         background: #FC1B1B
         opacity: 0.12
-      .footer
+      .questionWrapperText
         background: #FDB2B2
 
     &.teacherTip
       .overlay
         background: #A6D5FF
         opacity: 0.12
-      .footer
+      .questionWrapperText
         background: #A6D5FF
 
   .correctTickMark
@@ -112,7 +112,7 @@
     top: 0
     left: 0
 
-  .footer
+  .questionWrapperText
     font-family: Arial, Helvetica, sans-serif
     font-size: 16px
     line-height: 24px
@@ -129,6 +129,32 @@
     p
       margin-top: 0px
       margin-bottom: 12pt
+
+    &.stickyNote
+      position: absolute
+      top: 100px
+      margin: auto
+      left: 0
+      right: 0
+      width: $stickyNoteWidth
+      border: $stickyNoteBorderWidth solid
+      padding: 55px 30px 28px 30px
+      box-sizing: border-box
+      &::before
+        content: ""
+        position: absolute
+        top: 0
+        left: 0
+        width: $stickyNoteWidth - (2 * $stickyNoteBorderWidth)
+        height: 30px
+
+  .wrappedContent
+    &.teacherTip
+      .stickyNote
+        border-color: $deepBlue
+        background-color: $paleBlue
+        &::before
+          background: $fullBlue
 
 
   // Interactive teacher tip has different styles. It's enough to amend basic styles.
