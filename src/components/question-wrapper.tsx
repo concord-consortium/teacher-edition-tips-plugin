@@ -111,7 +111,7 @@ export default class QuestionWrapper extends React.Component<IProps, IState> {
         <div className={wrappedContentClass}>
           <div className={css.dotLeft}/>
           <div className={css.dotRight}/>
-          <div ref={this.wrappedEmbeddableDivContainer} />
+          <div className={css.originalContent} ref={this.wrappedEmbeddableDivContainer} />
           <div className={css.overlay} />
           { activeTab === "Correct" && this.renderCorrectOverlay() }
           { activeTab === "Distractors" && this.renderDistractorsOverlay() }
