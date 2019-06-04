@@ -84,6 +84,8 @@ export default class QuestionWrapper extends React.Component<IProps, IState> {
     let visibleTextClass = css.questionWrapperText;
     if (_location === QuestionWrapperLocation.StickyNote) {
       visibleTextClass += " " + css.stickyNote;
+    } else if (_location === QuestionWrapperLocation.Top) {
+      visibleTextClass += " " + css.header;
     }
 
     return (
