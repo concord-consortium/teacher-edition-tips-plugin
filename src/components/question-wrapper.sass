@@ -72,27 +72,24 @@
       pointer-events: none
       width: 100%
       height: 100%
-      z-index: 1000
       border-radius: inherit
+      opacity: 0.12
 
     &.correct, &.examplar
       .overlay
         background: #2FE450
-        opacity: 0.12
       .questionWrapperText
         background: #B8F7C3
 
     &.distractors
       .overlay
         background: #FC1B1B
-        opacity: 0.12
       .questionWrapperText
         background: #FDB2B2
 
     &.teacherTip
       .overlay
         background: #A6D5FF
-        opacity: 0.12
       .questionWrapperText
         background: #A6D5FF
 
@@ -116,6 +113,7 @@
     width: 100%
     grid-column-start: 1
     grid-row-start: main-content
+    opacity: 0.99         // places image in same stacking context as overlay, and on top of iframe content
 
   .questionWrapperText
     grid-column-start: 1
