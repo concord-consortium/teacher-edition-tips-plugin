@@ -52,6 +52,28 @@
       background: #1A97FF
       border-color: #094F98
 
+// Wrapped content uses a grid layout, which among other things allows us to stack children without using
+//  absolute positioning, which lets the cells size themselves to the largest child. This is useful for when
+//  we have an image on top of an interactive, and want to expand to the largest size.
+//
+//    |==============|
+//    |    header    |     questionWrapperText? (if placed at top)
+//    |==============|
+//    | main-content |     originalContent: (DOM element from LARA: question or interactive)
+//    |              |     overlay
+//    |              |     teacherTipImageOverlay?
+//    |              |     questionWrapperText? (if stickyNote)
+//    |==============|
+//    |    footer    |     questionWrapperText? (if placed at bottom)
+//    |==============|
+//
+//  Note on z-index and stacking contexts in the main-content: The originalContent is likely to be an
+//  iFrame. This is heavy-weight, and so will be drawn on top of everything in its same stacking context.
+//  However, absolutely-positioned elements and < 1 opacity elements always create their own stacking contexts.
+//  Therefore, the semi-transparent overlay and the stickyNote questionWrapperText are placed on top of the
+//  iFrame. In order to place the teacherTipImageOverlay in the correct position, it is given an opacity of 0.99,
+//  which puts it in the overlay's context, thus rendering in the order above */
+
   .wrappedContent
     border: 3px solid #7A7A7A
     border-bottom-left-radius: 17px
@@ -72,27 +94,24 @@
       pointer-events: none
       width: 100%
       height: 100%
-      z-index: 1000
       border-radius: inherit
+      opacity: 0.12
 
     &.correct, &.examplar
       .overlay
         background: #2FE450
-        opacity: 0.12
       .questionWrapperText
         background: #B8F7C3
 
     &.distractors
       .overlay
         background: #FC1B1B
-        opacity: 0.12
       .questionWrapperText
         background: #FDB2B2
 
     &.teacherTip
       .overlay
         background: #A6D5FF
-        opacity: 0.12
       .questionWrapperText
         background: #A6D5FF
 
@@ -116,6 +135,7 @@
     width: 100%
     grid-column-start: 1
     grid-row-start: main-content
+    opacity: 0.99         // places image in same stacking context as overlay, on top of iframe content. See note above
 
   .questionWrapperText
     grid-column-start: 1
