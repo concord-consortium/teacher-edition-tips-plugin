@@ -96,18 +96,26 @@
     h1,h2,h3,h4,h5,th,em,strong
       color: $aquaContentTextAccentColor
 
-.mediaContainerLeft
-  display: grid
-  margin-left: 20px
+.mediaContainerLeftWrapper
+  display: flex
   margin-right: 20px
   margin-bottom: 20px
+
+.mediaContainerLeftPadding
+  width: 3%
+  max-width: 30px
+
+.mediaContainerLeft
+  display: grid
+  grid-template-columns: repeat(auto-fill, minmax(260px, auto))
+  grid-gap: 0 20px
+  width: 100%
   .mediaWrapper
-    grid-column-start: 1
-    grid-column-end: 2
-    grid-row-start: 1
-    grid-row-end: 1
+    grid-column: auto / span 2
     img
-      width: 512px
+      grid-column: auto / span 2
+      max-width: 512px
+      width: 100%
       border: solid 2px
       &.theoryAndBackground
         border-color: $deepYellow
@@ -120,7 +128,9 @@
       &.howToUse
         border-color: $deepAqua
     video
-      width: 512px
+      grid-column: auto / span 2
+      max-width: 512px
+      width: 100%
       border: solid 2px
       &.theoryAndBackground
         border-color: $deepYellow
@@ -133,7 +143,7 @@
       &.howToUse
         border-color: $deepAqua
     .mediaCaption
-      width: 492px
+      width: 100%
       text-align: center
       font-family: $captionFont
       font-weight: $captionWeight
@@ -144,11 +154,8 @@
       em,strong
         color: $captionBlack
   .leftLayoutContent
-    grid-column-start: 2
-    grid-column-end: 3
-    grid-row-start: 1
-    grid-row-end: 2
-    width: 320px
+    max-width: 320px
+    margin: 0
     .authorMarkdown
       margin: 0
 

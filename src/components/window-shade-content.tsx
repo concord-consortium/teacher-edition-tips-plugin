@@ -46,14 +46,17 @@ export default class WindowShadeContent extends React.Component<IProps, IState> 
       switch (layout) {
         case Layout.MediaLeft: {
           return (
-            <div className={css.mediaContainerLeft}>
-              <div className={css.mediaWrapper}>
-                { this.renderMedia(layout, mediaCaption, css[config.styleClassName]) }
-              </div>
-              <div className={`${cssClassNames.join(" ")} ${css.leftLayoutContent}`} >
-                <Markdown>
-                  {content + "\n" + (content2 ? content2 : "")}
-                </Markdown>
+            <div className={css.mediaContainerLeftWrapper}>
+              <div className={css.mediaContainerLeftPadding} />
+              <div className={css.mediaContainerLeft}>
+                <div className={css.mediaWrapper}>
+                  { this.renderMedia(layout, mediaCaption, css[config.styleClassName]) }
+                </div>
+                <div className={`${cssClassNames.join(" ")} ${css.leftLayoutContent}`} >
+                  <Markdown>
+                    {content + "\n" + (content2 ? content2 : "")}
+                  </Markdown>
+                </div>
               </div>
             </div>
           );
