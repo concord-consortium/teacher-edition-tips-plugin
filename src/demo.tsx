@@ -110,7 +110,7 @@ moon\’s detail.
 };
 
 const authoredStateF = {
-  windowShadeType: WindowShadeType.TeacherTip,
+  windowShadeType: WindowShadeType.HowToUse,
   content: `
 This is an example of a video window shade using the "mediaLeft" layout.
 `,
@@ -200,6 +200,10 @@ const logEventMethod = (logData: ILogEvent) => {
   // tslint:enable no-console
 };
 
+function toggleWidth() {
+  document.getElementById("window-shade")!.classList.toggle("narrow");
+}
+
 ReactDOM.render(
   <div>
     <h2>Teacher Edition Demo</h2>
@@ -207,6 +211,7 @@ ReactDOM.render(
       This page demonstrates some of the Teacher-Edition Tips Plug-in
       features.
     </p>
+    <button onClick={toggleWidth}>Toggle narrow width</button>
     <p>Basic contents, featuring Markdown styling:</p>
     <div style={windowShadeContainerDivStyle}>
       <WindowShade authoredState={authoredStateA} logEvent={logEventMethod} />
