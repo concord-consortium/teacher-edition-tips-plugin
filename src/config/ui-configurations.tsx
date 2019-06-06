@@ -6,6 +6,8 @@ import LightbulbA from "../icons/lightbulb_A.svg";
 import LightbulbB from "../icons/lightbulb_B.svg";
 import ShovelA from "../icons/shovel_A.svg";
 import ShovelB from "../icons/shovel_B.svg";
+import PointerA from "../icons/pointer_A.svg";
+import PointerB from "../icons/pointer_B.svg";
 
 export interface IWindowShadeConfiguration {
   FrontIcon: SvgrComponent;
@@ -38,6 +40,12 @@ export const WindowShadeConfigurations: {[index: string]: IWindowShadeConfigurat
     RearIcon: ShovelB,
     label: "Digging Deeper",
     styleClassName: "diggingDeeper",
+  },
+  howToUse: {
+    FrontIcon: PointerA,
+    RearIcon: PointerB,
+    label: "How to Use This Interactive",
+    styleClassName: "howToUse",
   }
 };
 
