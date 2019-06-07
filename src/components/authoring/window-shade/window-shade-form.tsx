@@ -8,7 +8,8 @@ const allConfigurationTypes = [
   WindowShadeType.TeacherTip,
   WindowShadeType.TheoryAndBackground,
   WindowShadeType.DiscussionPoints,
-  WindowShadeType.DiggingDeeper
+  WindowShadeType.DiggingDeeper,
+  WindowShadeType.HowToUse
 ];
 
 const allMediaTypes = [

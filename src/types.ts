@@ -15,7 +15,8 @@ export enum WindowShadeType {
   TheoryAndBackground = "theoryAndBackground",
   TeacherTip = "teacherTip",
   DiscussionPoints = "discussionPoints",
-  DiggingDeeper = "diggingDeeper"
+  DiggingDeeper = "diggingDeeper",
+  HowToUse = "howToUse"
 }
 
 export enum MediaType {
