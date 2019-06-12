@@ -117,6 +117,8 @@ export default class AuthoringApp extends React.Component<IProps, IState> {
             />
           }
           <br/>
+        </div>
+        <div className={css.authoringFormContainer}>
           {
           showWindowShade &&
           <WindowShadeForm
