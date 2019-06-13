@@ -67,7 +67,6 @@ const defaultProps: IAuthoredState = {
   windowShade: defaultWindowShadeProps
 };
 
-const portalDom = document.createElement("div");
 interface IProps {
   initialAuthoredState: IAuthoredState;
   updateFunction?: (nextState: IAuthoredQuestionWrapper) => void;
@@ -112,7 +111,6 @@ export default class AuthoringApp extends React.Component<IProps, IState> {
             <SideTip
               authoredState={ sideTip || defaultSideTipProps }
               addSideBarMethod={this.addSideBarMethod}
-              portalDom={portalDom}
               logEvent={this.logEventMethod}
             />
           }
