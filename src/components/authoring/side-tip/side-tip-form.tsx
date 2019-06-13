@@ -13,6 +13,7 @@ const allMediaTypes = [
 interface IProps {
   onSave?: (newState: ISideTip) => any;
   authoredState: ISideTip;
+  hideSaveButton?: boolean;
 }
 
 interface IState {
@@ -39,6 +40,7 @@ export default class SideTipForm extends React.Component<IProps, IState> {
 
   public render() {
     const { content, mediaType, mediaURL } = this.state;
+    const { hideSaveButton } = this.props;
 
     const mediaTypeOptions = allMediaTypes.map( (key: MediaType ) => {
       return(
@@ -73,7 +75,9 @@ export default class SideTipForm extends React.Component<IProps, IState> {
             value={content}
             onChange={this.updateContent}/>
         </div>
-        <button onClick={this.sendChangeEvent}> Save </button>
+        { !hideSaveButton &&
+          <button onClick={this.sendChangeEvent}> Save </button>
+        }
       </div>
     );
   }
