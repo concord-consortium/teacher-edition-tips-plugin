@@ -82,7 +82,10 @@ export const initPlugin = () => {
   }
   // tslint:disable-next-line:no-console
   console.log("LARA Plugin API available, TeacherEditionTipsPlugin initialization");
-  PluginAPI.registerPlugin("teacherEditionTips", TeacherEditionTipsPlugin);
+  PluginAPI.registerPlugin({
+    runtimeClass: TeacherEditionTipsRuntimePlugin,
+    authoringClass: TeacherEditionTipsAuthoringPlugin
+  });
 };
 
 initPlugin();
