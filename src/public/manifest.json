@@ -9,12 +9,14 @@
       {
         "label": "windowShade",
         "name": "Window Shades",
-        "scope": "embeddable"
+        "scope": "embeddable",
+        "guiAuthoring": true
       },
       {
         "label": "sideTip",
         "name": "Side Tips",
-        "scope": "embeddable"
+        "scope": "embeddable",
+        "guiAuthoring": true
       },
       {
         "label": "questionWrapper",
@@ -26,7 +28,8 @@
           "MwInteractive",
           "ImageInteractive",
           "VideoInteractive"
-        ]
+        ],
+        "guiAuthoring": true
       }
     ]
   }
