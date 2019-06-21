@@ -2,8 +2,9 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import PluginApp from "./components/plugin-app";
 import * as PluginAPI from "@concord-consortium/lara-plugin-api";
+import InlineAuthoringForm from "./components/authoring/inline-authoring-form";
 
-const getAuthoredState = (context: PluginAPI.IPluginRuntimeContext) => {
+const getAuthoredState = (context: PluginAPI.IPluginRuntimeContext | PluginAPI.IPluginAuthoringContext) => {
   if (!context.authoredState) {
     return {};
   }
@@ -24,7 +25,7 @@ const isTeacherEdition = () => {
   return window.location.search.indexOf("mode=teacher-edition") > 0;
 };
 
-export class TeacherEditionTipsPlugin {
+export class TeacherEditionTipsRuntimePlugin {
   public context: PluginAPI.IPluginRuntimeContext;
   public pluginAppComponent: any;
 
@@ -49,6 +50,30 @@ export class TeacherEditionTipsPlugin {
   }
 }
 
+export class TeacherEditionTipsAuthoringPlugin {
+  public context: PluginAPI.IPluginAuthoringContext;
+  public pluginAppComponent: any;
+
+  constructor(context: PluginAPI.IPluginAuthoringContext) {
+    this.context = context;
+    this.renderPluginApp();
+  }
+
+  public renderPluginApp = () => {
+    const authoredState = getAuthoredState(this.context);
+    if (!authoredState.tipType) {
+      authoredState.tipType = this.context.componentLabel;
+    }
+
+    this.pluginAppComponent = ReactDOM.render(
+      <InlineAuthoringForm
+        initialAuthoredState={ authoredState }
+        saveAuthoredPluginState={ this.context.saveAuthoredPluginState }
+      />,
+      this.context.container);
+  }
+}
+
 export const initPlugin = () => {
   if (!PluginAPI || !PluginAPI.registerPlugin) {
     // tslint:disable-next-line:no-console
@@ -57,7 +82,10 @@ export const initPlugin = () => {
   }
   // tslint:disable-next-line:no-console
   console.log("LARA Plugin API available, TeacherEditionTipsPlugin initialization");
-  PluginAPI.registerPlugin("teacherEditionTips", TeacherEditionTipsPlugin);
+  PluginAPI.registerPlugin({
+    runtimeClass: TeacherEditionTipsRuntimePlugin,
+    authoringClass: TeacherEditionTipsAuthoringPlugin
+  });
 };
 
 initPlugin();

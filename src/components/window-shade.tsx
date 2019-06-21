@@ -12,6 +12,7 @@ import { ILogEvent, AnalyticsActionType } from "../utilities/analytics";
 interface IProps {
   authoredState: IWindowShade;
   logEvent: (logData: ILogEvent) => void;
+  className?: string;
 }
 
 interface IState {
@@ -36,13 +37,15 @@ export default class WindowShade extends React.Component<IProps, IState> {
     const { open } = this.state;
     const { windowShadeType, tabNameOverride, content, content2, layout,
       mediaType, mediaURL, mediaCaption } = this.props.authoredState;
+    const { className } = this.props;
     const config = WindowShadeConfigurations[windowShadeType];
     const cssOpenState = open ? css.windowShadeShown : css.windowShadeHidden;
     const cssShadeType = css[config.styleClassName];
+    const additionalClassName = className ? css[className] : "";
     const label = tabNameOverride !== undefined ? tabNameOverride : config.label;
 
     return (
-      <div className={`${css.windowShade} ${cssShadeType} ${cssOpenState}`} >
+      <div className={`${css.windowShade} ${cssShadeType} ${cssOpenState} ${additionalClassName}`} >
         <Dot config={config} side={sidePosition.left} />
         <Dot config={config} side={sidePosition.right} />
         <WindowShadeButton

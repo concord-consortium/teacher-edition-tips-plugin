@@ -1,5 +1,4 @@
 import * as React from "react";
-import * as ReactDOM from "react-dom";
 
 import * as css from "./authoring-app.sass";
 import WindowShade from "../window-shade";
@@ -11,41 +10,56 @@ import QuestionWrapperForm from "./question-wrapper/question-wrapper-form";
 import SideTip from "../side-tip";
 import SideTipForm from "./side-tip/side-tip-form";
 
-import JsonEditor from "./json-editor";
-
-import markdownHelpContent from "./markdown-help";
-
 import {
-  IAuthoredState, IWindowShade, ISideTip, WindowShadeType,
-  IAuthoredQuestionWrapper, TeacherTipType, QuestionWrapperLocation
+  IAuthoredState, IWindowShade, ISideTip, IAuthoredQuestionWrapper, TeacherTipType,
+  WindowShadeType, QuestionWrapperLocation
 } from "../../types";
 import { ILogEvent } from "../../utilities/analytics";
 
-import { defaultWindowShadeProps, defaultQuestionWrapperProps, defaultSideTipProps } from "./inline-authoring-form";
-
-const markdownHelper = {
-  windowShadeType: WindowShadeType.TeacherTip,
-  content: markdownHelpContent,
-  tabNameOverride: "Help with Markdown"
+export const defaultWindowShadeProps: IWindowShade = {
+  windowShadeType: WindowShadeType.TheoryAndBackground,
+  initialOpenState: true,
+  content: "This is something",
+  mediaCaption: "Last, First. \"Title of Work.\" Year created. Site Title " +
+    "[OR] Publisher. Gallery [OR] Location. http://www.url.com."
 };
 
-const defaultProps: IAuthoredState = {
-  tipType: TeacherTipType.WindowShade,
-  questionWrapper: defaultQuestionWrapperProps,
-  windowShade: defaultWindowShadeProps
+/* tslint:disable max-line-length*/
+export const defaultSideTipProps: ISideTip = {
+  content: `Welcome to the **Teacher Edition** of the **GEODE: What will Earth look like in 500 million years?** activity sequence. This interactive guide will help you get acquainted with these activities from a student’s perspective and also provide you with learning theory and learning objectives, additional information on subject matter, classroom discussion points, and tips on achieving learning goals.
+
+  ## Getting Started
+
+  To begin, work through the lesson’s content page by page. The Teacher Edition components — which you can click or tap to open and close — will highlight additional information in several key areas:
+
+  ## Getting Started
+
+  To begin, work through the lesson’s content page by page. The Teacher Edition components — which you can click or tap to open and close — will highlight additional information in several key areas:
+
+
+  `
+};
+/* tslint:enable max-line-length*/
+
+export const defaultQuestionWrapperProps: IAuthoredQuestionWrapper = {
+  correctExplanation: "correct",
+  distractorsExplanation: "distractor",
+  exemplar: "exemplar",
+  teacherTip: "teacherTip",
+  teacherTipImageOverlay: "",
+  location: QuestionWrapperLocation.Bottom
 };
 
 interface IProps {
   initialAuthoredState: IAuthoredState;
-  updateFunction?: (nextState: IAuthoredQuestionWrapper) => void;
+  saveAuthoredPluginState: (json: string) => void;
 }
 
 interface IState {
   authoredState: IAuthoredState;
 }
 
-// Headless container that provides state to children.
-export default class AuthoringApp extends React.Component<IProps, IState> {
+export default class InlineAuthoringForm extends React.Component<IProps, IState> {
   public state: IState = {
     authoredState: this.setInitialState()
   };
@@ -57,15 +71,12 @@ export default class AuthoringApp extends React.Component<IProps, IState> {
     const showQuestionWrapper =  tipType === TeacherTipType.QuestionWrapper;
     const showSideTip =  tipType === TeacherTipType.SideTip;
     return (
-      <div className={css.container}>
-        <div className={css.selector}>
-          {this.renderTypeSelector()}
-        </div>
+      <div className={css.inlineAuthoringContainer}>
         <div className={css.preview}>
           {
             showWindowShade &&
             <WindowShade authoredState={ windowShade || defaultWindowShadeProps }
-            logEvent={this.logEventMethod} />
+            logEvent={this.logEventMethod} className="inlineAuthoring" />
           }
           {
             showQuestionWrapper &&
@@ -83,13 +94,12 @@ export default class AuthoringApp extends React.Component<IProps, IState> {
             />
           }
           <br/>
-        </div>
-        <div className={css.authoringFormContainer}>
           {
           showWindowShade &&
           <WindowShadeForm
             authoredState={ windowShade || defaultWindowShadeProps }
             onSave={ this.updateWindowShade }
+            hideSaveButton={ true }
           />
           }
           {
@@ -104,14 +114,13 @@ export default class AuthoringApp extends React.Component<IProps, IState> {
           <SideTipForm
             authoredState={ sideTip || defaultSideTipProps }
             onSave={ this.updateSideTip }
+            hideSaveButton={ true }
           />
           }
         </div>
-        <div className={css.json}>
-          <JsonEditor authoredState={authoredState} onSave={this.updateState} />
-        </div>
-        <div className={css.markdownHelper}>
-          <WindowShade authoredState={markdownHelper} logEvent={this.logEventMethod} />
+        <div className={css.inlineFormButtons}>
+          <button onClick={this.saveAuthoredState} className="embeddable-save">Save</button>
+          <button className="close">Cancel</button>
         </div>
       </div>
     );
@@ -128,25 +137,6 @@ export default class AuthoringApp extends React.Component<IProps, IState> {
       open: () => null,
       close: () => null
     };
-  }
-
-  private renderTypeSelector() {
-    const {tipType} = this.state.authoredState;
-    const options = [
-      TeacherTipType.QuestionWrapper,
-      TeacherTipType.SideTip,
-      TeacherTipType.WindowShade
-    ].map( (type) => <option value={type} key={type}>{type} </option>);
-
-    return (
-      <select className={css.big} value={tipType} onChange={this.changeTypeSelection}>
-        {options}
-      </select>
-    );
-  }
-  private changeTypeSelection = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const newType = event.target.value as TeacherTipType;
-    this.updateState({tipType: newType});
   }
 
   private updateWindowShade = (newWindowShade: IWindowShade) => {
@@ -173,7 +163,8 @@ export default class AuthoringApp extends React.Component<IProps, IState> {
   private setInitialState(): IAuthoredState {
       return this.cloneState(this.props.initialAuthoredState);
   }
-}
 
-const targetDiv = document.getElementById("window-shade-editor");
-ReactDOM.render(<AuthoringApp initialAuthoredState={defaultProps}/>, targetDiv);
+  private saveAuthoredState = () => {
+    this.props.saveAuthoredPluginState(JSON.stringify(this.state.authoredState));
+  }
+}

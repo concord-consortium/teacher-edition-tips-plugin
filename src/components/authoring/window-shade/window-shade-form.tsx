@@ -26,6 +26,7 @@ const allMediaLayouts = [
 interface IProps {
   onSave?: (newState: IWindowShade) => any;
   authoredState: IWindowShade;
+  hideSaveButton?: boolean;
 }
 
 interface IState {
@@ -68,6 +69,7 @@ export default class WindowShadeForm extends React.Component<IProps, IState> {
   public render() {
     const { windowShadeType, content, content2, layout, initialOpenState, mediaType, mediaURL,
       mediaCaption } = this.state;
+    const { hideSaveButton } = this.props;
     const windowShadeTypeOptions = allConfigurationTypes.map( (key: WindowShadeType) => {
       const config = getContentConfiguration(key);
       return(
@@ -153,7 +155,9 @@ export default class WindowShadeForm extends React.Component<IProps, IState> {
             value={content2}
             onChange={this.updateContent2}/>
         </div>
-        <button onClick={this.sendChangeEvent}> Save </button>
+        { !hideSaveButton &&
+          <button onClick={this.sendChangeEvent}> Save </button>
+        }
       </div>
     );
   }
