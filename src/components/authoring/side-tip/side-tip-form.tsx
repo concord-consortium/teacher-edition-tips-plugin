@@ -54,21 +54,21 @@ export default class SideTipForm extends React.Component<IProps, IState> {
 
     return (
       <div className={css.container}>
-        <div>
+        <div className={css.section}>
           <label> Media Type </label>
           <br/>
           <select onChange={this.updateMediaType} value={mediaType}>
             {mediaTypeOptions}
           </select>
         </div>
-        <div>
+        <div className={css.section}>
           <label> Media URL </label>
           <br/>
           <input type="text"
             value={mediaURL}
             onChange={this.updatemediaURL}/>
         </div>
-        <div>
+        <div className={css.section}>
           <label> Content (Markdown) </label>
           <br/>
           <textarea
