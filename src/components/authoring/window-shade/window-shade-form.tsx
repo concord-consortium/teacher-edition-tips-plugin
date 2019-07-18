@@ -101,39 +101,39 @@ export default class WindowShadeForm extends React.Component<IProps, IState> {
 
     return (
       <div className={css.container}>
-        <div>
+        <div className={css.section}>
           <label> Tip Type </label>
           <br/>
           <select onChange={this.updateType} value={windowShadeType}>
             {windowShadeTypeOptions}
           </select>
         </div>
-        <div>
+        <div className={css.section}>
           <label> Media Type </label>
           <br/>
           <select onChange={this.updateMediaType} value={mediaType}>
             {mediaTypeOptions}
           </select>
         </div>
-        <div>
+        <div className={css.section}>
           <label> Layout -- for Media Containers </label>
           <br/>
           <select onChange={this.updateLayout} value={layout}>
             {layoutTypeOptions}
           </select>
         </div>
-        <div>
-          <label> Window shade starts out open </label>
+        <div className={css.section}>
           <input type="checkbox" onChange={this.updateInitialOpenState} checked={initialOpenState} />
+          <label> Window shade starts out open </label>
         </div>
-        <div>
+        <div className={css.section}>
           <label> Media URL </label>
           <br/>
           <input type="text"
             value={mediaURL}
             onChange={this.updateMediaURL}/>
         </div>
-        <div>
+        <div className={css.section}>
           <label> Media Caption (Markdown) </label>
           <br/>
           <textarea
@@ -141,16 +141,20 @@ export default class WindowShadeForm extends React.Component<IProps, IState> {
             value={mediaCaption}
             onChange={this.updateMediaCaption}/>
         </div>
-        <div>
+        <div className={css.section}>
           <label> Content (Markdown) </label>
           <br/>
           <textarea
             value={content}
             onChange={this.updateContent}/>
         </div>
-        <div>
+        <div className={css.section}>
           <label> Content-2 (Markdown) </label>
           <br/>
+          <p className={css.note}>
+            Note: Content-2 is rendered after Content except when you use the "mediaCenter" layout,
+            in which case it is rendered after the media (and Content is rendered before the media).
+          </p>
           <textarea
             value={content2}
             onChange={this.updateContent2}/>
