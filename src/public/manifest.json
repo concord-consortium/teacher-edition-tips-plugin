@@ -25,6 +25,7 @@
         "decorates": [
           "Embeddable::MultipleChoice",
           "Embeddable::OpenResponse",
+          "Embeddable::ImageQuestion",
           "MwInteractive",
           "ImageInteractive",
           "VideoInteractive"
