@@ -2,6 +2,7 @@ import * as React from "react";
 import * as css from "./question-wrapper-form.sass";
 
 import { IAuthoredQuestionWrapper, QuestionWrapperLocation  } from "../../../types";
+import { isMCQuestion } from "../../question-wrapper";
 
 const QuestionWrapperLocationStrings = {
   [QuestionWrapperLocation.Bottom]: "Bottom",
@@ -12,6 +13,7 @@ const QuestionWrapperLocationStrings = {
 interface IProps {
   onSave?: (newState: IAuthoredQuestionWrapper) => void;
   authoredState: IAuthoredQuestionWrapper;
+  wrappedEmbeddableContext: any;
 }
 
 interface IState {
@@ -34,6 +36,7 @@ export default class QuestionWRapperForm extends React.Component<IProps, IState>
   }
 
   public render() {
+    const { wrappedEmbeddableContext } = this.props;
     const {
       correctExplanation, distractorsExplanation,  teacherTip,
       teacherTipImageOverlay, exemplar, location
@@ -49,6 +52,7 @@ export default class QuestionWRapperForm extends React.Component<IProps, IState>
 
     return (
       <div className={css.container}>
+        { isMCQuestion(wrappedEmbeddableContext) ?
         <div className={css.section}>
           <label> Correct Explanation (Markdown) </label>
           <br/>
@@ -56,8 +60,9 @@ export default class QuestionWRapperForm extends React.Component<IProps, IState>
             value={correctExplanation}
             onChange={this.updateCorrectExplaination}
           />
-        </div>
+        </div> : null }
 
+        { isMCQuestion(wrappedEmbeddableContext) ?
         <div className={css.section}>
           <label> Distractor Explanation (Markdown) </label>
           <br/>
@@ -65,7 +70,7 @@ export default class QuestionWRapperForm extends React.Component<IProps, IState>
             value={distractorsExplanation}
             onChange={this.updateDistractor}
           />
-        </div>
+        </div> : null }
 
         <div className={css.section}>
           <label> Teacher Tip (Markdown) </label>

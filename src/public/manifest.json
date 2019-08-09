@@ -30,7 +30,8 @@
           "ImageInteractive",
           "VideoInteractive"
         ],
-        "guiAuthoring": true
+        "guiAuthoring": true,
+        "guiPreview": true
       }
     ]
   }

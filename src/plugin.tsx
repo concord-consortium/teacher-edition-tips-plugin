@@ -64,12 +64,15 @@ export class TeacherEditionTipsAuthoringPlugin {
     if (!authoredState.tipType) {
       authoredState.tipType = this.context.componentLabel;
     }
+    const wrappedEmbeddable = this.context.wrappedEmbeddable;
 
     this.pluginAppComponent = ReactDOM.render(
       <InlineAuthoringForm
         initialAuthoredState={ authoredState }
         saveAuthoredPluginState={ this.context.saveAuthoredPluginState }
-      />,
+        wrappedEmbeddableDiv={wrappedEmbeddable && wrappedEmbeddable.container}
+        wrappedEmbeddableContext={wrappedEmbeddable && wrappedEmbeddable.laraJson}
+    />,
       this.context.container);
   }
 }
