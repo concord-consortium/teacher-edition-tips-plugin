@@ -15,6 +15,14 @@ type TabName = "Correct" | "Distractors" | "TeacherTip" | "Exemplar";
 const LARA_MULTIPLE_CHOICE = "Embeddable::MultipleChoice";
 const LARA_INTERACTIVES = [ "MwInteractive", "ImageInteractive", "VideoInteractive" ];
 
+export const isMCQuestion = (wrappedEmbeddableContext: any) => {
+  return wrappedEmbeddableContext.type === LARA_MULTIPLE_CHOICE;
+};
+
+export const isInteractive = (wrappedEmbeddableContext: any) => {
+  return LARA_INTERACTIVES.indexOf(wrappedEmbeddableContext.type) !== -1;
+};
+
 interface IProps {
   authoredState: IAuthoredQuestionWrapper;
   wrappedEmbeddableDiv: HTMLElement;
@@ -35,14 +43,14 @@ export default class QuestionWrapper extends React.Component<IProps, IState> {
   private answerInputs: NodeListOf<HTMLInputElement>;
 
   public componentDidMount() {
-    const { wrappedEmbeddableDiv } = this.props;
+    const { wrappedEmbeddableDiv, wrappedEmbeddableContext } = this.props;
     if (!wrappedEmbeddableDiv) {
       return;
     }
     const containerNode = this.wrappedEmbeddableDivContainer.current!;
     containerNode.appendChild(wrappedEmbeddableDiv);
 
-    if (this.isMCQuestion) {
+    if (isMCQuestion(wrappedEmbeddableContext)) {
       // Find multiple choice answer inputs. Used later to position icons.
       this.answerInputs = this.findInputsInWrappedQuestion();
     }
@@ -51,13 +59,13 @@ export default class QuestionWrapper extends React.Component<IProps, IState> {
 
   public render() {
     const { activeTab } = this.state;
-    const { authoredState } = this.props;
+    const { authoredState, wrappedEmbeddableContext } = this.props;
     const { teacherTip, exemplar, correctExplanation, distractorsExplanation, location } = authoredState;
 
     const _location = location ? location : QuestionWrapperLocation.Bottom;
 
     let wrapperClass = css.questionWrapper;
-    if (this.isInteractive) {
+    if (isInteractive(wrappedEmbeddableContext)) {
       // Special style, different icons.
       wrapperClass += " " + css.interactiveWrapper;
     }
@@ -131,18 +139,8 @@ export default class QuestionWrapper extends React.Component<IProps, IState> {
     );
   }
 
-  private get isMCQuestion() {
-    const { wrappedEmbeddableContext } = this.props;
-    return wrappedEmbeddableContext.type === LARA_MULTIPLE_CHOICE;
-  }
-
-  private get isInteractive() {
-    const { wrappedEmbeddableContext } = this.props;
-    return LARA_INTERACTIVES.indexOf(wrappedEmbeddableContext.type) !== -1;
-  }
-
   private renderTeacherTipToggle() {
-    const Icon = this.isInteractive ? Exclamation : ExclamationSmall;
+    const Icon = isInteractive(this.props.wrappedEmbeddableContext) ? Exclamation : ExclamationSmall;
     return (
       <div className={css.teacherTip} onClick={this.toggleTeacherTip} data-cy="teacherTip">
         <span className={css.teacherTipIcon}><Icon/></span>
@@ -207,7 +205,7 @@ export default class QuestionWrapper extends React.Component<IProps, IState> {
   private get showCorrectTab() {
     const question = this.props.wrappedEmbeddableContext;
     const { correctExplanation } = this.props.authoredState;
-    if (!this.isMCQuestion) {
+    if (!isMCQuestion(question)) {
       return false;
     }
     // There's an explanation or at least one choice marked as correct.
@@ -216,7 +214,7 @@ export default class QuestionWrapper extends React.Component<IProps, IState> {
 
   private get showDistractorsTab() {
     const { distractorsExplanation } = this.props.authoredState;
-    return distractorsExplanation && this.isMCQuestion;
+    return distractorsExplanation && isMCQuestion(this.props.wrappedEmbeddableContext);
   }
 
   private get showTeacherTipTab() {

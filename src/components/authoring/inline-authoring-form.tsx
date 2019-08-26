@@ -4,7 +4,7 @@ import * as css from "./authoring-app.sass";
 import WindowShade from "../window-shade";
 import WindowShadeForm from "./window-shade/window-shade-form";
 
-import QuestionAndQuestionWrapper from "../question-and-question-wrapper";
+import QuestionWrapper from "../question-wrapper";
 import QuestionWrapperForm from "./question-wrapper/question-wrapper-form";
 
 import SideTip from "../side-tip";
@@ -53,6 +53,8 @@ export const defaultQuestionWrapperProps: IAuthoredQuestionWrapper = {
 interface IProps {
   initialAuthoredState: IAuthoredState;
   saveAuthoredPluginState: (json: string) => void;
+  wrappedEmbeddableDiv?: HTMLElement | null;
+  wrappedEmbeddableContext?: object | null;
 }
 
 interface IState {
@@ -67,6 +69,7 @@ export default class InlineAuthoringForm extends React.Component<IProps, IState>
   public render() {
     const { authoredState } = this.state;
     const { tipType, windowShade, questionWrapper, sideTip } = authoredState;
+    const { wrappedEmbeddableDiv, wrappedEmbeddableContext } = this.props;
     const showWindowShade =  tipType === TeacherTipType.WindowShade;
     const showQuestionWrapper =  tipType === TeacherTipType.QuestionWrapper;
     const showSideTip =  tipType === TeacherTipType.SideTip;
@@ -79,9 +82,11 @@ export default class InlineAuthoringForm extends React.Component<IProps, IState>
             logEvent={this.logEventMethod} className="inlineAuthoring" />
           }
           {
-            showQuestionWrapper &&
-            <QuestionAndQuestionWrapper
+            showQuestionWrapper && wrappedEmbeddableDiv &&
+            <QuestionWrapper
               authoredState={ questionWrapper || defaultQuestionWrapperProps }
+              wrappedEmbeddableDiv={wrappedEmbeddableDiv}
+              wrappedEmbeddableContext={wrappedEmbeddableContext}
               logEvent={this.logEventMethod}
             />
           }
@@ -106,6 +111,7 @@ export default class InlineAuthoringForm extends React.Component<IProps, IState>
           showQuestionWrapper &&
           <QuestionWrapperForm
             authoredState={ questionWrapper || defaultQuestionWrapperProps }
+            wrappedEmbeddableContext={wrappedEmbeddableContext}
             onSave={ this.updateQuestionWRapper }
           />
           }
