@@ -82,6 +82,11 @@ module.exports = (env, argv) => {
       'react': 'React',
       'react-dom': 'ReactDOM',
       '@concord-consortium/lara-plugin-api': 'LARA.PluginAPI_V3'
+    },
+    devServer: {
+      headers: {
+        'Access-Control-Allow-Origin': '*'
+      }
     }
   };
 };
