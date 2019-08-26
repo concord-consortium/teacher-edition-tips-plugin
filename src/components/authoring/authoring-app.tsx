@@ -96,6 +96,7 @@ export default class AuthoringApp extends React.Component<IProps, IState> {
           showQuestionWrapper &&
           <QuestionWrapperForm
             authoredState={ questionWrapper || defaultQuestionWrapperProps }
+            wrappedEmbeddableContext={null}
             onSave={ this.updateQuestionWRapper }
           />
           }
