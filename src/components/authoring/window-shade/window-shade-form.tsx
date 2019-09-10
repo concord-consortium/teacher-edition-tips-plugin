@@ -44,12 +44,12 @@ export default class WindowShadeForm extends React.Component<IProps, IState> {
   public state: IState = {
     windowShadeType: this.props.authoredState.windowShadeType,
     layout: this.props.authoredState.layout || Layout.MediaLeft,
-    initialOpenState: false,
+    initialOpenState: this.props.authoredState.initialOpenState || false,
     content: this.props.authoredState.content,
     content2: this.props.authoredState.content2 || "",
-    mediaType: MediaType.None,
+    mediaType: this.props.authoredState.mediaType || MediaType.None,
     mediaCaption: this.props.authoredState.mediaCaption || "",
-    mediaURL: ""
+    mediaURL: this.props.authoredState.mediaURL || "",
   };
 
   public componentDidUpdate(prevProps: IProps) {
