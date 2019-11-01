@@ -16,7 +16,10 @@ export enum WindowShadeType {
   TeacherTip = "teacherTip",
   DiscussionPoints = "discussionPoints",
   DiggingDeeper = "diggingDeeper",
-  HowToUse = "howToUse"
+  HowToUse = "howToUse",
+  Framing = "framing",
+  Demo = "demo",
+  Offline = "offline"
 }
 
 export enum MediaType {

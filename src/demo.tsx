@@ -167,11 +167,11 @@ dolore magnam aliquam quaerat voluptatem.
   content: `
 ## A Poem
 
-There once was a writer from Nantucket,  
-Who wanted some prose in a bucket.  
-"No problem," you say,  
-"Markdown is the way!"  
-And it took them, no time, to compose it.  
+There once was a writer from Nantucket,
+Who wanted some prose in a bucket.
+"No problem," you say,
+"Markdown is the way!"
+And it took them, no time, to compose it.
 
 ## A Poem, Indented
 
@@ -187,6 +187,33 @@ And it took them, no time, to compose it.
   layout: Layout.MediaCenter,
   mediaURL: "https://www.videvo.net/videvo_files/converted/2014_12/preview/mlky_6.mp453110.webm",
   mediaCaption: "Time-lapse of the Milky Way. https://www.videvo.net/video/milky-way-timelapse/2974/"
+};
+
+const authoredStateI = {
+  windowShadeType: WindowShadeType.Framing,
+  mediaType: MediaType.Image,
+  layout: Layout.MediaLeft,
+  mediaURL: "https://66.media.tumblr.com/c25a40a48a5ddee29c780fda1bc73f60/tumblr_mx0fhueQV31qfwb89o1_1280.jpg",
+  content: `## A Poem
+
+There once was a writer from Nantucket,
+Who wanted some prose in a bucket.
+"No problem," you say,
+"Markdown is the way!"
+And it took them, no time, to compose it.
+`
+};
+
+const authoredStateJ = {
+  windowShadeType: WindowShadeType.Demo,
+  content: "This is the Demo example",
+  content2: "And, we have some additional content (\`content2\`)."
+};
+
+const authoredStateK = {
+  windowShadeType: WindowShadeType.Offline,
+  content: "This is the Offline example",
+  content2: "And, we have some additional content (\`content2\`)."
 };
 
 const windowShadeContainerDivStyle = {
@@ -243,6 +270,21 @@ ReactDOM.render(
     <p>Video w/ "center" layout:</p>
     <div style={windowShadeContainerDivStyle}>
       <WindowShade authoredState={authoredStateH} logEvent={logEventMethod} />
+    </div>
+
+    <p>Framing The Activity:</p>
+    <div style={windowShadeContainerDivStyle}>
+      <WindowShade authoredState={authoredStateI} logEvent={logEventMethod} />
+    </div>
+
+    <p>Demo Demo:</p>
+    <div style={windowShadeContainerDivStyle}>
+      <WindowShade authoredState={authoredStateJ} logEvent={logEventMethod} />
+    </div>
+
+    <p>Offline Activitiy:</p>
+    <div style={windowShadeContainerDivStyle}>
+      <WindowShade authoredState={authoredStateK} logEvent={logEventMethod} />
     </div>
   </div>,
   document.getElementById("window-shade")
