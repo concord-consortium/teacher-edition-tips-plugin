@@ -9,7 +9,10 @@ const allConfigurationTypes = [
   WindowShadeType.TheoryAndBackground,
   WindowShadeType.DiscussionPoints,
   WindowShadeType.DiggingDeeper,
-  WindowShadeType.HowToUse
+  WindowShadeType.HowToUse,
+  WindowShadeType.Framing,
+  WindowShadeType.Demo,
+  WindowShadeType.Offline
 ];
 
 const allMediaTypes = [
