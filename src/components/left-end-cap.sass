@@ -32,6 +32,21 @@
   background-color: $aquaIconBackgroundColor
   border-radius: $endCapRadius 0 0 $endCapRadius
 
+.framing
+  border-color: $creamsicleBorderColor
+  background-color: $creamsicleIconBackgroundColor
+  border-radius: $endCapRadius 0 0 $endCapRadius
+
+.demo
+  border-color: $jewelBorderColor
+  background-color: $jewelIconBackgroundColor
+  border-radius: $endCapRadius 0 0 $endCapRadius
+
+.offline
+  border-color: $greenBorderColor
+  background-color: $greenIconBackgroundColor
+  border-radius: $endCapRadius 0 0 $endCapRadius
+
 .icon
   position: absolute
   background-color: transparent
@@ -48,6 +63,12 @@
     fill: $purpleFrontIconColor
   &.howToUse
     fill: $aquaFrontIconColor
+  &.framing
+    fill: $creamsicleFrontIconColor
+  &.demo
+    fill: $jewelFrontIconColor
+  &.offline
+    fill: $greenFrontIconColor
 
 .rearIcon
   z-index: 0
@@ -63,7 +84,12 @@
     fill: $purpleRearIconColor
   &.howToUse
     fill: $aquaRearIconColor
-
+  &.framing
+    fill: $creamsicleRearIconColor
+  &.demo
+    fill: $jewelRearIconColor
+  &.offline
+    fill: $greenRearIconColor
 .hover
   fill-opacity: 1
   transition: fill-opacity 0.5s

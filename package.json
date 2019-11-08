@@ -80,7 +80,7 @@
     "babel-jest": "^23.6.0",
     "copy-webpack-plugin": "^4.5.4",
     "css-loader": "^1.0.1",
-    "cypress": "^3.1.0",
+    "cypress": "^3.6.0",
     "enzyme": "^3.7.0",
     "enzyme-adapter-react-16": "^1.6.0",
     "file-loader": "^2.0.0",
@@ -108,7 +108,7 @@
     "wait-on": "^3.1.0",
     "webpack": "^4.23.1",
     "webpack-cli": "^3.1.2",
-    "webpack-dev-server": "^3.1.10"
+    "webpack-dev-server": "^3.9.0"
   },
   "dependencies": {
     "@concord-consortium/lara-plugin-api": "^3.0.0",

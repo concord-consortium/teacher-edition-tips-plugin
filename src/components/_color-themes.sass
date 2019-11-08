@@ -1,16 +1,19 @@
 @import "colors.sass"
 
-// Window shades have 5 different color themes based on the type:
+// Window shades have different color themes based on the type:
 //
-// | Type of Button      | Theme  |
-// |---------------------|--------|
-// | theoryAndBackground | yellow |
-// | teacherTip          | blue   |
-// | discussionPoints    | orange |
-// | diggingDeeper       | purple |
-// | howToUse            | aqua   |
-//
-// Orthognal to each of these color sets based on the window shade type, each
+// | Type of Button      | Theme     |
+// |---------------------|-----------|
+// | theoryAndBackground | yellow    |
+// | teacherTip          | blue      |
+// | discussionPoints    | orange    |
+// | diggingDeeper       | purple    |
+// | howToUse            | aqua      |
+// | framing             | creamsicle|
+// | demo                | jewel     |
+// | offline             | green     |
+
+// Orthogonal to each of these color sets based on the window shade type, each
 // one has a set stylistic properties that are used in it's rendering:
 //
 //  * ButtonTextColor, ButtonTextHoverColor, ButtonBackgroundColor,
@@ -121,3 +124,54 @@ $aquaFrontIconColor: $paleAqua
 $aquaMediaIconColor: $mediumAqua
 $aquaIconBackgroundColor: $mediumAqua
 
+// The "creamsicle" theme; used for Framing
+$creamsicleButtonTextColor: $creamsicle-dark-3
+$creamsicleButtonTextHoverColor: $creamsicle-dark-3
+$creamsicleButtonBackgroundColor: $creamsicle
+$creamsicleButtonBackgroundHoverColor: $creamsicle-light-2
+
+$creamsicleBorderColor: $creamsicle-dark-2
+
+$creamsicleContentTextColor: $textBlack
+$creamsicleContentTextAccentColor: $creamsicle-dark-3
+$creamsicleContentBackgroundColor: $creamsicle-light-3
+
+$creamsicleRearIconColor: $creamsicle-light-2
+$creamsicleFrontIconColor: $creamsicle-light-3
+$creamsicleMediaIconColor: $creamsicle-dark-1
+$creamsicleIconBackgroundColor: $creamsicle-dark-1
+
+// The "jewel" theme; used for Demo
+$jewelButtonTextColor: $jewel-light-3
+$jewelButtonTextHoverColor: $jewel-dark-3
+$jewelButtonBackgroundColor: $jewel
+$jewelButtonBackgroundHoverColor: $jewel-light-2
+
+$jewelBorderColor: $jewel-dark-2
+
+$jewelContentTextColor: $textBlack
+$jewelContentTextAccentColor: $jewel-dark-3
+$jewelContentBackgroundColor: $jewel-light-3
+
+$jewelRearIconColor: $jewel-light-2
+$jewelFrontIconColor: $jewel-light-3
+$jewelMediaIconColor: $jewel-dark-1
+$jewelIconBackgroundColor: $jewel-dark-1
+
+
+// The "green" theme; used for Offline
+$greenButtonTextColor: $green-light-3
+$greenButtonTextHoverColor: $green-dark-3
+$greenButtonBackgroundColor: $green
+$greenButtonBackgroundHoverColor: $green-light-2
+
+$greenBorderColor: $green-dark-2
+
+$greenContentTextColor: $textBlack
+$greenContentTextAccentColor: $green-dark-3
+$greenContentBackgroundColor: $green-light-3
+
+$greenRearIconColor: $green-light-2
+$greenFrontIconColor: $green-light-3
+$greenMediaIconColor: $green-dark-1
+$greenIconBackgroundColor: $green-dark-1

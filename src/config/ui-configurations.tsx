@@ -8,6 +8,12 @@ import ShovelA from "../icons/shovel_A.svg";
 import ShovelB from "../icons/shovel_B.svg";
 import PointerA from "../icons/pointer_A.svg";
 import PointerB from "../icons/pointer_B.svg";
+import EyeA from "../icons/eye_A.svg";
+import EyeB from "../icons/eye_B.svg";
+import FrameA from "../icons/frame_A.svg";
+import FrameB from "../icons/frame_B.svg";
+import ToolsA from "../icons/tools_A.svg";
+import ToolsB from "../icons/tools_B.svg";
 
 export interface IWindowShadeConfiguration {
   FrontIcon: SvgrComponent;
@@ -46,6 +52,24 @@ export const WindowShadeConfigurations: {[index: string]: IWindowShadeConfigurat
     RearIcon: PointerB,
     label: "How to Use This Interactive",
     styleClassName: "howToUse",
+  },
+  framing: {
+    FrontIcon: FrameA,
+    RearIcon: FrameB,
+    label: "Framing The Activity",
+    styleClassName: "framing",
+  },
+  demo: {
+    FrontIcon: EyeA,
+    RearIcon: EyeB,
+    label: "Demo",
+    styleClassName: "demo",
+  },
+  offline: {
+    FrontIcon: ToolsA,
+    RearIcon: ToolsB,
+    label: "Offline Activity",
+    styleClassName: "offline",
   }
 };
 
