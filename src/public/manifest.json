@@ -26,6 +26,7 @@
           "Embeddable::MultipleChoice",
           "Embeddable::OpenResponse",
           "Embeddable::ImageQuestion",
+          "ManagedInteractive",
           "MwInteractive",
           "ImageInteractive",
           "VideoInteractive"
