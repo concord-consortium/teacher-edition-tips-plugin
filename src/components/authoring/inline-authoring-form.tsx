@@ -124,7 +124,7 @@ export default class InlineAuthoringForm extends React.Component<IProps, IState>
           />
           }
         </div>
-        <div className={css.inlineFormButtons}>
+        <div className={css.inlineFormButtons + " submit-container"}>
           <button onClick={this.saveAuthoredState} className="embeddable-save">Save</button>
           <button className="close">Cancel</button>
         </div>
