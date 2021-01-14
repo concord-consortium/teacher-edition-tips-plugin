@@ -17,12 +17,12 @@ const LARA_INTERACTIVES = [ "MwInteractive", "ImageInteractive", "VideoInteracti
 const MANAGED_INTERACTIVE = "ManagedInteractive";
 
 export const isMCQuestion = (wrappedEmbeddableContext: any) => {
-  const questionType = (wrappedEmbeddableContext.authored_state
-                    && wrappedEmbeddableContext.authored_state.questionType)
-                    ? JSON.parse(wrappedEmbeddableContext.authored_state.questionType)
+  const authState = wrappedEmbeddableContext.authored_state
+                    ? JSON.parse(wrappedEmbeddableContext.authored_state)
                     : undefined;
   return wrappedEmbeddableContext.type === LARA_MULTIPLE_CHOICE
-    || (wrappedEmbeddableContext.type === MANAGED_INTERACTIVE && questionType === "multiple_choice");
+         || (wrappedEmbeddableContext.type === MANAGED_INTERACTIVE && authState
+             && authState.questionType === "multiple_choice");
 };
 
 export const isInteractive = (wrappedEmbeddableContext: any) => {
