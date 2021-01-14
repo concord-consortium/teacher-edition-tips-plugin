@@ -66,7 +66,9 @@ export default class PluginApp extends React.Component<IProps, IState> {
           wrappedEmbeddableContext={wrappedEmbeddableContext}
           logEvent={this.logEventMethod}
           sendCustomMessage={pluginContext && pluginContext.wrappedEmbeddable &&
-                             pluginContext.wrappedEmbeddable.sendCustomMessage} // TODO: valid typing
+                             pluginContext.wrappedEmbeddable.sendCustomMessage
+                             ? pluginContext.wrappedEmbeddable.sendCustomMessage
+                             : undefined}
         />
       </div>
     );
