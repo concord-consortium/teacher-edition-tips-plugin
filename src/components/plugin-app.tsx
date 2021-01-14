@@ -51,7 +51,7 @@ export default class PluginApp extends React.Component<IProps, IState> {
   }
 
   public renderQuestionWrapper() {
-    const { wrappedEmbeddableDiv, wrappedEmbeddableContext, authoredState } = this.props;
+    const { wrappedEmbeddableDiv, wrappedEmbeddableContext, authoredState, pluginContext } = this.props;
     const { questionWrapper } = authoredState;
     if (!wrappedEmbeddableDiv || !wrappedEmbeddableContext) {
       // tslint:disable-next-line:no-console
@@ -65,6 +65,8 @@ export default class PluginApp extends React.Component<IProps, IState> {
           wrappedEmbeddableDiv={wrappedEmbeddableDiv}
           wrappedEmbeddableContext={wrappedEmbeddableContext}
           logEvent={this.logEventMethod}
+          sendCustomMessage={pluginContext && pluginContext.wrappedEmbeddable &&
+                             pluginContext.wrappedEmbeddable.sendCustomMessage} // TODO: valid typing
         />
       </div>
     );

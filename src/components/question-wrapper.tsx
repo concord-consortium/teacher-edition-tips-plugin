@@ -14,9 +14,15 @@ type TabName = "Correct" | "Distractors" | "TeacherTip" | "Exemplar";
 
 const LARA_MULTIPLE_CHOICE = "Embeddable::MultipleChoice";
 const LARA_INTERACTIVES = [ "MwInteractive", "ImageInteractive", "VideoInteractive" ];
+const MANAGED_INTERACTIVE = "ManagedInteractive";
 
 export const isMCQuestion = (wrappedEmbeddableContext: any) => {
-  return wrappedEmbeddableContext.type === LARA_MULTIPLE_CHOICE;
+  const questionType = (wrappedEmbeddableContext.authored_state
+                    && wrappedEmbeddableContext.authored_state.questionType)
+                    ? JSON.parse(wrappedEmbeddableContext.authored_state.questionType)
+                    : undefined;
+  return wrappedEmbeddableContext.type === LARA_MULTIPLE_CHOICE
+    || (wrappedEmbeddableContext.type === MANAGED_INTERACTIVE && questionType === "multiple_choice");
 };
 
 export const isInteractive = (wrappedEmbeddableContext: any) => {
@@ -28,6 +34,7 @@ interface IProps {
   wrappedEmbeddableDiv: HTMLElement;
   wrappedEmbeddableContext: any;
   logEvent: (logData: ILogEvent) => void;
+  sendCustomMessage?: (msg: any) => void;
 }
 
 interface IState {
@@ -235,7 +242,16 @@ export default class QuestionWrapper extends React.Component<IProps, IState> {
   private toggleExemplar = () => this.toggleTab("Exemplar");
 
   private toggleTab = (tabName: TabName) => {
+    const { sendCustomMessage } = this.props;
     const { activeTab } = this.state;
+    const messageType = tabName === "Correct" && activeTab !== "Correct"
+      ? "teacher-edition:showCorrectOverlay"
+      : tabName === "Distractors" && activeTab !== "Distractors"
+        ? "teacher-edition:showDistractorOverlay"
+        : "teacher-edition:hideOverlay";
+    // TODO: structure message correctly
+    const customMessage = { type: messageType, content: [] };
+    sendCustomMessage && sendCustomMessage(customMessage);
     const {tabOpened, tabClosed} = AnalyticsActionType;
     const action = (activeTab === tabName) ? tabClosed : tabOpened;
     const nextTab = (action === tabClosed) ? null : tabName;
