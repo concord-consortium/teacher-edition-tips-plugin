@@ -11,6 +11,9 @@ import * as css from "./question-wrapper.sass";
 import { ILogEvent, AnalyticsActionType } from "../utilities/analytics";
 
 type TabName = "Correct" | "Distractors" | "TeacherTip" | "Exemplar";
+const SHOW_CORRECT_OVERLAY_MESSAGE = "teacher-edition:showCorrectOverlay";
+const SHOW_DISTRACTOR_OVERLAY_MESSAGE = "teacher-edition:showDistractorOverlay";
+const HIDE_OVERLAY_MESSAGE = "teacher-edition:hideOverlay";
 
 const LARA_MULTIPLE_CHOICE = "Embeddable::MultipleChoice";
 const LARA_INTERACTIVES = [ "MwInteractive", "ImageInteractive", "VideoInteractive" ];
@@ -245,10 +248,10 @@ export default class QuestionWrapper extends React.Component<IProps, IState> {
     const { sendCustomMessage } = this.props;
     const { activeTab } = this.state;
     const messageType = tabName === "Correct" && activeTab !== "Correct"
-      ? "teacher-edition:showCorrectOverlay"
+      ? SHOW_CORRECT_OVERLAY_MESSAGE
       : tabName === "Distractors" && activeTab !== "Distractors"
-        ? "teacher-edition:showDistractorOverlay"
-        : "teacher-edition:hideOverlay";
+        ? SHOW_DISTRACTOR_OVERLAY_MESSAGE
+        : HIDE_OVERLAY_MESSAGE;
     const customMessage = { type: messageType, content: [] };
     sendCustomMessage && sendCustomMessage(customMessage);
     const {tabOpened, tabClosed} = AnalyticsActionType;
