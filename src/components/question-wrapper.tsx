@@ -11,12 +11,21 @@ import * as css from "./question-wrapper.sass";
 import { ILogEvent, AnalyticsActionType } from "../utilities/analytics";
 
 type TabName = "Correct" | "Distractors" | "TeacherTip" | "Exemplar";
+const SHOW_CORRECT_OVERLAY_MESSAGE = "teacher-edition:showCorrectOverlay";
+const SHOW_DISTRACTOR_OVERLAY_MESSAGE = "teacher-edition:showDistractorOverlay";
+const HIDE_OVERLAY_MESSAGE = "teacher-edition:hideOverlay";
 
 const LARA_MULTIPLE_CHOICE = "Embeddable::MultipleChoice";
 const LARA_INTERACTIVES = [ "MwInteractive", "ImageInteractive", "VideoInteractive" ];
+const MANAGED_INTERACTIVE = "ManagedInteractive";
 
 export const isMCQuestion = (wrappedEmbeddableContext: any) => {
-  return wrappedEmbeddableContext.type === LARA_MULTIPLE_CHOICE;
+  const authState = wrappedEmbeddableContext.authored_state
+                    ? JSON.parse(wrappedEmbeddableContext.authored_state)
+                    : undefined;
+  return wrappedEmbeddableContext.type === LARA_MULTIPLE_CHOICE
+         || (wrappedEmbeddableContext.type === MANAGED_INTERACTIVE && authState
+             && authState.questionType === "multiple_choice");
 };
 
 export const isInteractive = (wrappedEmbeddableContext: any) => {
@@ -28,6 +37,7 @@ interface IProps {
   wrappedEmbeddableDiv: HTMLElement;
   wrappedEmbeddableContext: any;
   logEvent: (logData: ILogEvent) => void;
+  sendCustomMessage?: (msg: any) => void;
 }
 
 interface IState {
@@ -235,7 +245,15 @@ export default class QuestionWrapper extends React.Component<IProps, IState> {
   private toggleExemplar = () => this.toggleTab("Exemplar");
 
   private toggleTab = (tabName: TabName) => {
+    const { sendCustomMessage } = this.props;
     const { activeTab } = this.state;
+    const messageType = tabName === "Correct" && activeTab !== "Correct"
+      ? SHOW_CORRECT_OVERLAY_MESSAGE
+      : tabName === "Distractors" && activeTab !== "Distractors"
+        ? SHOW_DISTRACTOR_OVERLAY_MESSAGE
+        : HIDE_OVERLAY_MESSAGE;
+    const customMessage = { type: messageType, content: [] };
+    sendCustomMessage && sendCustomMessage(customMessage);
     const {tabOpened, tabClosed} = AnalyticsActionType;
     const action = (activeTab === tabName) ? tabClosed : tabOpened;
     const nextTab = (action === tabClosed) ? null : tabName;
