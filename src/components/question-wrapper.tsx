@@ -218,8 +218,15 @@ export default class QuestionWrapper extends React.Component<IProps, IState> {
     if (!isMCQuestion(question)) {
       return false;
     }
+    // Library Interactive MC questions (whose choices are defined within the question's 
+    // authored_state property instead of their own choices property) do not currently 
+    // support the correct answer indicator, so there is no point in enabling the Correct 
+    // tab if there is a correct answer but no correct answer explanation
+    const hasCorrectAnswer = typeof question.choices !== "undefined" 
+      ? question.choices.filter((c: any) => c.is_correct === true).length > 0
+      : false;
     // There's an explanation or at least one choice marked as correct.
-    return correctExplanation || question.choices.filter((c: any) => c.is_correct === true).length > 0;
+    return correctExplanation || hasCorrectAnswer;
   }
 
   private get showDistractorsTab() {
