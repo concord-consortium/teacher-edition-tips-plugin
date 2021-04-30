@@ -219,7 +219,8 @@ export default class QuestionWrapper extends React.Component<IProps, IState> {
       return false;
     }
     // There's an explanation or at least one choice marked as correct.
-    return correctExplanation || question.choices.filter((c: any) => c.is_correct === true).length > 0;
+    const choices = question.choices ? question.choices : JSON.parse(question.authored_state).choices;
+    return correctExplanation || choices.filter((c: any) => c.is_correct === true || c.correct === true).length > 0;
   }
 
   private get showDistractorsTab() {
