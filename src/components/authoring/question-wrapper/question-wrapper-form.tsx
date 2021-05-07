@@ -2,7 +2,6 @@ import * as React from "react";
 import * as css from "./question-wrapper-form.sass";
 
 import { IAuthoredQuestionWrapper, QuestionWrapperLocation  } from "../../../types";
-import { isMCQuestion } from "../../question-wrapper";
 
 const QuestionWrapperLocationStrings = {
   [QuestionWrapperLocation.Bottom]: "Bottom",
@@ -52,7 +51,6 @@ export default class QuestionWRapperForm extends React.Component<IProps, IState>
 
     return (
       <div className={css.container}>
-        { isMCQuestion(wrappedEmbeddableContext) ?
         <div className={css.section}>
           <label> Correct Explanation (Markdown) </label>
           <br/>
@@ -60,9 +58,8 @@ export default class QuestionWRapperForm extends React.Component<IProps, IState>
             value={correctExplanation}
             onChange={this.updateCorrectExplaination}
           />
-        </div> : null }
+        </div>
 
-        { isMCQuestion(wrappedEmbeddableContext) ?
         <div className={css.section}>
           <label> Distractor Explanation (Markdown) </label>
           <br/>
@@ -70,7 +67,7 @@ export default class QuestionWRapperForm extends React.Component<IProps, IState>
             value={distractorsExplanation}
             onChange={this.updateDistractor}
           />
-        </div> : null }
+        </div>
 
         <div className={css.section}>
           <label> Teacher Tip (Markdown) </label>
