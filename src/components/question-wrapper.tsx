@@ -17,15 +17,9 @@ const HIDE_OVERLAY_MESSAGE = "teacher-edition:hideOverlay";
 
 const LARA_MULTIPLE_CHOICE = "Embeddable::MultipleChoice";
 const LARA_INTERACTIVES = [ "MwInteractive", "ImageInteractive", "VideoInteractive" ];
-const MANAGED_INTERACTIVE = "ManagedInteractive";
 
-export const isMCQuestion = (wrappedEmbeddableContext: any) => {
-  const authState = wrappedEmbeddableContext.authored_state
-                    ? JSON.parse(wrappedEmbeddableContext.authored_state)
-                    : undefined;
-  return wrappedEmbeddableContext.type === LARA_MULTIPLE_CHOICE
-         || (wrappedEmbeddableContext.type === MANAGED_INTERACTIVE && authState
-             && authState.questionType === "multiple_choice");
+export const isBuiltInMCQuestion = (wrappedEmbeddableContext: any) => {
+  return wrappedEmbeddableContext.type === LARA_MULTIPLE_CHOICE;
 };
 
 export const isInteractive = (wrappedEmbeddableContext: any) => {
@@ -60,7 +54,7 @@ export default class QuestionWrapper extends React.Component<IProps, IState> {
     const containerNode = this.wrappedEmbeddableDivContainer.current!;
     containerNode.appendChild(wrappedEmbeddableDiv);
 
-    if (isMCQuestion(wrappedEmbeddableContext)) {
+    if (isBuiltInMCQuestion(wrappedEmbeddableContext)) {
       // Find multiple choice answer inputs. Used later to position icons.
       this.answerInputs = this.findInputsInWrappedQuestion();
     }
@@ -115,9 +109,7 @@ export default class QuestionWrapper extends React.Component<IProps, IState> {
           }
           {
             this.showDistractorsTab &&
-            <div className={css.distractors} onClick={this.toggleDistractors} data-cy="distractors">
-              <XA/>Distractors
-            </div>
+            this.renderDistractorToggle()
           }
           {
             this.showTeacherTipTab &&
@@ -159,9 +151,17 @@ export default class QuestionWrapper extends React.Component<IProps, IState> {
     );
   }
 
+  private renderDistractorToggle() {
+    return (
+      <div className={css.distractors} onClick={this.toggleDistractors} data-cy="distractors">
+        <XA/>Distractors
+      </div>
+    );
+  }
+
   private renderCorrectOverlay() {
     const { choices } = this.props.wrappedEmbeddableContext;
-    if (this.answerInputs.length === 0) {
+    if (this.answerInputs === undefined || this.answerInputs.length === 0) {
       return null;
     }
     return choices.map((choice: any, idx: number) =>
@@ -183,7 +183,7 @@ export default class QuestionWrapper extends React.Component<IProps, IState> {
 
   private renderDistractorsOverlay() {
     const { choices } = this.props.wrappedEmbeddableContext;
-    if (this.answerInputs.length === 0) {
+    if (this.answerInputs === undefined || this.answerInputs.length === 0) {
       return null;
     }
     return choices.map((choice: any, idx: number) =>
@@ -215,16 +215,14 @@ export default class QuestionWrapper extends React.Component<IProps, IState> {
   private get showCorrectTab() {
     const question = this.props.wrappedEmbeddableContext;
     const { correctExplanation } = this.props.authoredState;
-    if (!isMCQuestion(question)) {
-      return false;
-    }
+    const hasChoices = question.choices && question.choices.filter((c: any) => c.is_correct === true).length > 0;
     // There's an explanation or at least one choice marked as correct.
-    return correctExplanation || question.choices.filter((c: any) => c.is_correct === true).length > 0;
+    return correctExplanation || hasChoices;
   }
 
   private get showDistractorsTab() {
     const { distractorsExplanation } = this.props.authoredState;
-    return distractorsExplanation && isMCQuestion(this.props.wrappedEmbeddableContext);
+    return distractorsExplanation && isBuiltInMCQuestion(this.props.wrappedEmbeddableContext);
   }
 
   private get showTeacherTipTab() {
