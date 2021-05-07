@@ -109,7 +109,7 @@ export default class QuestionWrapper extends React.Component<IProps, IState> {
           }
           {
             this.showDistractorsTab &&
-            <div className={css.distractors} onClick={this.toggleDistractors} data-cy="distractors"><XA/>Distractors</div>
+            this.renderDistractorToggle()
           }
           {
             this.showTeacherTipTab &&
@@ -147,6 +147,14 @@ export default class QuestionWrapper extends React.Component<IProps, IState> {
       <div className={css.teacherTip} onClick={this.toggleTeacherTip} data-cy="teacherTip">
         <span className={css.teacherTipIcon}><Icon/></span>
         <span className={css.teacherTipLabel}>Teacher Tip</span>
+      </div>
+    );
+  }
+
+  private renderDistractorToggle() {
+    return (
+      <div className={css.distractors} onClick={this.toggleDistractors} data-cy="distractors">
+        <XA/>Distractors
       </div>
     );
   }
@@ -207,8 +215,9 @@ export default class QuestionWrapper extends React.Component<IProps, IState> {
   private get showCorrectTab() {
     const question = this.props.wrappedEmbeddableContext;
     const { correctExplanation } = this.props.authoredState;
+    const hasChoices = question.choices && question.choices.filter((c: any) => c.is_correct === true).length > 0;
     // There's an explanation or at least one choice marked as correct.
-    return correctExplanation || (question.choices && question.choices.filter((c: any) => c.is_correct === true).length > 0);
+    return correctExplanation || hasChoices;
   }
 
   private get showDistractorsTab() {
