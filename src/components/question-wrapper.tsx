@@ -215,9 +215,9 @@ export default class QuestionWrapper extends React.Component<IProps, IState> {
   private get showCorrectTab() {
     const question = this.props.wrappedEmbeddableContext;
     const { correctExplanation } = this.props.authoredState;
-    const hasChoices = question.choices && question.choices.filter((c: any) => c.is_correct === true).length > 0;
+    const hasCorrectChoice = question.choices && question.choices.filter((c: any) => c.is_correct === true).length > 0;
     // There's an explanation or at least one choice marked as correct.
-    return correctExplanation || hasChoices;
+    return correctExplanation || hasCorrectChoice;
   }
 
   private get showDistractorsTab() {
