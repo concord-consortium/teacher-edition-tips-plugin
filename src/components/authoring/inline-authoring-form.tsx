@@ -42,10 +42,10 @@ export const defaultSideTipProps: ISideTip = {
 /* tslint:enable max-line-length*/
 
 export const defaultQuestionWrapperProps: IAuthoredQuestionWrapper = {
-  correctExplanation: "correct",
-  distractorsExplanation: "distractor",
-  exemplar: "exemplar",
-  teacherTip: "teacherTip",
+  correctExplanation: "",
+  distractorsExplanation: "",
+  exemplar: "",
+  teacherTip: "",
   teacherTipImageOverlay: "",
   location: QuestionWrapperLocation.Bottom
 };
