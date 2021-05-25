@@ -222,7 +222,7 @@ export default class QuestionWrapper extends React.Component<IProps, IState> {
 
   private get showDistractorsTab() {
     const { distractorsExplanation } = this.props.authoredState;
-    return distractorsExplanation && isBuiltInMCQuestion(this.props.wrappedEmbeddableContext);
+    return distractorsExplanation;
   }
 
   private get showTeacherTipTab() {
