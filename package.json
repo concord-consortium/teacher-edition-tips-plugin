@@ -1,6 +1,6 @@
 {
   "name": "teacher-edition-tips-plugin",
-  "version": "3.5.4",
+  "version": "3.8.0",
   "description": "Concord Consortium Teacher Edition Tips Plugin",
   "main": "index.js",
   "jest": {
