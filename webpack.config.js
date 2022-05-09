@@ -69,7 +69,6 @@ module.exports = (env, argv) => {
       new HtmlWebpackPlugin({
         template: './src/public/authoring.html',
         filename: 'authoring.html',
-
         chunks: ['authoring']
       }),
       new HtmlWebpackPlugin({

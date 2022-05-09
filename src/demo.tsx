@@ -115,9 +115,9 @@ const authoredStateF = {
 This is an example of a video window shade using the "mediaLeft" layout.
 `,
   layout: Layout.MediaLeft,
-  mediaURL: "https://www.videvo.net/videvo_files/converted/2016_05/preview/506401051_1.mov80298.webm",
   mediaType: MediaType.Video,
-  mediaCaption: "jonaslisting. 2016. [Earth From Space](https://www.videvo.net/video/earth-from-space-animation/4825/)."
+  mediaURL: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm",
+  mediaCaption: "A CC0 video of a flower opening"
 };
 
 const authoredStateG = {
@@ -175,7 +175,7 @@ And it took them, no time, to compose it.
 
 ## A Poem, Indented
 
-> There once was a writer from Nantucket,  
+> There once was a writer from Nantucket,
 Who wanted some prose in a bucket.  
 "No problem," you say,  
 "Markdown is the way!"  
@@ -185,8 +185,8 @@ And it took them, no time, to compose it.
   // tslint:enable:no-trailing-whitespace
   mediaType: MediaType.Video,
   layout: Layout.MediaCenter,
-  mediaURL: "https://www.videvo.net/videvo_files/converted/2014_12/preview/mlky_6.mp453110.webm",
-  mediaCaption: "Time-lapse of the Milky Way. https://www.videvo.net/video/milky-way-timelapse/2974/"
+  mediaURL: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm",
+  mediaCaption: "A CC0 video of a flower opening"
 };
 
 const authoredStateI = {
