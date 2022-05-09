@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import * as css from "./left-end-cap.sass";
+import css from "./left-end-cap.sass";
 
 import { IWindowShadeConfiguration } from "../config/ui-configurations";
 

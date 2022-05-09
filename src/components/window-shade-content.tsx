@@ -1,5 +1,5 @@
 import * as React from "react";
-import Markdown from "markdown-to-jsx";
+import * as Markdown from "markdown-to-jsx";
 
 import * as css from "./window-shade-content.sass";
 import { IWindowShadeConfiguration } from "../config/ui-configurations";
@@ -31,10 +31,10 @@ export default class WindowShadeContent extends React.Component<IProps, IState> 
       css[config.styleClassName],
       css.windowShadeContent
     ];
-
-    if (! this.hasMedia()) {
-      // If we have no media, we display all the content in one block, while
-      // ignoring the layout, and media related stuff.
+    // return(<div>This is great!</div>);
+    // if (! this.hasMedia()) {
+    //   // If we have no media, we display all the content in one block, while
+    //   // ignoring the layout, and media related stuff.
       return (
         <div className={cssClassNames.join(" ")}>
           <Markdown>
@@ -42,51 +42,51 @@ export default class WindowShadeContent extends React.Component<IProps, IState> 
           </Markdown>
         </div>
       );
-    } else {
-      switch (layout) {
-        case Layout.MediaLeft: {
-          return (
-            <div className={css.mediaContainerLeftWrapper}>
-              <div className={css.mediaContainerLeftPadding} />
-              <div className={css.mediaContainerLeft}>
-                <div className={css.mediaWrapper}>
-                  { this.renderMedia(layout, mediaCaption, css[config.styleClassName]) }
-                </div>
-                <div className={`${cssClassNames.join(" ")} ${css.leftLayoutContent}`} >
-                  <Markdown>
-                    {content + "\n" + (content2 ? content2 : "")}
-                  </Markdown>
-                </div>
-              </div>
-            </div>
-          );
-        }
-        case Layout.MediaCenter: {
-          return (
-            <div className={css.mediaContainerCenter}>
-              <div className={`${cssClassNames.join(" ")} ${css.centerLayoutContent}`}>
-                <Markdown>
-                  {content + "\n"}
-                </Markdown>
-              </div>
-              <div className={css.mediaWrapper}>
-                { this.renderMedia(layout, mediaCaption, css[config.styleClassName]) }
-              </div>
-              <div className={`${cssClassNames.join(" ")} ${css.centerLayoutContent}`}>
-                <Markdown>
-                  {(content2 ? content2 : "") + "\n"}
-                </Markdown>
-              </div>
-            </div>
-          );
-        }
-        default: {
-          // tslint:disable-next-line:no-console
-          console.warn("Unknown Layout value: layout == " + layout);
-          return null;
-        }
-      }
-    }
+    // } else {
+    //   switch (layout) {
+    //     case Layout.MediaLeft: {
+    //       return (
+    //         <div className={css.mediaContainerLeftWrapper}>
+    //           <div className={css.mediaContainerLeftPadding} />
+    //           <div className={css.mediaContainerLeft}>
+    //             <div className={css.mediaWrapper}>
+    //               { this.renderMedia(layout, mediaCaption, css[config.styleClassName]) }
+    //             </div>
+    //             <div className={`${cssClassNames.join(" ")} ${css.leftLayoutContent}`} >
+    //               <Markdown>
+    //                 {content + "\n" + (content2 ? content2 : "")}
+    //               </Markdown>
+    //             </div>
+    //           </div>
+    //         </div>
+    //       );
+    //     }
+    //     case Layout.MediaCenter: {
+    //       return (
+    //         <div className={css.mediaContainerCenter}>
+    //           <div className={`${cssClassNames.join(" ")} ${css.centerLayoutContent}`}>
+    //             <Markdown>
+    //               {content + "\n"}
+    //             </Markdown>
+    //           </div>
+    //           <div className={css.mediaWrapper}>
+    //             { this.renderMedia(layout, mediaCaption, css[config.styleClassName]) }
+    //           </div>
+    //           <div className={`${cssClassNames.join(" ")} ${css.centerLayoutContent}`}>
+    //             <Markdown>
+    //               {(content2 ? content2 : "") + "\n"}
+    //             </Markdown>
+    //           </div>
+    //         </div>
+    //       );
+    //     }
+    //     default: {
+    //       // tslint:disable-next-line:no-console
+    //       console.warn("Unknown Layout value: layout == " + layout);
+    //       return null;
+    //     }
+    //   }
+    // }
   }
 
   private hasMedia() {

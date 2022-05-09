@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import * as css from "./window-shade-button.sass";
+import css from "./window-shade-button.sass";
 import { IWindowShadeConfiguration } from "../config/ui-configurations";
 import LeftEndCap from "./left-end-cap";
 import ButtonTitle from "./button-title";

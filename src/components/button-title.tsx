@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import * as css from "./button-title.sass";
+import css from "./button-title.sass";
 
 import { IWindowShadeConfiguration } from "../config/ui-configurations";
 

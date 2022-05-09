@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import * as css from "./question-and-question-wrapper.sass";
+import css from "./question-and-question-wrapper.sass";
 import { IAuthoredQuestionWrapper } from "../types";
 import QuestionWrapper from "./question-wrapper";
 import { ILogEvent } from "../utilities/analytics";

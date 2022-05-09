@@ -1,7 +1,7 @@
 import * as React from "react";
 import sideBarIcon from "../side-bar-icon";
 import Markdown from "markdown-to-jsx";
-import * as css from "./side-tip.sass";
+import css from "./side-tip.sass";
 import { ISideTip, TeacherTipType } from "../types";
 import * as PluginAPI from "@concord-consortium/lara-plugin-api";
 import {

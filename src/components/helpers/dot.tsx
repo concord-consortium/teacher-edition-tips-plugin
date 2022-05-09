@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import * as css from "./dot.sass";
+import css from "./dot.sass";
 import { IWindowShadeConfiguration } from "../../config/ui-configurations";
 
 export enum sidePosition {

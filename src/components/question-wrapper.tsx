@@ -7,7 +7,7 @@ import ExclamationSmall from "../icons/exclamation_small_A.svg";
 import Exclamation from "../icons/exclamation_A.svg";
 import CheckMark from "../icons/check_mark.svg";
 import XMark from "../icons/x_mark.svg";
-import * as css from "./question-wrapper.sass";
+import css from "./question-wrapper.sass";
 import { ILogEvent, AnalyticsActionType } from "../utilities/analytics";
 
 type TabName = "Correct" | "Distractors" | "TeacherTip" | "Exemplar";
