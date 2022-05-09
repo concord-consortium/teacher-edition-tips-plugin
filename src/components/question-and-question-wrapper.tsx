@@ -27,7 +27,7 @@ interface IState {}
 export default class QuestionAndQuestionWrapper extends React.Component<IProps, IState> {
   private domRef: any;
 
-  public componentWillMount(){
+  public UNSAFE_componentWillMount(){
     this.domRef = document.createElement("div");
     this.domRef.setAttribute("id", "wrapped-div");
     this.domRef.setAttribute("class", css.embeddableDiv);

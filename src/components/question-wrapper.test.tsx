@@ -3,12 +3,10 @@ import QuestionWrapper from "./question-wrapper";
 import { mount } from "enzyme";
 
 describe("QuestionWrapper component", () => {
-  const getProps = (customProps: any = {}) => Object.assign({
-    wrappedEmbeddableDiv: document.createElement("div"),
+  const getProps = (customProps: any = {}) => ({wrappedEmbeddableDiv: document.createElement("div"),
     wrappedEmbeddableContext: {},
     authoredState: {},
-    logEvent: jest.fn()
-  }, customProps);
+    logEvent: jest.fn(), ...customProps});
 
   it("wraps provided HTML element", () => {
     const props = getProps();
@@ -84,13 +82,13 @@ describe("QuestionWrapper component", () => {
         expect(wrapper.text()).toEqual(expect.stringContaining("Correct"));
       });
 
-      it("it doesn't render Distractors tab if no distractors explanation is provided", () => {
+      it("doesn't render Distractors tab if no distractors explanation is provided", () => {
         const props = getProps({ wrappedEmbeddableContext });
         const wrapper = mount(<QuestionWrapper {...props}/>);
         expect(wrapper.text()).not.toEqual(expect.stringContaining("Distractors"));
       });
 
-      it("it renders Distractors tab if the distractors explanation is provided", () => {
+      it("renders Distractors tab if the distractors explanation is provided", () => {
         const props = getProps({
           wrappedEmbeddableContext,
           authoredState: {
@@ -145,19 +143,19 @@ describe("QuestionWrapper component", () => {
         ]
       };
 
-      it("it doesn't render Correct tab if no correct explanation is provided", () => {
+      it("doesn't render Correct tab if no correct explanation is provided", () => {
         const props = getProps({ wrappedEmbeddableContext });
         const wrapper = mount(<QuestionWrapper {...props}/>);
         expect(wrapper.text()).not.toEqual(expect.stringContaining("Correct"));
       });
 
-      it("it doesn't render Distractors tab if no distractors explanation is provided", () => {
+      it("doesn't render Distractors tab if no distractors explanation is provided", () => {
         const props = getProps({ wrappedEmbeddableContext });
         const wrapper = mount(<QuestionWrapper {...props}/>);
         expect(wrapper.text()).not.toEqual(expect.stringContaining("Distractors"));
       });
 
-      it("it renders Correct tab if the correct explanation is provided", () => {
+      it("renders Correct tab if the correct explanation is provided", () => {
         const props = getProps({
           wrappedEmbeddableContext,
           authoredState: {
@@ -168,7 +166,7 @@ describe("QuestionWrapper component", () => {
         expect(wrapper.text()).toEqual(expect.stringContaining("Correct"));
       });
 
-      it("it renders Distractors tab if the distractors explanation is provided", () => {
+      it("renders Distractors tab if the distractors explanation is provided", () => {
         const props = getProps({
           wrappedEmbeddableContext,
           authoredState: {

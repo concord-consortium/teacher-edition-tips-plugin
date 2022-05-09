@@ -38,6 +38,7 @@ export class TeacherEditionTipsRuntimePlugin {
     const authoredState = getAuthoredState(this.context);
     const wrappedEmbeddable = this.context.wrappedEmbeddable;
     if (isTeacherEdition()) {
+      // eslint-disable-next-line react/no-render-return-value
       this.pluginAppComponent = ReactDOM.render(
         <PluginApp
           authoredState={authoredState}
@@ -66,6 +67,7 @@ export class TeacherEditionTipsAuthoringPlugin {
     }
     const wrappedEmbeddable = this.context.wrappedEmbeddable;
 
+    // eslint-disable-next-line react/no-render-return-value
     this.pluginAppComponent = ReactDOM.render(
       <InlineAuthoringForm
         initialAuthoredState={ authoredState }

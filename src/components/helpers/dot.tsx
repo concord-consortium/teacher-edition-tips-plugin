@@ -13,7 +13,8 @@ interface IProps {
   side: sidePosition;
 }
 
-export class Dot extends React.Component<IProps, {}> {
+interface IState {}
+export class Dot extends React.Component<IProps, IState> {
   public render() {
     const { config: {styleClassName}, side } = this.props;
     const cssNames = [

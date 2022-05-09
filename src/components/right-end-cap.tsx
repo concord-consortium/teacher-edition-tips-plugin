@@ -11,8 +11,9 @@ interface IProps {
   config: IWindowShadeConfiguration;
   mediaType: string;
 }
-
-export default class RightEndCap extends React.Component<IProps, {}> {
+interface IState {
+}
+export default class RightEndCap extends React.Component<IProps, IState> {
 
   public render() {
     const { config: {styleClassName}, mediaType } = this.props;

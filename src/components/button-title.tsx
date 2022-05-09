@@ -9,7 +9,9 @@ interface IProps {
   config: IWindowShadeConfiguration;
 }
 
-export default class ButtonTitle extends React.Component<IProps, {}> {
+interface IState {}
+
+export default class ButtonTitle extends React.Component<IProps, IState> {
 
   public render() {
     const styleClassName = this.props.config.styleClassName;

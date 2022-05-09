@@ -44,6 +44,7 @@ module.exports = {
       "jsx-quotes": ["error", "prefer-double"],
       "no-debugger": "off",
       "no-duplicate-imports": "error",
+      "no-non-null-assertion": "off",
       "no-sequences": "error",
       "no-shadow": "off", // superceded by @typescript-eslint/no-shadow
       "no-tabs": "error",
@@ -71,6 +72,7 @@ module.exports = {
       "react/no-danger": "error",
       "react/no-unsafe": ["off", { checkAliases: true }],
       "react/no-unused-state": "error",
+      "react/no-unescaped-entities": "off",
       "react/prop-types": "off",
       "semi": ["error", "always"]
     },

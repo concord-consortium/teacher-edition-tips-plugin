@@ -8,8 +8,8 @@ interface IProps {
   config: IWindowShadeConfiguration;
   hover: boolean;
 }
-
-export default class LeftEndCap extends React.Component<IProps, {}> {
+interface IState {}
+export default class LeftEndCap extends React.Component<IProps, IState> {
 
   public render() {
     const { FrontIcon, RearIcon, styleClassName } = this.props.config;

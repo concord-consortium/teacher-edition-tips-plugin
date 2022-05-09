@@ -163,7 +163,7 @@ export default class InlineAuthoringForm extends React.Component<IProps, IState>
 
   private cloneState(newState: IAuthoredState) {
     const prevState = (this.state && this.state.authoredState) || this.props.initialAuthoredState;
-    return Object.assign({}, prevState, newState);
+    return { ...prevState, ...newState};
   }
 
   private setInitialState(): IAuthoredState {

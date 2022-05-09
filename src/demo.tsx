@@ -13,8 +13,8 @@ const authoredStateA = {
 
 const authoredStateB = {
   windowShadeType: WindowShadeType.TeacherTip,
-  content: "This has some initial content (\`content\`)",
-  content2: "And, we have some additional content (\`content2\`)."
+  content: "This has some initial content (`content`)",
+  content2: "And, we have some additional content (`content2`)."
 };
 
 const authoredStateC = {
@@ -99,9 +99,9 @@ these artifacts.
 
 The biggest challenge to getting a good lunar image is managing the dynamic
 range of the subject.  In the end, the photographer chooses where to use
-the camera\’s limited dynamic range to best effect.  For this image I chose to
+the camera’s limited dynamic range to best effect.  For this image I chose to
 emphasize the area around the terminator at the expense of the rest of the
-moon\’s detail.
+moon’s detail.
 `,
   mediaType: MediaType.Image,
   layout: Layout.MediaCenter,
