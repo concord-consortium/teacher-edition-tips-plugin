@@ -18,7 +18,7 @@ interface IState {}
 
 export default class SideTip extends React.Component<IProps, IState> {
   public state: IState = {};
-  private sidebarController: PluginAPI.ISidebarController;
+  sidebarController: PluginAPI.ISidebarController;
 
   constructor(props: IProps) {
     super(props);

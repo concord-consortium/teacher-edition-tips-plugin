@@ -41,8 +41,8 @@ export class TeacherEditionTipsRuntimePlugin {
       this.pluginAppComponent = ReactDOM.render(
         <PluginApp
           authoredState={authoredState}
-          wrappedEmbeddableDiv={wrappedEmbeddable?.container}
-          wrappedEmbeddableContext={wrappedEmbeddable?.laraJson}
+          wrappedEmbeddableDiv={wrappedEmbeddable?.container || null}
+          wrappedEmbeddableContext={wrappedEmbeddable?.laraJson || null}
           pluginContext={this.context}
         />,
         this.context.container);

@@ -39,7 +39,7 @@
   "scripts": {
     "start": "webpack serve --hot --mode development",
     "build": "npm-run-all lint:build clean build:webpack",
-    "build:webpack": "webpack --mode production --devtool false",
+    "build:webpack": "webpack --mode production",
     "clean": "rimraf dist",
     "lint": "eslint \"./src/**/*.{js,jsx,ts,tsx}\" \"./cypress/**/*.{js,jsx,ts,tsx}\"",
     "lint:build": "eslint -c \".eslintrc.build.js\" \"./src/**/*.{js,jsx,ts,tsx}\" \"./cypress/**/*.{js,jsx,ts,tsx}\"",
