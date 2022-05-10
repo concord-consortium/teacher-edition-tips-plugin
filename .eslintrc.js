@@ -7,6 +7,7 @@ module.exports = {
     plugins: ["@typescript-eslint", "json", "react", "react-hooks"],
     env: {
       browser: true,
+      node: true,
       es6: true
     },
     settings: {

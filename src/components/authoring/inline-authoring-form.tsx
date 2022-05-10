@@ -132,9 +132,9 @@ export default class InlineAuthoringForm extends React.Component<IProps, IState>
   }
 
   private logEventMethod = (logData: ILogEvent) => {
-    // eslint-disable no-console
+    /* eslint-disable no-console */
     console.log(`WindowShade Log Event: ${JSON.stringify(logData)}`);
-    // tslint:enable no-console
+    /* eslint-enable no-console */
   }
 
   private addSideBarMethod() {

@@ -51,11 +51,9 @@ export default class JsonEditor extends React.Component<IProps, IState> {
         this.props.onSave(newProps);
       }
       catch (error) {
-        /* eslint-disable no-console */
         console.error("unable to paste json");
         console.error(error);
         this.setState({workingState: this.getAuthoredJson()});
-        /* tslint:enable no-console */
       }
     }
   }

@@ -51,6 +51,7 @@ export default class QuestionWrapper extends React.Component<IProps, IState> {
     if (!wrappedEmbeddableDiv) {
       return;
     }
+    /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
     const containerNode = this.wrappedEmbeddableDivContainer.current!;
     containerNode.appendChild(wrappedEmbeddableDiv);
 

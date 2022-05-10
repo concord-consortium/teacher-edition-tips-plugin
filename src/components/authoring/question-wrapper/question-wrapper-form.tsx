@@ -35,7 +35,6 @@ export default class QuestionWRapperForm extends React.Component<IProps, IState>
   }
 
   public render() {
-    const { wrappedEmbeddableContext } = this.props;
     const {
       correctExplanation, distractorsExplanation,  teacherTip,
       teacherTipImageOverlay, exemplar, location
