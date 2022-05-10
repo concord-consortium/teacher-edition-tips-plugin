@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import * as css from "./authoring-app.sass";
+import css from "./authoring-app.sass";
 import WindowShade from "../window-shade";
 import WindowShadeForm from "./window-shade/window-shade-form";
 
@@ -24,7 +24,6 @@ export const defaultWindowShadeProps: IWindowShade = {
     "[OR] Publisher. Gallery [OR] Location. http://www.url.com."
 };
 
-/* tslint:disable max-line-length*/
 export const defaultSideTipProps: ISideTip = {
   content: `Welcome to the **Teacher Edition** of the **GEODE: What will Earth look like in 500 million years?** activity sequence. This interactive guide will help you get acquainted with these activities from a student’s perspective and also provide you with learning theory and learning objectives, additional information on subject matter, classroom discussion points, and tips on achieving learning goals.
 
@@ -133,7 +132,7 @@ export default class InlineAuthoringForm extends React.Component<IProps, IState>
   }
 
   private logEventMethod = (logData: ILogEvent) => {
-    // tslint:disable no-console
+    // eslint-disable no-console
     console.log(`WindowShade Log Event: ${JSON.stringify(logData)}`);
     // tslint:enable no-console
   }

@@ -74,9 +74,14 @@ export default class WindowShade extends React.Component<IProps, IState> {
   }
 
   private toggle = () => {
-    const action = nextOpen ? AnalyticsActionType.tabOpened : AnalyticsActionType.tabClosed;
-    this.setState(prevState => ({open: !prevState.open + 1}));
-    this.logAction(action);
+
+    this.setState(prevState => {
+      const nextState = !prevState.open;
+      const action = nextState ? AnalyticsActionType.tabOpened : AnalyticsActionType.tabClosed;
+      this.logAction(action);
+      return {open: !prevState.open}
+    });
+
   }
 
   private logAction = (action: AnalyticsActionType) => {

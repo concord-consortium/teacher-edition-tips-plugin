@@ -61,7 +61,6 @@ const authoredStateD = {
 
 const authoredStateE = {
   windowShadeType: WindowShadeType.TheoryAndBackground,
-  // tslint:disable:no-trailing-whitespace
   content: `
 ### Image Data
 
@@ -83,7 +82,7 @@ The weather was mixed with bands of clouds and a bit of mist.  In between the
 bands there were moments of relative clear.  I waited for a break and was
 lucky enough to get one.
 `,
-  // tslint:enable:no-trailing-whitespace
+
   content2: `
 ### Challenges
 
@@ -132,7 +131,6 @@ Andromeda.
 Oh, watch out, it's coming our WAY!!!! Brace for impact in 4,000,000,000 years.
 Give or take.
 `,
-  // tslint:disable:no-trailing-whitespace
   content2: `
 - - -
 
@@ -163,7 +161,7 @@ Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur,
 adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et
 dolore magnam aliquam quaerat voluptatem.
 `,
-  // tslint:disable:no-trailing-whitespace
+
   content: `
 ## A Poem
 
@@ -182,7 +180,7 @@ Who wanted some prose in a bucket.
 And it took them, no time, to compose it.  
 
 `,
-  // tslint:enable:no-trailing-whitespace
+
   mediaType: MediaType.Video,
   layout: Layout.MediaCenter,
   mediaURL: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm",
@@ -240,13 +238,15 @@ const windowShadeContainerDivStyle = {
 };
 
 const logEventMethod = (logData: ILogEvent) => {
-  // tslint:disable no-console
+  /* eslint-disable-next-line no-console */
   console.log(`WindowShade Log Event: ${JSON.stringify(logData)}`);
-  // tslint:enable no-console
 };
 
 function toggleWidth() {
-  document.getElementById("window-shade")!.classList.toggle("narrow");
+  const elm = document.getElementById("window-shade");
+  if(elm) {
+    elm.classList.toggle("narrow");
+  }
 }
 
 ReactDOM.render(

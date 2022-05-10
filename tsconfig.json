@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+      "outDir": "./dist/",
+      "sourceMap": true,
+      "noImplicitAny": true,
+      "noUnusedLocals": true,
+      "module": "es6",
+      "moduleResolution": "node",
+      "target": "es6",
+      "strictNullChecks": true,
+      "jsx": "react",
+      "allowJs": true,
+      "allowSyntheticDefaultImports": true
+  },
+  "include": [
+      "./src/**/*"
+  ],
+  "exclude": [
+      "./src/public/**/*"
+  ]
+}

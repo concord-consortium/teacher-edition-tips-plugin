@@ -81,7 +81,7 @@ export default class WindowShadeContent extends React.Component<IProps, IState> 
           );
         }
         default: {
-          // tslint:disable-next-line:no-console
+          /* eslint-disable-next-line no-console */
           console.warn("Unknown Layout value: layout == " + layout);
           return null;
         }

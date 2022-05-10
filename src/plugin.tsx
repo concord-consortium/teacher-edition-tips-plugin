@@ -12,7 +12,6 @@ const getAuthoredState = (context: PluginAPI.IPluginRuntimeContext | PluginAPI.I
   try {
     authoredState = JSON.parse(context.authoredState);
   } catch (error) {
-    // tslint:disable-next-line:no-console
     console.warn("Unexpected authoredState:", context.authoredState);
     return {};
   }
@@ -38,12 +37,12 @@ export class TeacherEditionTipsRuntimePlugin {
     const authoredState = getAuthoredState(this.context);
     const wrappedEmbeddable = this.context.wrappedEmbeddable;
     if (isTeacherEdition()) {
-      // eslint-disable-next-line react/no-render-return-value
+      /* eslint-disable-next-line react/no-render-return-value */
       this.pluginAppComponent = ReactDOM.render(
         <PluginApp
           authoredState={authoredState}
-          wrappedEmbeddableDiv={wrappedEmbeddable && wrappedEmbeddable.container}
-          wrappedEmbeddableContext={wrappedEmbeddable && wrappedEmbeddable.laraJson}
+          wrappedEmbeddableDiv={wrappedEmbeddable?.container}
+          wrappedEmbeddableContext={wrappedEmbeddable?.laraJson}
           pluginContext={this.context}
         />,
         this.context.container);
@@ -72,8 +71,8 @@ export class TeacherEditionTipsAuthoringPlugin {
       <InlineAuthoringForm
         initialAuthoredState={ authoredState }
         saveAuthoredPluginState={ this.context.saveAuthoredPluginState }
-        wrappedEmbeddableDiv={wrappedEmbeddable && wrappedEmbeddable.container}
-        wrappedEmbeddableContext={wrappedEmbeddable && wrappedEmbeddable.laraJson}
+        wrappedEmbeddableDiv={wrappedEmbeddable?.container}
+        wrappedEmbeddableContext={wrappedEmbeddable?.laraJson}
     />,
       this.context.container);
   }
@@ -81,11 +80,10 @@ export class TeacherEditionTipsAuthoringPlugin {
 
 export const initPlugin = () => {
   if (!PluginAPI || !PluginAPI.registerPlugin) {
-    // tslint:disable-next-line:no-console
     console.warn("LARA Plugin API not available, TeacherEditionTipsPlugin terminating");
     return;
   }
-  // tslint:disable-next-line:no-console
+  /* eslint-disable-next-line no-console */
   console.log("LARA Plugin API available, TeacherEditionTipsPlugin initialization");
   PluginAPI.registerPlugin({
     runtimeClass: TeacherEditionTipsRuntimePlugin,

@@ -1,8 +1,7 @@
 import * as React from "react";
 import * as css from "./side-tip-form.sass";
 
-import { ISideTip, WindowShadeType, MediaType } from "../../../types";
-import { getContentConfiguration } from "../../../config/ui-configurations";
+import { ISideTip, MediaType } from "../../../types";
 
 const allMediaTypes = [
   MediaType.None,

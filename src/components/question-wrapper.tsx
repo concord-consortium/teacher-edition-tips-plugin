@@ -1,5 +1,5 @@
 import * as React from "react";
-import Markdown from "markdown-to-jsx";
+import * as Markdown from "markdown-to-jsx";
 import { IAuthoredQuestionWrapper, TeacherTipType, QuestionWrapperLocation } from "../types";
 import CheckA from "../icons/check_A.svg";
 import XA from "../icons/x_A.svg";

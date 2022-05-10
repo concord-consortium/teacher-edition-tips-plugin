@@ -119,9 +119,9 @@ export default class AuthoringApp extends React.Component<IProps, IState> {
   }
 
   private logEventMethod = (logData: ILogEvent) => {
-    // tslint:disable no-console
+    /* eslint-disable no-console */
     console.log(`WindowShade Log Event: ${JSON.stringify(logData)}`);
-    // tslint:enable no-console
+    /* tslint:enable no-console */
   }
 
   private addSideBarMethod() {

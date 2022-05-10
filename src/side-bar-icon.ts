@@ -1,4 +1,4 @@
-// tslint:disable max-line-length
+// eslint-disable max-line-length
 
 /*
   NP 2018-11:

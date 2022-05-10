@@ -7,8 +7,12 @@
     "transform": {
       "^.+\\.tsx?$": "ts-jest"
     },
-    "testURL": "https://glossary-test.unexisting.url.com",
-    "setupTestFrameworkScriptFile": "<rootDir>src/setupTests.js",
+    "testEnvironmentOptions": {
+      "url": "https://glossary-test.unexisting.url.com"
+    },
+    "setupFilesAfterEnv": [
+      "<rootDir>src/setupTests.js"
+    ],
     "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
     "testPathIgnorePatterns": [
       "/node_modules/",
@@ -100,6 +104,7 @@
     "html-webpack-plugin": "^5.5.0",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^28.1.0",
+    "jest-environment-jsdom": "^28.1.0",
     "npm-run-all": "^4.1.5",
     "postcss-loader": "^6.2.1",
     "react": "^16.6.0",
@@ -124,6 +129,7 @@
     "@concord-consortium/lara-plugin-api": "^3.3.1",
     "markdown-to-jsx": "^7.1.7",
     "query-string": "^7.1.1",
+    "tslint-react": "^5.0.0",
     "uuid": "^8.3.2"
   }
 }

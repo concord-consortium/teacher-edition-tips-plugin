@@ -1,3 +1,7 @@
+/**
+ * @jest-environment jsdom
+ */
+
 import * as React from "react";
 import WindowShade from "./window-shade";
 import { shallow } from "enzyme";

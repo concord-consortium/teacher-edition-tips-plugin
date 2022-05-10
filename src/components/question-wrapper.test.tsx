@@ -1,3 +1,7 @@
+/**
+ * @jest-environment jsdom
+ */
+
 import * as React from "react";
 import QuestionWrapper from "./question-wrapper";
 import { mount } from "enzyme";
