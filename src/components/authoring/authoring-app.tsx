@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
-import * as css from "./authoring-app.sass";
+import css from "./authoring-app.sass";
 import WindowShade from "../window-shade";
 import WindowShadeForm from "./window-shade/window-shade-form";
 

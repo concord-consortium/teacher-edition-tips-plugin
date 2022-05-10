@@ -1,5 +1,5 @@
 import * as React from "react";
-import * as css from "./json-editor.sass";
+import css from "./json-editor.sass";
 
 import {
   IAuthoredState

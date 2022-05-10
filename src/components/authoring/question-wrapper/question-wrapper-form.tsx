@@ -1,5 +1,5 @@
 import * as React from "react";
-import * as css from "./question-wrapper-form.sass";
+import css from "./question-wrapper-form.sass";
 
 import { IAuthoredQuestionWrapper, QuestionWrapperLocation  } from "../../../types";
 

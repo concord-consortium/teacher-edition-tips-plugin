@@ -1,5 +1,5 @@
 import * as React from "react";
-import * as css from "./side-tip-form.sass";
+import css from "./side-tip-form.sass";
 
 import { ISideTip, MediaType } from "../../../types";
 
