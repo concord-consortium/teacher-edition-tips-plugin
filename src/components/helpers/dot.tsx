@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import * as css from "./dot.sass";
+import css from "./dot.sass";
 import { IWindowShadeConfiguration } from "../../config/ui-configurations";
 
 export enum sidePosition {
@@ -13,7 +13,8 @@ interface IProps {
   side: sidePosition;
 }
 
-export class Dot extends React.Component<IProps, {}> {
+interface IState {}
+export class Dot extends React.Component<IProps, IState> {
   public render() {
     const { config: {styleClassName}, side } = this.props;
     const cssNames = [

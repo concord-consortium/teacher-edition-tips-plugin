@@ -1,7 +1,7 @@
 import * as React from "react";
 import sideBarIcon from "../side-bar-icon";
-import Markdown from "markdown-to-jsx";
-import * as css from "./side-tip.sass";
+import * as Markdown from "markdown-to-jsx";
+import css from "./side-tip.sass";
 import { ISideTip, TeacherTipType } from "../types";
 import * as PluginAPI from "@concord-consortium/lara-plugin-api";
 import {
@@ -18,7 +18,7 @@ interface IState {}
 
 export default class SideTip extends React.Component<IProps, IState> {
   public state: IState = {};
-  private sidebarController: PluginAPI.ISidebarController;
+  sidebarController: PluginAPI.ISidebarController;
 
   constructor(props: IProps) {
     super(props);

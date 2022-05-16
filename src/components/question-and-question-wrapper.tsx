@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import * as css from "./question-and-question-wrapper.sass";
+import css from "./question-and-question-wrapper.sass";
 import { IAuthoredQuestionWrapper } from "../types";
 import QuestionWrapper from "./question-wrapper";
 import { ILogEvent } from "../utilities/analytics";
@@ -27,7 +27,7 @@ interface IState {}
 export default class QuestionAndQuestionWrapper extends React.Component<IProps, IState> {
   private domRef: any;
 
-  public componentWillMount(){
+  public UNSAFE_componentWillMount(){
     this.domRef = document.createElement("div");
     this.domRef.setAttribute("id", "wrapped-div");
     this.domRef.setAttribute("class", css.embeddableDiv);

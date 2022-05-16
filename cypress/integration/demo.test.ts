@@ -1,4 +1,4 @@
-const resizeObserverLoopErrRe = /^ResizeObserver loop limit exceeded/
+const resizeObserverLoopErrRe = /^ResizeObserver loop limit exceeded/;
 
 // Handles rando `Uncaught Error: ResizeObserver loop limit exceeded`
 // which sometimes shows up in travis
@@ -7,7 +7,7 @@ Cypress.on("uncaught:exception", (err) => {
   if (resizeObserverLoopErrRe.test(err.message)) {
     // returning false here prevents Cypress from
     // failing the test
-    return false
+    return false;
   }
 });
 

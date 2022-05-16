@@ -26,16 +26,16 @@ You *do not* need to build to deploy the code, that is automatic.  See more info
 
 ## Deployment
 
-*TODO* Set up Travis Deployment
 
-Production releases to S3 are based on the contents of the /dist folder and are built automatically by Travis
-for each branch pushed to GitHub and each merge into production.
+Production releases to S3 are based on the contents of the /dist folder and are
+built automatically by Github for each branch pushed to GitHub and each merge
+into production.
 
 Merges into production are deployed to http://teacher-edition-tips-plugin.concord.org.
 
 Other branches are deployed to http://teacher-edition-tips-plugin.concord.org/branch/<name>.
 
-You can view the status of all the branch deploys [here](https://travis-ci.org/concord-consortium/teacher-edition-tips-plugin/branches).
+You can view the status of all the branch deploys [here](https://github.com/concord-consortium/teacher-edition-tips-plugin/actions).
 
 To deploy a production release:
 

@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import * as css from "./left-end-cap.sass";
+import css from "./left-end-cap.sass";
 
 import { IWindowShadeConfiguration } from "../config/ui-configurations";
 
@@ -8,8 +8,8 @@ interface IProps {
   config: IWindowShadeConfiguration;
   hover: boolean;
 }
-
-export default class LeftEndCap extends React.Component<IProps, {}> {
+interface IState {}
+export default class LeftEndCap extends React.Component<IProps, IState> {
 
   public render() {
     const { FrontIcon, RearIcon, styleClassName } = this.props.config;

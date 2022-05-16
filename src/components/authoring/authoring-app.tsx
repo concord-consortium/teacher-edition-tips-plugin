@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
-import * as css from "./authoring-app.sass";
+import css from "./authoring-app.sass";
 import WindowShade from "../window-shade";
 import WindowShadeForm from "./window-shade/window-shade-form";
 
@@ -17,7 +17,7 @@ import markdownHelpContent from "./markdown-help";
 
 import {
   IAuthoredState, IWindowShade, ISideTip, WindowShadeType,
-  IAuthoredQuestionWrapper, TeacherTipType, QuestionWrapperLocation
+  IAuthoredQuestionWrapper, TeacherTipType
 } from "../../types";
 import { ILogEvent } from "../../utilities/analytics";
 
@@ -119,9 +119,9 @@ export default class AuthoringApp extends React.Component<IProps, IState> {
   }
 
   private logEventMethod = (logData: ILogEvent) => {
-    // tslint:disable no-console
+    /* eslint-disable no-console */
     console.log(`WindowShade Log Event: ${JSON.stringify(logData)}`);
-    // tslint:enable no-console
+    /* eslint-enable no-console */
   }
 
   private addSideBarMethod() {
@@ -168,7 +168,7 @@ export default class AuthoringApp extends React.Component<IProps, IState> {
 
   private cloneState(newState: IAuthoredState) {
     const prevState = (this.state && this.state.authoredState) || this.props.initialAuthoredState;
-    return Object.assign({}, prevState, newState);
+    return { ...prevState, ...newState};
   }
 
   private setInitialState(): IAuthoredState {

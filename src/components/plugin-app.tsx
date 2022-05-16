@@ -54,7 +54,7 @@ export default class PluginApp extends React.Component<IProps, IState> {
     const { wrappedEmbeddableDiv, wrappedEmbeddableContext, authoredState, pluginContext } = this.props;
     const { questionWrapper } = authoredState;
     if (!wrappedEmbeddableDiv || !wrappedEmbeddableContext) {
-      // tslint:disable-next-line:no-console
+      // eslint-disable-next-line:no-console
       console.warn("Cannot render question wrapper - missing wrapped question reference");
       return null;
     }

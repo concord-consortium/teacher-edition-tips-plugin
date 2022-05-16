@@ -1,7 +1,7 @@
 import * as React from "react";
-import Markdown from "markdown-to-jsx";
+import * as Markdown from "markdown-to-jsx";
 
-import * as css from "./window-shade-content.sass";
+import css from "./window-shade-content.sass";
 import { IWindowShadeConfiguration } from "../config/ui-configurations";
 import { MediaType, Layout } from "../types";
 
@@ -81,7 +81,6 @@ export default class WindowShadeContent extends React.Component<IProps, IState> 
           );
         }
         default: {
-          // tslint:disable-next-line:no-console
           console.warn("Unknown Layout value: layout == " + layout);
           return null;
         }

@@ -1,5 +1,5 @@
 import * as React from "react";
-import * as css from "./window-shade-form.sass";
+import css from "./window-shade-form.sass";
 
 import { IWindowShade, WindowShadeType, MediaType, Layout } from "../../../types";
 import { getContentConfiguration } from "../../../config/ui-configurations";

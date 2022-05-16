@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import * as css from "./button-title.sass";
+import css from "./button-title.sass";
 
 import { IWindowShadeConfiguration } from "../config/ui-configurations";
 
@@ -9,7 +9,9 @@ interface IProps {
   config: IWindowShadeConfiguration;
 }
 
-export default class ButtonTitle extends React.Component<IProps, {}> {
+interface IState {}
+
+export default class ButtonTitle extends React.Component<IProps, IState> {
 
   public render() {
     const styleClassName = this.props.config.styleClassName;

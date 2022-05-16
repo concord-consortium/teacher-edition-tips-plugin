@@ -1,5 +1,5 @@
 import * as React from "react";
-import Markdown from "markdown-to-jsx";
+import * as Markdown from "markdown-to-jsx";
 import { IAuthoredQuestionWrapper, TeacherTipType, QuestionWrapperLocation } from "../types";
 import CheckA from "../icons/check_A.svg";
 import XA from "../icons/x_A.svg";
@@ -7,7 +7,7 @@ import ExclamationSmall from "../icons/exclamation_small_A.svg";
 import Exclamation from "../icons/exclamation_A.svg";
 import CheckMark from "../icons/check_mark.svg";
 import XMark from "../icons/x_mark.svg";
-import * as css from "./question-wrapper.sass";
+import css from "./question-wrapper.sass";
 import { ILogEvent, AnalyticsActionType } from "../utilities/analytics";
 
 type TabName = "Correct" | "Distractors" | "TeacherTip" | "Exemplar";
@@ -51,6 +51,7 @@ export default class QuestionWrapper extends React.Component<IProps, IState> {
     if (!wrappedEmbeddableDiv) {
       return;
     }
+    /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
     const containerNode = this.wrappedEmbeddableDivContainer.current!;
     containerNode.appendChild(wrappedEmbeddableDiv);
 

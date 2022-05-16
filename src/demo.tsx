@@ -13,8 +13,8 @@ const authoredStateA = {
 
 const authoredStateB = {
   windowShadeType: WindowShadeType.TeacherTip,
-  content: "This has some initial content (\`content\`)",
-  content2: "And, we have some additional content (\`content2\`)."
+  content: "This has some initial content (`content`)",
+  content2: "And, we have some additional content (`content2`)."
 };
 
 const authoredStateC = {
@@ -61,7 +61,6 @@ const authoredStateD = {
 
 const authoredStateE = {
   windowShadeType: WindowShadeType.TheoryAndBackground,
-  // tslint:disable:no-trailing-whitespace
   content: `
 ### Image Data
 
@@ -83,7 +82,7 @@ The weather was mixed with bands of clouds and a bit of mist.  In between the
 bands there were moments of relative clear.  I waited for a break and was
 lucky enough to get one.
 `,
-  // tslint:enable:no-trailing-whitespace
+
   content2: `
 ### Challenges
 
@@ -99,9 +98,9 @@ these artifacts.
 
 The biggest challenge to getting a good lunar image is managing the dynamic
 range of the subject.  In the end, the photographer chooses where to use
-the camera\’s limited dynamic range to best effect.  For this image I chose to
+the camera’s limited dynamic range to best effect.  For this image I chose to
 emphasize the area around the terminator at the expense of the rest of the
-moon\’s detail.
+moon’s detail.
 `,
   mediaType: MediaType.Image,
   layout: Layout.MediaCenter,
@@ -115,9 +114,9 @@ const authoredStateF = {
 This is an example of a video window shade using the "mediaLeft" layout.
 `,
   layout: Layout.MediaLeft,
-  mediaURL: "https://www.videvo.net/videvo_files/converted/2016_05/preview/506401051_1.mov80298.webm",
   mediaType: MediaType.Video,
-  mediaCaption: "jonaslisting. 2016. [Earth From Space](https://www.videvo.net/video/earth-from-space-animation/4825/)."
+  mediaURL: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm",
+  mediaCaption: "A CC0 video of a flower opening"
 };
 
 const authoredStateG = {
@@ -132,7 +131,6 @@ Andromeda.
 Oh, watch out, it's coming our WAY!!!! Brace for impact in 4,000,000,000 years.
 Give or take.
 `,
-  // tslint:disable:no-trailing-whitespace
   content2: `
 - - -
 
@@ -163,7 +161,7 @@ Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur,
 adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et
 dolore magnam aliquam quaerat voluptatem.
 `,
-  // tslint:disable:no-trailing-whitespace
+
   content: `
 ## A Poem
 
@@ -175,18 +173,18 @@ And it took them, no time, to compose it.
 
 ## A Poem, Indented
 
-> There once was a writer from Nantucket,  
+> There once was a writer from Nantucket,
 Who wanted some prose in a bucket.  
 "No problem," you say,  
 "Markdown is the way!"  
 And it took them, no time, to compose it.  
 
 `,
-  // tslint:enable:no-trailing-whitespace
+
   mediaType: MediaType.Video,
   layout: Layout.MediaCenter,
-  mediaURL: "https://www.videvo.net/videvo_files/converted/2014_12/preview/mlky_6.mp453110.webm",
-  mediaCaption: "Time-lapse of the Milky Way. https://www.videvo.net/video/milky-way-timelapse/2974/"
+  mediaURL: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm",
+  mediaCaption: "A CC0 video of a flower opening"
 };
 
 const authoredStateI = {
@@ -240,13 +238,15 @@ const windowShadeContainerDivStyle = {
 };
 
 const logEventMethod = (logData: ILogEvent) => {
-  // tslint:disable no-console
+  /* eslint-disable-next-line no-console */
   console.log(`WindowShade Log Event: ${JSON.stringify(logData)}`);
-  // tslint:enable no-console
 };
 
 function toggleWidth() {
-  document.getElementById("window-shade")!.classList.toggle("narrow");
+  const elm = document.getElementById("window-shade");
+  if(elm) {
+    elm.classList.toggle("narrow");
+  }
 }
 
 ReactDOM.render(

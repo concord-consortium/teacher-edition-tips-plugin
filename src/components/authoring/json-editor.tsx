@@ -1,5 +1,5 @@
 import * as React from "react";
-import * as css from "./json-editor.sass";
+import css from "./json-editor.sass";
 
 import {
   IAuthoredState
@@ -51,11 +51,9 @@ export default class JsonEditor extends React.Component<IProps, IState> {
         this.props.onSave(newProps);
       }
       catch (error) {
-        // tslint:disable no-console
         console.error("unable to paste json");
         console.error(error);
         this.setState({workingState: this.getAuthoredJson()});
-        // tslint:enable no-console
       }
     }
   }

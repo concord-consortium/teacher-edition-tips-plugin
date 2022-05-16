@@ -1,12 +1,11 @@
 import * as React from "react";
 
-import * as css from "./window-shade.sass";
-import { IWindowShade, MediaType, Layout } from "../types";
+import css from "./window-shade.sass";
+import { IWindowShade, MediaType, Layout, TeacherTipType } from "../types";
 import { WindowShadeConfigurations } from "../config/ui-configurations";
 import WindowShadeButton from "./window-shade-button";
 import WindowShadeContent from "./window-shade-content";
 import { Dot, sidePosition } from "./helpers/dot";
-import { TeacherTipType } from "../types";
 import { ILogEvent, AnalyticsActionType } from "../utilities/analytics";
 
 interface IProps {
@@ -38,6 +37,7 @@ export default class WindowShade extends React.Component<IProps, IState> {
     const { windowShadeType, tabNameOverride, content, content2, layout,
       mediaType, mediaURL, mediaCaption } = this.props.authoredState;
     const { className } = this.props;
+
     const config = WindowShadeConfigurations[windowShadeType];
     const cssOpenState = open ? css.windowShadeShown : css.windowShadeHidden;
     const cssShadeType = css[config.styleClassName];
@@ -74,10 +74,14 @@ export default class WindowShade extends React.Component<IProps, IState> {
   }
 
   private toggle = () => {
-    const nextOpen = !this.state.open;
-    const action = nextOpen ? AnalyticsActionType.tabOpened : AnalyticsActionType.tabClosed;
-    this.setState({open: nextOpen});
-    this.logAction(action);
+
+    this.setState(prevState => {
+      const nextState = !prevState.open;
+      const action = nextState ? AnalyticsActionType.tabOpened : AnalyticsActionType.tabClosed;
+      this.logAction(action);
+      return {open: !prevState.open};
+    });
+
   }
 
   private logAction = (action: AnalyticsActionType) => {
