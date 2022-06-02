@@ -85,7 +85,7 @@ module.exports = (env, argv) => {
       }),
       new CopyPlugin({
         patterns: [
-          { from: './src/public/*.json', to: './' }
+          { from: './src/public/manifest.json', to: 'manifest.json' }
         ]})
     ],
     externals: {
