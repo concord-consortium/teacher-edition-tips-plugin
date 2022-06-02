@@ -82,7 +82,7 @@ export default class QuestionWrapper extends React.Component<IProps, IState> {
             { visibleText }
           </div>
       </div>
-    )
+    );
   }
 
   public render() {
