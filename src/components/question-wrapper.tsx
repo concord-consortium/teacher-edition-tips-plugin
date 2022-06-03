@@ -1,5 +1,5 @@
 import * as React from "react";
-import * as Markdown from "markdown-to-jsx";
+import Markdown from "markdown-to-jsx";
 import { IAuthoredQuestionWrapper, TeacherTipType, QuestionWrapperLocation } from "../types";
 import CheckA from "../icons/check_A.svg";
 import XA from "../icons/x_A.svg";
@@ -60,6 +60,29 @@ export default class QuestionWrapper extends React.Component<IProps, IState> {
       this.answerInputs = this.findInputsInWrappedQuestion();
     }
     this.logAction(AnalyticsActionType.loaded);
+  }
+
+  // NP: 2022-06-02 - A bit hacky. Jest doesn't thing Markdown is a react
+  // component, so without this guard, jest fails tests. I can't figure out
+  // if there is something weird about how the Markdown component exports itself
+  // or why jest module loading wouldn't be the same as typescript module loading.
+  public renderMarkdown(visibleText: string, visibleTextClass: string) {
+    if (Markdown !== undefined) {
+      return (
+        <div className={visibleTextClass}>
+            <Markdown className={css.authorMarkdown}>
+              { visibleText }
+            </Markdown>
+        </div>
+      );
+    }
+    return (
+      <div className={visibleTextClass}>
+          <div className={css.authorMarkdown}>
+            { visibleText }
+          </div>
+      </div>
+    );
   }
 
   public render() {
@@ -130,12 +153,7 @@ export default class QuestionWrapper extends React.Component<IProps, IState> {
           { activeTab === "Distractors" && this.renderDistractorsOverlay() }
           { activeTab === "TeacherTip" && this.renderImageOverlay() }
           {
-            visibleText &&
-            <div className={visibleTextClass}>
-              <Markdown className={css.authorMarkdown}>
-                { visibleText }
-              </Markdown>
-            </div>
+            visibleText && this.renderMarkdown(visibleText, visibleTextClass)
           }
         </div>
       </div>

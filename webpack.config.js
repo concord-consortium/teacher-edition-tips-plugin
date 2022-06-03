@@ -16,7 +16,8 @@ module.exports = (env, argv) => {
     devtool: devMode ? 'eval-cheap-module-source-map' : 'source-map',
     output: {
       path: path.resolve(__dirname, 'dist'),
-      filename: '[name].js'
+      filename: '[name].js',
+      publicPath: '/'
     },
     module: {
       rules: [
@@ -63,7 +64,13 @@ module.exports = (env, argv) => {
       },
       headers: {
         'Access-Control-Allow-Origin': '*'
-      }
+      },
+      devMiddleware: {
+        index: true,
+        serverSideRender: true,
+        publicPath: '/',
+        writeToDisk: true,
+      },
     },
     plugins: [
       new HtmlWebpackPlugin({
@@ -75,8 +82,11 @@ module.exports = (env, argv) => {
         template: './src/public/demo.html',
         filename: 'demo.html',
         chunks: ['demo']
-      })
-      // new CleanWebpackPlugin()
+      }),
+      new CopyPlugin({
+        patterns: [
+          { from: './src/public/manifest.json', to: 'manifest.json' }
+        ]})
     ],
     externals: {
       'react': 'React',

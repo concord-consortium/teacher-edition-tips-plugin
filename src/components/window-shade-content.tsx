@@ -1,5 +1,5 @@
 import * as React from "react";
-import * as Markdown from "markdown-to-jsx";
+import Markdown from "markdown-to-jsx";
 
 import css from "./window-shade-content.sass";
 import { IWindowShadeConfiguration } from "../config/ui-configurations";
