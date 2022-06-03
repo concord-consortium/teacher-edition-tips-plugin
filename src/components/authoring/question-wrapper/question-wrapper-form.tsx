@@ -87,7 +87,7 @@ export default class QuestionWRapperForm extends React.Component<IProps, IState>
         </div>
 
         <div className={css.section}>
-          <label> Exemplar </label>
+          <label> Exemplar (Markdown) </label>
           <br/>
           <textarea
             value={exemplar}
