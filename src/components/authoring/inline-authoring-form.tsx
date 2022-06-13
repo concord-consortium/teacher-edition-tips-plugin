@@ -15,6 +15,7 @@ import {
   WindowShadeType, QuestionWrapperLocation
 } from "../../types";
 import { ILogEvent } from "../../utilities/analytics";
+import { getFormButtonsConfiguration } from "../../config/ui-configurations";
 
 export const defaultWindowShadeProps: IWindowShade = {
   windowShadeType: WindowShadeType.TheoryAndBackground,
@@ -72,6 +73,8 @@ export default class InlineAuthoringForm extends React.Component<IProps, IState>
     const showWindowShade =  tipType === TeacherTipType.WindowShade;
     const showQuestionWrapper =  tipType === TeacherTipType.QuestionWrapper;
     const showSideTip =  tipType === TeacherTipType.SideTip;
+    const cancelButtonConfig = getFormButtonsConfiguration("cancelButton");
+    const saveButtonConfig = getFormButtonsConfiguration("saveButton");
     return (
       <div className={css.inlineAuthoringContainer}>
         <div className={css.preview}>
@@ -98,6 +101,8 @@ export default class InlineAuthoringForm extends React.Component<IProps, IState>
             />
           }
           <br/>
+        </div>
+        <div className={css.authoringFormContainer}>
           {
           showWindowShade &&
           <WindowShadeForm
@@ -124,8 +129,18 @@ export default class InlineAuthoringForm extends React.Component<IProps, IState>
           }
         </div>
         <div className={css.inlineFormButtons + " submit-container"}>
-          <button onClick={this.saveAuthoredState} className="embeddable-save">Save</button>
-          <button className="close">Cancel</button>
+          <button className={css.inlineFormButton}>
+            <cancelButtonConfig.Icon className={css.svgIcon} />
+            <span className={css.lineAdjust}>
+              Cancel
+            </span>
+          </button>
+          <button onClick={this.saveAuthoredState} className={css.inlineFormButton}>
+            <saveButtonConfig.Icon className={css.svgIcon} />
+            <span className={css.lineAdjust}>
+              Save
+            </span>
+          </button>
         </div>
       </div>
     );

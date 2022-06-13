@@ -2,7 +2,7 @@
 
 .questionWrapper
   .headers
-    height: 50px
+    height: 50px !important
     overflow: hidden
     display: flex
 
@@ -20,7 +20,7 @@
       border-top-left-radius: 24px
       border-top-right-radius: 24px
       display: inline-block
-      height: 50px
+      height: 50px !important
       text-align: left
       cursor: pointer
       vertical-align: top
@@ -82,6 +82,7 @@
     display: grid
     grid-template-columns: 100%
     grid-template-rows: [header] auto [main-content] auto [footer] auto
+    overflow: hidden
     position: relative
 
     .originalContent

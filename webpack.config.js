@@ -45,7 +45,7 @@ module.exports = (env, argv) => {
 
               options: {
                 modules: {
-                  mode: "local",
+                  mode: 'local',
                   localIdentName: '[name]--[local]--TETipsPluginV1'
                 },
                 sourceMap: true,
@@ -103,6 +103,6 @@ module.exports = (env, argv) => {
         'react-dom': '@hot-loader/react-dom'
       }
     }
-  }
+  };
 };
 
