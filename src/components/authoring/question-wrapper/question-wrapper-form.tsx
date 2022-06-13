@@ -51,7 +51,7 @@ export default class QuestionWRapperForm extends React.Component<IProps, IState>
     return (
       <div className={css.container}>
         <div className={css.section}>
-          <label> Correct Explanation (Markdown) </label>
+          <label> Correct Explanation <span className={css.inputType}>(markdown)</span> </label>
           <br/>
           <textarea
             value={correctExplanation}
@@ -60,7 +60,7 @@ export default class QuestionWRapperForm extends React.Component<IProps, IState>
         </div>
 
         <div className={css.section}>
-          <label> Distractor Explanation (Markdown) </label>
+          <label> Distractor Explanation <span className={css.inputType}>(markdown)</span> </label>
           <br/>
           <textarea
             value={distractorsExplanation}
@@ -69,7 +69,7 @@ export default class QuestionWRapperForm extends React.Component<IProps, IState>
         </div>
 
         <div className={css.section}>
-          <label> Teacher Tip (Markdown) </label>
+          <label> Teacher Tip <span className={css.inputType}>(markdown)</span> </label>
           <br/>
           <textarea
             value={teacherTip}
@@ -78,7 +78,7 @@ export default class QuestionWRapperForm extends React.Component<IProps, IState>
         </div>
 
         <div className={css.section}>
-          <label> Teacher Tip Image Overlay (Markdown) </label>
+          <label> Teacher Tip Image Overlay <span className={css.inputType}>(markdown)</span> </label>
           <br/>
           <input type="text"
             value={teacherTipImageOverlay}
@@ -87,7 +87,7 @@ export default class QuestionWRapperForm extends React.Component<IProps, IState>
         </div>
 
         <div className={css.section}>
-          <label> Exemplar </label>
+          <label> Exemplar <span className={css.inputType}>(markdown)</span> </label>
           <br/>
           <textarea
             value={exemplar}

@@ -137,7 +137,7 @@ export default class WindowShadeForm extends React.Component<IProps, IState> {
             onChange={this.updateMediaURL}/>
         </div>
         <div className={css.section}>
-          <label> Media Caption (Markdown) </label>
+          <label> Media Caption <span className={css.inputType}>(markdown)</span> </label>
           <br/>
           <textarea
             className={css.caption}
@@ -145,14 +145,14 @@ export default class WindowShadeForm extends React.Component<IProps, IState> {
             onChange={this.updateMediaCaption}/>
         </div>
         <div className={css.section}>
-          <label> Content (Markdown) </label>
+          <label> Content <span className={css.inputType}>(markdown)</span> </label>
           <br/>
           <textarea
             value={content}
             onChange={this.updateContent}/>
         </div>
         <div className={css.section}>
-          <label> Content-2 (Markdown) </label>
+          <label> Content-2 <span className={css.inputType}>(markdown)</span> </label>
           <br/>
           <p className={css.note}>
             Note: Content-2 is rendered after Content except when you use the "mediaCenter" layout,

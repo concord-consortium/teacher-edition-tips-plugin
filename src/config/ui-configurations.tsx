@@ -14,6 +14,12 @@ import FrameA from "../icons/frame_A.svg";
 import FrameB from "../icons/frame_B.svg";
 import ToolsA from "../icons/tools_A.svg";
 import ToolsB from "../icons/tools_B.svg";
+import Cancel from "../icons/cancel.svg";
+import Save from "../icons/save.svg";
+
+export interface IFormButtonsConfiguration {
+  Icon: SvgrComponent;
+}
 
 export interface IWindowShadeConfiguration {
   FrontIcon: SvgrComponent;
@@ -21,6 +27,15 @@ export interface IWindowShadeConfiguration {
   label: string;
   styleClassName: string;
 }
+
+export const FormButtonsConfiguration: {[index: string]: IFormButtonsConfiguration} = {
+  cancelButton: {
+    Icon: Cancel
+  },
+  saveButton: {
+    Icon: Save
+  },
+};
 
 export const WindowShadeConfigurations: {[index: string]: IWindowShadeConfiguration} = {
   teacherTip: {
@@ -71,6 +86,10 @@ export const WindowShadeConfigurations: {[index: string]: IWindowShadeConfigurat
     label: "Offline Activity",
     styleClassName: "offline",
   }
+};
+
+export const getFormButtonsConfiguration = (key: string) => {
+  return FormButtonsConfiguration[key];
 };
 
 export const getContentConfiguration = (key: string) => {
