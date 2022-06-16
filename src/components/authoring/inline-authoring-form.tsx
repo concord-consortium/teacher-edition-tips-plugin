@@ -53,6 +53,7 @@ export const defaultQuestionWrapperProps: IAuthoredQuestionWrapper = {
 interface IProps {
   initialAuthoredState: IAuthoredState;
   saveAuthoredPluginState: (json: string) => void;
+  closeAuthoredPluginForm: () => void;
   wrappedEmbeddableDiv?: HTMLElement | null;
   wrappedEmbeddableContext?: object | null;
 }
@@ -129,7 +130,7 @@ export default class InlineAuthoringForm extends React.Component<IProps, IState>
           }
         </div>
         <div className={css.inlineFormButtons + " submit-container"}>
-          <button className={css.inlineFormButton}>
+          <button onClick={this.closeForm} className={css.inlineFormButton}>
             <cancelButtonConfig.Icon className={css.svgIcon} />
             <span className={css.lineAdjust}>
               Cancel
@@ -186,5 +187,9 @@ export default class InlineAuthoringForm extends React.Component<IProps, IState>
 
   private saveAuthoredState = () => {
     this.props.saveAuthoredPluginState(JSON.stringify(this.state.authoredState));
+  }
+
+  private closeForm = () => {
+    this.props.closeAuthoredPluginForm();
   }
 }
