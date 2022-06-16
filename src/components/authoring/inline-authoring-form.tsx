@@ -53,7 +53,7 @@ export const defaultQuestionWrapperProps: IAuthoredQuestionWrapper = {
 interface IProps {
   initialAuthoredState: IAuthoredState;
   saveAuthoredPluginState: (json: string) => void;
-  closeAuthoredPluginForm: () => void;
+  closeAuthoredPluginForm?: () => void;
   wrappedEmbeddableDiv?: HTMLElement | null;
   wrappedEmbeddableContext?: object | null;
 }
@@ -190,6 +190,8 @@ export default class InlineAuthoringForm extends React.Component<IProps, IState>
   }
 
   private closeForm = () => {
-    this.props.closeAuthoredPluginForm();
+    if (this.props.closeAuthoredPluginForm) {
+      this.props.closeAuthoredPluginForm();
+    }
   }
 }

@@ -126,7 +126,7 @@
     "webpack-dev-server": "^4.9.0"
   },
   "dependencies": {
-    "@concord-consortium/lara-plugin-api": "^3.3.1",
+    "@concord-consortium/lara-plugin-api": "^3.4.0-pre.3",
     "markdown-to-jsx": "^7.1.7",
     "query-string": "^7.1.1",
     "tslint-react": "^5.0.0",
