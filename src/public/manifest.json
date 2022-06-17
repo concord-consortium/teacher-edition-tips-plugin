@@ -8,13 +8,13 @@
     "components": [
       {
         "label": "windowShade",
-        "name": "Window Shades",
+        "name": "Window Shade",
         "scope": "embeddable",
         "guiAuthoring": true
       },
       {
         "label": "sideTip",
-        "name": "Side Tips",
+        "name": "Side Tip",
         "scope": "embeddable",
         "guiAuthoring": true
       },

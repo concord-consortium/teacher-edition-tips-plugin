@@ -71,6 +71,7 @@ export class TeacherEditionTipsAuthoringPlugin {
       <InlineAuthoringForm
         initialAuthoredState={ authoredState }
         saveAuthoredPluginState={ this.context.saveAuthoredPluginState }
+        closeAuthoredPluginForm={ this.context.closeAuthoredPluginForm }
         wrappedEmbeddableDiv={wrappedEmbeddable?.container}
         wrappedEmbeddableContext={wrappedEmbeddable?.laraJson}
     />,
