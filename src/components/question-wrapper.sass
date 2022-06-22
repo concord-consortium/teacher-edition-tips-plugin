@@ -82,12 +82,14 @@
     display: grid
     grid-template-columns: 100%
     grid-template-rows: [header] auto [main-content] auto [footer] auto
-    overflow: hidden
     position: relative
 
     .originalContent
+      border-bottom-left-radius: 17px
+      border-bottom-right-radius: 17px
       grid-column-start: 1
       grid-row-start: main-content
+      overflow: hidden
 
     .overlay
       grid-column-start: 1

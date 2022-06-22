@@ -48,7 +48,7 @@ export default class QuestionWrapper extends React.Component<IProps, IState> {
 
   public componentDidMount() {
     const { wrappedEmbeddableDiv, wrappedEmbeddableContext } = this.props;
-    if (!wrappedEmbeddableDiv) {
+    if (!wrappedEmbeddableDiv || !wrappedEmbeddableContext) {
       return;
     }
     /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
