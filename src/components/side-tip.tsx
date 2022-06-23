@@ -26,7 +26,7 @@ export default class SideTip extends React.Component<IProps, IState> {
   }
 
   public render() {
-    const { content } = this.props.authoredState;
+    const { content } = this.props.authoredState || {};
     return (
       <div className={css.sideBar}>
         <div className={css.text}>
