@@ -20,6 +20,8 @@
   // The :before rule set below prevents content that scrolls
   // below the .preview div from showing through the gap 
   // between it and the top of the authoring form dialog.
+  // This will become unnecessary once the preview is moved 
+  // to a column to the right of the authoring form.
   &:before
     background: white
     content: ""
@@ -28,6 +30,22 @@
     position: absolute
     top: -10px
     width: 100%
+
+// This is a temporary solution to ensure that media in 
+// window shade tips doesn't make the authoring form 
+// unusable by taking over the entire form modal. This 
+// will become unnecessary once the preview is moved to a 
+// column to the right of the authoring form.
+div[class*="preview"]
+  div[class*="mediaContainerCenter"]
+    div[class*="mediaWrapper"]
+      img, video
+        max-height: 250px
+        width: auto
+      &:after
+        content: "NOTE: Any media in this preview will appear scaled down for this authoring view. To see it actual size, preview in Activity Player."
+        font-size: 14px
+        font-style: italic
 
 .authoringFormContainer
   grid-column: 2
