@@ -23,6 +23,10 @@ export const isBuiltInMCQuestion = (wrappedEmbeddableContext: any) => {
 };
 
 export const isInteractive = (wrappedEmbeddableContext: any) => {
+  if (!wrappedEmbeddableContext) {
+    console.error("Question wrapper missing required wrappedEmbeddableContext");
+    return false;
+  }
   return LARA_INTERACTIVES.indexOf(wrappedEmbeddableContext.type) !== -1;
 };
 
