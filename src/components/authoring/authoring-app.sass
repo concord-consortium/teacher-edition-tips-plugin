@@ -13,23 +13,8 @@
   grid-row: 1
   margin: 0
   min-width: 500px
-  position: sticky
   top: 0
   z-index: 5
-
-  // The :before rule set below prevents content that scrolls
-  // below the .preview div from showing through the gap 
-  // between it and the top of the authoring form dialog.
-  // This will become unnecessary once the preview is moved 
-  // to a column to the right of the authoring form.
-  &:before
-    background: white
-    content: ""
-    display: block
-    height: 10px
-    position: absolute
-    top: -10px
-    width: 100%
 
 // This is a temporary solution to ensure that media in 
 // window shade tips doesn't make the authoring form 
