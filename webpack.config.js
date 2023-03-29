@@ -4,6 +4,7 @@ const CopyPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
+const DEPLOY_PATH = process.env.DEPLOY_PATH;
 
 module.exports = (env, argv) => {
   const devMode = argv.mode !== 'production';
@@ -79,6 +80,12 @@ module.exports = (env, argv) => {
         chunks: ['authoring']
       }),
       new HtmlWebpackPlugin({
+        chunks: ['authoring'],
+        filename: 'authoring-top.html',
+        publicPath: `${DEPLOY_PATH}/`,
+        template: './src/public/authoring.html',
+      }),
+      new HtmlWebpackPlugin({
         template: './src/public/demo.html',
         filename: 'demo.html',
         chunks: ['demo']
@@ -86,7 +93,8 @@ module.exports = (env, argv) => {
       new CopyPlugin({
         patterns: [
           { from: './src/public/manifest.json', to: 'manifest.json' }
-        ]})
+        ]
+      })
     ],
     externals: {
       'react': 'React',

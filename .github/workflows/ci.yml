@@ -60,25 +60,37 @@ jobs:
   #         flags: cypress
   s3-deploy:
     name: S3 Deploy
+    env:
+      S3_BUCKET: models-resources
+      S3_SUBFOLDER: ${{ github.event.repository.name }} # 'teacher-edition-tips-plugin'
     needs:
       - build_test
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
-      - name: Setup Ruby
-        uses: actions/setup-ruby@v1
+      # Install dependencies first before running "npm run build". Otherwise the build will fail due
+      # to some build tools being unavailable:
+      # $ npm run build
+      # > teacher-edition-tips-plugin@3.10.0 build
+      # > npm-run-all lint:build clean build:webpack
+      # 
+      # sh: line 1: npm-run-all: command not found
+      - run: npm ci
+      - uses: concord-consortium/s3-deploy-action@v1
         with:
-          ruby-version: '2.7'
-      - name: Install Dependencies
-        run: |
-          gem install s3_website -v 3.4.0
-          npm ci
-      - name: Build
-        run: npm run build
-      - name: Deploy
-        run: ./s3_deploy.sh
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_EC2_METADATA_DISABLED: true
+          bucket: ${{ env.S3_BUCKET }}
+          prefix: ${{ env.S3_SUBFOLDER }}
+          awsAccessKeyId: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          awsSecretAccessKey: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          topBranches: |-
+            [
+              "${{ github.event.repository.default_branch }}",
+              "${{ github.ref_name }}"
+            ]
+      - name: Copy 'authoring-top.html' to top-level (if deploying from 'production' branch)
+        if: ${{ github.ref == 'refs/heads/production' }}
+        run: |-
+          aws s3 cp \
+            s3://${{ env.S3_BUCKET }}/${{ env.S3_SUBFOLDER }}/branch/production/authoring-top.html \
+            s3://${{ env.S3_BUCKET }}/${{ env.S3_SUBFOLDER }}/authoring.html
