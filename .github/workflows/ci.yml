@@ -85,7 +85,7 @@ jobs:
           awsSecretAccessKey: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           topBranches: |-
             [
-              "${{ github.event.repository.default_branch }}"
+              "${{ github.event.repository.default_branch }}",
               "${{ github.ref_name }}"
             ]
       - name: Copy 'authoring-top.html' to top-level (if deploying from 'production' branch)
